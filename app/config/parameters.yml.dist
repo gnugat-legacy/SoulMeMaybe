@@ -6,6 +6,7 @@ parameters:
     # You CAN edit the following parameters
     client: 'SoulMeMaybe 0.0.0'
     user_location: 'Somewhere'
+    ping_answer: 'Hey, You just pinged me, And this is crazy, But here's my ping answer, So soul me, maybe?'
 
     # You SHOULDN'T edit the following parameters
     host: '10.42.1.59'
