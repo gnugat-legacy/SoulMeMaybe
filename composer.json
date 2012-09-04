@@ -1,0 +1,18 @@
+{
+    "name": "gnugat/SoulMeMaybe",
+    "description": "A NetSoul client to allow internet connection at EPITECH.",
+    "keywords": ["NetSoul", "client", "EPITECH"],
+    "homepage": "https://github.com/gnugat/SoulMeMaybe",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Loic Chardonnet"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "autoload": {
+        "psr-0": { "": "src/" }
+    }
+}
