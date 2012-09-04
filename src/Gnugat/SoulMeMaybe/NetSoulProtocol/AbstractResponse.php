@@ -10,21 +10,21 @@ namespace Gnugat\SoulMeMaybe\NetSoulProtocol;
 abstract class AbstractResponse
 {
     /**
-     * Sets the response class from the raw response.
+     * Sets the attributes from the raw response.
      *
      * @param string $rawResponse The raw response.
      */
-    abstract public function setFromRawResponse($rawResponse);
+    abstract public function setAttributesFromRawResponse($rawResponse);
 
     /**
-     * Sets the attributes values from the attributes names and the raw response.
+     * Puts raw response values in the attributes by their names.
      *
+     * @param strin $rawResponseValues The raw response values.
      * @param array $attributeNames The attribute names.
-     * @param string $rawResponse The raw response.
      */
-    protected function make($attributeNames, $rawResponse)
+    protected function putsRawResponseValuesInAttributesByTheirNames($rawResponseValues, $attributeNames)
     {
-        $responseValues = explode(' ', $rawResponse);
+        $responseValues = explode(' ', $rawResponseValues);
         foreach ($attributeNames as $responseIndex => $attributeName) {
             $this->$attributeName = $responseValues[$responseIndex];
         }

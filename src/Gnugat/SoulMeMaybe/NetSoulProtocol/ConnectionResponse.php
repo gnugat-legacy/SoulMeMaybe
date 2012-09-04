@@ -42,7 +42,7 @@ class ConnectionResponse extends AbstractResponse
     /**
      * {@inheritdoc}
      */
-    public function setFromRawResponse($rawResponse)
+    public function setAttributesFromRawResponse($rawResponse)
     {
         $attributeNames = array(
             'commandName',
@@ -53,6 +53,6 @@ class ConnectionResponse extends AbstractResponse
             'serverTimestamp',
         );
 
-        $this->make($attributeNames, $rawResponse);
+        $this->putsRawResponseValuesInAttributesByTheirNames($rawResponse, $attributeNames);
     }
 }
