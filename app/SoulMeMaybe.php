@@ -9,12 +9,9 @@ require __DIR__.'/../vendor/autoload.php';
  *
  * @author Loic Chardonnet <loic.chardonnet@gmail.com>
  */
-try
-{
+try {
     $kernel = new Kernel();
     $kernel->connect();
-}
-catch (\Exception $exception)
-{
+} catch (\Exception $exception) {
     die($exception->getMessage());
 }
