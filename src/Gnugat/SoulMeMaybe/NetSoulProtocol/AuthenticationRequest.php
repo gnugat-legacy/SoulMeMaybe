@@ -30,13 +30,11 @@ class AuthenticationRequest
     public $thirdArgument = 'none';
 
     /**
-     * Gets the request.
-     *
-     * @return string
+     * {@inheritdoc}
      */
-    public function getRequest()
+    public function getRawRequestFromAttribute()
     {
-        return implode(' ', array(
+        return $this->putsAttributeValuesInRawRequest(array(
             $this->commandName,
             $this->firstArgument,
             $this->secondArgument,

@@ -19,7 +19,7 @@ abstract class AbstractResponse
     /**
      * Puts raw response values in the attributes by their names.
      *
-     * @param strin $rawResponseValues The raw response values.
+     * @param string $rawResponseValues The raw response values.
      * @param array $attributeNames The attribute names.
      */
     protected function putsRawResponseValuesInAttributesByTheirNames($rawResponseValues, $attributeNames)
