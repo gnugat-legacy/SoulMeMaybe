@@ -1,6 +1,6 @@
 <?php
 
-use Gnugat\SoulMeMaybe\Client;
+use Gnugat\SoulMeMaybe\Kernel;
 
 require __DIR__.'/../vendor/autoload.php';
 
@@ -9,4 +9,12 @@ require __DIR__.'/../vendor/autoload.php';
  *
  * @author Loic Chardonnet <loic.chardonnet@gmail.com>
  */
-$client = new Client();
+try
+{
+    $kernel = new Kernel();
+    $kernel->connect();
+}
+catch (\Exception $exception)
+{
+    die($exception->getMessage());
+}
