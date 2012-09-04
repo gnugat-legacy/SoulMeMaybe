@@ -9,9 +9,9 @@ SoulMeMaybe will connect to the following server:
 * **name**: `10.42.1.59`;
 * **port**: `4242`.
 
-## Connection protocol
+## Protocol
 
-Here is the protocol to follow after connecting to the server:
+Here is the protocol followed by SoulMeMaybe:
 
 1. **server**: `salut <socket number> <hash seed> <client host> <client port> <server timestamp>`;
 2. **client**: `auth_ag ext_user none none`;
