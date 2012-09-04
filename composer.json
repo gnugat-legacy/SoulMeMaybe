@@ -10,7 +10,8 @@
         }
     ],
     "require": {
-        "php": ">=5.3.3"
+        "symfony/yaml": "2.1.*",
+        "symfony/config": "2.1.*"
     },
     "autoload": {
         "psr-0": { "": "src/" }
