@@ -7,7 +7,7 @@ namespace Gnugat\SoulMeMaybe\NetSoulProtocol;
  *
  * @author Loic Chardonnet <loic.chardonnet@gmail.com>
  */
-class ConnectionResponse
+class ConnectionResponse extends AbstractResponse
 {
     /**
      * @var string The command name.
@@ -54,19 +54,5 @@ class ConnectionResponse
         );
 
         $this->make($attributeNames, $rawResponse);
-    }
-
-    /**
-     * Sets the attributes values from the attributes names and the raw response.
-     *
-     * @param array $attributeNames The attribute names.
-     * @param string $rawResponse The raw response.
-     */
-    private function make($attributeNames, $rawResponse)
-    {
-        $responseValues = explode(' ', $rawResponse);
-        foreach ($attributeNames as $responseIndex => $attributeName) {
-            $this->$attributeName = $responseValues[$responseIndex];
-        }
     }
 }
