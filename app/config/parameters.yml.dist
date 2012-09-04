@@ -1,0 +1,7 @@
+parameters:
+    login: 'login'
+    password_socks: 'password_socks'
+
+    # You shouldn't have to edit the following ones
+    host: '10.42.1.59'
+    port: 4242
