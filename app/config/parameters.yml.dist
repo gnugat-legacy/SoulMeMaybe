@@ -1,7 +1,12 @@
 parameters:
+    # You MUST edit the following parameters.
     login: 'login'
     password_socks: 'password_socks'
 
-    # You shouldn't have to edit the following ones
+    # You CAN edit the following parameters
+    client: 'SoulMeMaybe 0.0.0'
+    user_location: 'Somewhere'
+
+    # You SHOULDN'T edit the following parameters
     host: '10.42.1.59'
     port: 4242
