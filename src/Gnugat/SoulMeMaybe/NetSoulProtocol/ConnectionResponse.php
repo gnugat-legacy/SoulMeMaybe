@@ -40,25 +40,33 @@ class ConnectionResponse
     public $serverTimestamp;
 
     /**
-     * The constructor.
-     *
-     * @param integer $handler The handler.
+     * {@inheritdoc}
      */
-    public function __construct($handler)
+    public function setFromRawResponse($rawResponse)
     {
-        $attributeNamesAndLinkedIndexes = array(
-            'commandName' => 0,
-            'socketNumber' => 1,
-            'hashSeed' => 2,
-            'clientHost' => 3,
-            'clientPort' => 4,
-            'serverTimestamp' => 5,
+        $attributeNames = array(
+            'commandName',
+            'socketNumber',
+            'hashSeed',
+            'clientHost',
+            'clientPort',
+            'serverTimestamp',
         );
 
-        $rawResponse = fgets($handler);
-        $responseAttributes = explode(' ', $rawResponse);
-        foreach ($attributeNamesAndLinkedIndexes as $attributeName => $linkedIndex) {
-            $this->$attributeName = $responseAttributes[$linkedIndex];
+        $this->make($attributeNames, $rawResponse);
+    }
+
+    /**
+     * Sets the attributes values from the attributes names and the raw response.
+     *
+     * @param array $attributeNames The attribute names.
+     * @param string $rawResponse The raw response.
+     */
+    private function make($attributeNames, $rawResponse)
+    {
+        $responseValues = explode(' ', $rawResponse);
+        foreach ($attributeNames as $responseIndex => $attributeName) {
+            $this->$attributeName = $responseValues[$responseIndex];
         }
     }
 }
