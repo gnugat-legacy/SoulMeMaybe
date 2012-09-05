@@ -24,6 +24,7 @@ class Kernel
     public function __construct($parametersFilePath)
     {
         $this->parameters = Yaml::parse($parametersFilePath)['parameters'];
+        var_dump($this->parameters);
     }
 
     /**
