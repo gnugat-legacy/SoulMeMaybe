@@ -18,7 +18,7 @@ Here is the protocol followed by SoulMeMaybe:
 3. **server**: `rep 002 -- cmd end`;
 4. **client**: `ext_user_log <login> <authentication hash> <client> <user location>`;
 5. **server**: `ping <timeout in seconds>`;
-6. **client**: `<ping answer>`.
+6. **client**: `ping`.
 
 With:
 
