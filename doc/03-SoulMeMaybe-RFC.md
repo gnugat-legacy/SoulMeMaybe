@@ -13,15 +13,15 @@ SoulMeMaybe will connect to the following server:
 
 Here is the protocol followed by SoulMeMaybe:
 
-1. **server**: `salut <socket number> <hash seed> <client host> <client port> <server timestamp>`;
+1. **server**: `salut <file descriptor> <hash seed> <client host> <client port> <connection timestamp>`;
 2. **client**: `auth_ag ext_user none none`;
 3. **server**: `rep 002 -- cmd end`;
-4. **client**: `ext_user_log <login> <authentication hash> <client> <user location>`;
+4. **client**: `ext_user_log <user login> <authentication hash> <client description> <user location>`;
 5. **server**: `ping <timeout in seconds>`;
 6. **client**: `ping`.
 
 With:
 
 * `<authentication hash>` being `md5("<hash seed>-<client host>/<client port><password socks>")`;
-* `<client>` being `<client name> <client version>`;
+* `<client description>` being `<client name> <client version>`;
 * `<user location>` being `<in PIE> <room> <line> <station>`.

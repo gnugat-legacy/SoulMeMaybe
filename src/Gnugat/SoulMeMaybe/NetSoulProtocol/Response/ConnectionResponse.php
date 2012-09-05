@@ -15,9 +15,9 @@ class ConnectionResponse extends AbstractResponse
     public $commandName;
 
     /**
-     * @var integer The socket number.
+     * @var integer The file descriptor.
      */
-    public $socketNumber;
+    public $fileDescriptor;
 
     /**
      * @var string The hash seed.
@@ -35,9 +35,9 @@ class ConnectionResponse extends AbstractResponse
     public $clientPort;
 
     /**
-     * @var integer The server timestamp.
+     * @var integer The connection timestamp.
      */
-    public $serverTimestamp;
+    public $connectionTimestamp;
 
     /**
      * {@inheritdoc}
@@ -46,11 +46,11 @@ class ConnectionResponse extends AbstractResponse
     {
         $attributeNames = array(
             'commandName',
-            'socketNumber',
+            'fileDescriptor',
             'hashSeed',
             'clientHost',
             'clientPort',
-            'serverTimestamp',
+            'connectionTimestamp',
         );
 
         $this->putsRawResponseValuesInAttributesByTheirNames($rawResponse, $attributeNames);

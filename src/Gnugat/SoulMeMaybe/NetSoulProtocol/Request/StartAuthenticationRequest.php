@@ -15,19 +15,19 @@ class StartAuthenticationRequest extends AbstractRequest
     public $commandName = 'auth_ag';
 
     /**
-     * @var integer The first argument.
+     * @var integer The authentication type.
      */
-    public $firstArgument = 'ext_user';
+    public $authenticationType = 'ext_user';
 
     /**
-     * @var integer The second argument.
+     * @var integer The unused argument 1.
      */
-    public $secondArgument = 'none';
+    public $unusedArgument1 = 'none';
 
     /**
-     * @var integer The third argument.
+     * @var integer The unused argument 2.
      */
-    public $thirdArgument = 'none';
+    public $unusedArgument2 = 'none';
 
     /**
      * {@inheritdoc}
@@ -36,9 +36,9 @@ class StartAuthenticationRequest extends AbstractRequest
     {
         return $this->putsAttributeValuesInRawRequest(array(
             $this->commandName,
-            $this->firstArgument,
-            $this->secondArgument,
-            $this->thirdArgument,
+            $this->authenticationType,
+            $this->unusedArgument1,
+            $this->unusedArgument2,
         ));
     }
 }

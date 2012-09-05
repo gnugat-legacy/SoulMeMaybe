@@ -25,14 +25,14 @@ class StartAuthenticationResponse extends AbstractResponse
     public $separator;
 
     /**
-     * @var string The request type.
+     * @var string The first word of the message.
      */
-    public $requestType;
+    public $firstWordMessage;
 
     /**
-     * @var integer The message.
+     * @var integer The second word of the message.
      */
-    public $message;
+    public $secondWordMessage;
 
     /**
      * {@inheritdoc}
@@ -43,8 +43,8 @@ class StartAuthenticationResponse extends AbstractResponse
             'commandName',
             'codeNumber',
             'separator',
-            'requestType',
-            'message',
+            'firstWordMessage',
+            'secondWordMessage',
         );
 
         $this->putsRawResponseValuesInAttributesByTheirNames($rawResponse, $attributeNames);

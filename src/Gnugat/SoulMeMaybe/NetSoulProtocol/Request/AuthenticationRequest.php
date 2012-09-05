@@ -17,7 +17,7 @@ class AuthenticationRequest extends AbstractRequest
     /**
      * @var integer The user login.
      */
-    public $login;
+    public $userLogin;
 
     /**
      * @var integer The authentication hash.
@@ -25,9 +25,9 @@ class AuthenticationRequest extends AbstractRequest
     public $authenticationHash;
 
     /**
-     * @var integer The client.
+     * @var integer The client description.
      */
-    public $client;
+    public $clientDescription;
 
     /**
      * @var integer The user location.
@@ -41,9 +41,9 @@ class AuthenticationRequest extends AbstractRequest
     {
         return $this->putsAttributeValuesInRawRequest(array(
             $this->commandName,
-            $this->login,
+            $this->userLogin,
             $this->authenticationHash,
-            $this->client,
+            $this->clientDescription,
             $this->userLocation,
         ));
     }
