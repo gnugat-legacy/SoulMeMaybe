@@ -34,7 +34,10 @@ class Kernel
      */
     public function connect()
     {
-        $filePointer = fsockopen($this->parameters['host'], $this->parameters['port']);
+        $filePointer = fsockopen(
+            $this->parameters['server_host'],
+            $this->parameters['server_port']
+        );
 
         if (false === $filePointer) {
             throw new \Exception("Error: Could not connect to the NetSoul server\n");

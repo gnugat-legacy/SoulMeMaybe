@@ -2,6 +2,8 @@
 
 namespace Gnugat\SoulMeMaybe\NetSoulProtocol\Request;
 
+use Gnugat\SoulMeMaybe\NetSoulProtocol\Response\ConnectionResponse;
+
 /**
  * Authentication request class.
  *
@@ -33,6 +35,27 @@ class AuthenticationRequest extends AbstractRequest
      * @var integer The user location.
      */
     public $userLocation;
+
+    /**
+     * The constructor.
+     *
+     * @param \Gnugat\SoulMeMaybe\NetSoulProtocol\Response\ConnectionResponse $connectionResponse The connection response.
+     * @param array                                                           $parameters         The parameters.
+     */
+    public function __construct(ConnectionResponse $connectionResponse, array $parameters)
+    {
+        $this->userLogin = $parameters['user_login'];
+        $this->authenticationHash = md5(
+            $connectionResponse->hashSeed
+            . '-'
+            . $connectionResponse->clientHost
+            . '/'
+            . $connectionResponse->clientPort
+            . $parameters['password_socks']
+        );
+        $this->clientDescription = $parameters['client_description'];
+        $this->userLocation = $parameters['user_location'];
+    }
 
     /**
      * {@inheritdoc}

@@ -22,12 +22,12 @@ class StartAuthenticationRequest extends AbstractRequest
     /**
      * @var integer The unused argument 1.
      */
-    public $unusedArgument1 = 'none';
+    public $firstUnusedArgument = 'none';
 
     /**
      * @var integer The unused argument 2.
      */
-    public $unusedArgument2 = 'none';
+    public $secondUnusedArgument = 'none';
 
     /**
      * {@inheritdoc}
@@ -37,8 +37,8 @@ class StartAuthenticationRequest extends AbstractRequest
         return $this->putsAttributeValuesInRawRequest(array(
             $this->commandName,
             $this->authenticationType,
-            $this->unusedArgument1,
-            $this->unusedArgument2,
+            $this->firstUnusedArgument,
+            $this->secondUnusedArgument,
         ));
     }
 }
