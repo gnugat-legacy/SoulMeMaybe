@@ -4,6 +4,8 @@ namespace Gnugat\SoulMeMaybe;
 
 use Symfony\Component\Yaml\Yaml;
 
+use Gnugat\SoulMeMaybe\NetSoulProtocol\Response\ConnectionResponse;
+
 /**
  * Kernel class.
  *
@@ -17,6 +19,16 @@ class Kernel
     private $parameters;
 
     /**
+     * @var integer The file descriptor.
+     */
+    private $fileDescriptor;
+
+    /**
+     * @var \Gnugat\SoulMeMaybe\NetSoulProtocol\Response\ConnectionResponse The connection response.
+     */
+    private $connectionResponse;
+
+    /**
      * The constructor.
      *
      * @param string $parametersFilePath The parameters file path.
@@ -24,7 +36,7 @@ class Kernel
     public function __construct($parametersFilePath)
     {
         $this->parameters = Yaml::parse($parametersFilePath)['parameters'];
-        var_dump($this->parameters);
+        $this->connectionResponse = new ConnectionResponse();
     }
 
     /**
@@ -34,13 +46,16 @@ class Kernel
      */
     public function connect()
     {
-        $filePointer = fsockopen(
+        $this->fileDescriptor = fsockopen(
             $this->parameters['server_host'],
             $this->parameters['server_port']
         );
 
-        if (false === $filePointer) {
+        if (false === $this->fileDescriptor) {
             throw new \Exception("Error: Could not connect to the NetSoul server\n");
         }
+
+        $rawResponse = fgets($this->fileDescriptor);
+        $this->connectionResponse->setAttributesFromRawResponse($rawResponse);
     }
 }
