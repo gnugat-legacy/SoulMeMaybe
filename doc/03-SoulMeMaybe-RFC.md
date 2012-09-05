@@ -17,8 +17,9 @@ Here is the protocol followed by SoulMeMaybe:
 2. **client**: `auth_ag ext_user none none`;
 3. **server**: `rep 002 -- cmd end`;
 4. **client**: `ext_user_log <user login> <authentication hash> <client description> <user location>`;
-5. **server**: `ping <timeout in seconds>`;
-6. **client**: `ping`.
+5. **server**: `rep 002 -- cmd end`;
+6. **server**: `ping <timeout in seconds>`;
+7. **client**: `ping`.
 
 With:
 

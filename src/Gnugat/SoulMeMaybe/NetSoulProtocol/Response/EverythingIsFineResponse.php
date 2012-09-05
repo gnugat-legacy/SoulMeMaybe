@@ -3,11 +3,11 @@
 namespace Gnugat\SoulMeMaybe\NetSoulProtocol\Response;
 
 /**
- * Start authentication response class.
+ * Everything is fine response class.
  *
  * @author Loic Chardonnet <loic.chardonnet@gmail.com>
  */
-class StartAuthenticationResponse extends AbstractResponse
+class EverythingIsFineResponse extends AbstractResponse
 {
     /**
      * @var string The command name.
