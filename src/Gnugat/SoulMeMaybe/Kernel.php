@@ -4,7 +4,10 @@ namespace Gnugat\SoulMeMaybe;
 
 use Symfony\Component\Yaml\Yaml;
 
-use Gnugat\SoulMeMaybe\NetSoulProtocol\Response\ConnectionResponse;
+use Gnugat\SoulMeMaybe\NetSoulProtocol\Response\ConnectionResponse,
+    Gnugat\SoulMeMaybe\NetSoulProtocol\Request\StartAuthenticationRequest,
+    Gnugat\SoulMeMaybe\NetSoulProtocol\Response\EverythingIsFineResponse,
+    Gnugat\SoulMeMaybe\NetSoulProtocol\Request\AuthenticationRequest;
 
 /**
  * Kernel class.
@@ -36,7 +39,6 @@ class Kernel
     public function __construct($parametersFilePath)
     {
         $this->parameters = Yaml::parse($parametersFilePath)['parameters'];
-        $this->connectionResponse = new ConnectionResponse();
     }
 
     /**
@@ -56,6 +58,30 @@ class Kernel
         }
 
         $rawResponse = fgets($this->fileDescriptor);
+
+        $this->connectionResponse = new ConnectionResponse();
         $this->connectionResponse->setAttributesFromRawResponse($rawResponse);
+    }
+
+    /**
+     * Authenticates the user.
+     */
+    public function authenticate()
+    {
+        $startAuthenticationRequest = new StartAuthenticationRequest();
+        $rawRequest = $startAuthenticationRequest->getRawRequestFromAttribute();
+        fwrite($this->fileDescriptor, $rawRequest);
+
+        $rawResponse = fgets($this->fileDescriptor);
+        $everythingIsFineResponse = new EverythingIsFineResponse();
+        $everythingIsFineResponse->setAttributesFromRawResponse($rawResponse);
+
+        $authenticationRequest = new AuthenticationRequest($this->connectionResponse, $this->parameters);
+        $rawRequest = $authenticationRequest->getRawRequestFromAttribute();
+        fwrite($this->fileDescriptor, $rawRequest);
+
+        $rawResponse = fgets($this->fileDescriptor);
+        $everythingIsFineResponse = new EverythingIsFineResponse();
+        $everythingIsFineResponse->setAttributesFromRawResponse($rawResponse);
     }
 }
