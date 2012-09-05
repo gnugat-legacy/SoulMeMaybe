@@ -2,6 +2,8 @@
 
 namespace Gnugat\SoulMeMaybe;
 
+use Symfony\Component\Yaml\Yaml;
+
 /**
  * Kernel class.
  *
@@ -9,8 +11,20 @@ namespace Gnugat\SoulMeMaybe;
  */
 class Kernel
 {
-    const HOST = '10.42.1.59';
-    const PORT = 4242;
+    /**
+     * @var array The parameters.
+     */
+    private $parameters;
+
+    /**
+     * The constructor.
+     *
+     * @param string $parametersFilePath The parameters file path.
+     */
+    public function __construct($parametersFilePath)
+    {
+        $this->parameters = Yaml::parse($parametersFilePath)['parameters'];
+    }
 
     /**
      * Connects to the NetSoul server.
@@ -19,7 +33,7 @@ class Kernel
      */
     public function connect()
     {
-        $filePointer = fsockopen(self::HOST, self::PORT);
+        $filePointer = fsockopen($this->parameters['host'], $this->parameters['port']);
 
         if (false === $filePointer) {
             throw new \Exception("Error: Could not connect to the NetSoul server\n");
