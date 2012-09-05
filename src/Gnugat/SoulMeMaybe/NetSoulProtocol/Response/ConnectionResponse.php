@@ -1,6 +1,6 @@
 <?php
 
-namespace Gnugat\SoulMeMaybe\NetSoulProtocol;
+namespace Gnugat\SoulMeMaybe\NetSoulProtocol\Response;
 
 /**
  * Connection response class.

@@ -1,13 +1,13 @@
 <?php
 
-namespace Gnugat\SoulMeMaybe\NetSoulProtocol;
+namespace Gnugat\SoulMeMaybe\NetSoulProtocol\Request;
 
 /**
  * Authentication request class.
  *
  * @author Loic Chardonnet <loic.chardonnet@gmail.com>
  */
-class AuthenticationRequest
+class AuthenticationRequest extends AbstractRequest
 {
     /**
      * @var string The command name.
