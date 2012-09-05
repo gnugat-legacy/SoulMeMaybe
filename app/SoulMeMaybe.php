@@ -10,7 +10,7 @@ require __DIR__.'/../vendor/autoload.php';
  * @author Loic Chardonnet <loic.chardonnet@gmail.com>
  */
 try {
-    $kernel = new Kernel();
+    $kernel = new Kernel(__DIR__.'/config/parameters.yml');
     $kernel->connect();
 } catch (\Exception $exception) {
     die($exception->getMessage());

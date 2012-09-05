@@ -1,8 +1,11 @@
 # SoulMeMaybe, client NetSoul
 
 > Hey, I just met EPITECH,
+>
 > And this is crazy,
+>
 > But here's my NetSoul client,
+>
 > So soul me, maybe?
 
 NetSoul is a protocol used in EPITECH university allowing its students to:
