@@ -7,7 +7,9 @@ use Symfony\Component\Yaml\Yaml;
 use Gnugat\SoulMeMaybe\NetSoulProtocol\Response\ConnectionResponse,
     Gnugat\SoulMeMaybe\NetSoulProtocol\Request\StartAuthenticationRequest,
     Gnugat\SoulMeMaybe\NetSoulProtocol\Response\EverythingIsFineResponse,
-    Gnugat\SoulMeMaybe\NetSoulProtocol\Request\AuthenticationRequest;
+    Gnugat\SoulMeMaybe\NetSoulProtocol\Request\AuthenticationRequest,
+    Gnugat\SoulMeMaybe\NetSoulProtocol\Response\PingResponse,
+    Gnugat\SoulMeMaybe\NetSoulProtocol\Request\PingRequest;
 
 /**
  * Kernel class.
@@ -83,5 +85,19 @@ class Kernel
         $rawResponse = fgets($this->fileDescriptor);
         $everythingIsFineResponse = new EverythingIsFineResponse();
         $everythingIsFineResponse->setAttributesFromRawResponse($rawResponse);
+    }
+
+    /**
+     * Pings the server.
+     */
+    public function ping()
+    {
+        $rawResponse = fgets($this->fileDescriptor);
+        $pingResponse = new PingResponse();
+        $pingResponse->setAttributesFromRawResponse($rawResponse);
+
+        $pingRequest = new PingRequest();
+        $rawRequest = $pingRequest->getRawRequestFromAttribute();
+        fwrite($this->fileDescriptor, $rawRequest);
     }
 }
