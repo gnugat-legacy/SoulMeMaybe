@@ -17,22 +17,22 @@ class AuthenticationRequest extends AbstractRequest
     public $commandName = 'ext_user_log';
 
     /**
-     * @var integer The user login.
+     * @var string The user login.
      */
     public $userLogin;
 
     /**
-     * @var integer The authentication hash.
+     * @var string The authentication hash.
      */
     public $authenticationHash;
 
     /**
-     * @var integer The client description.
+     * @var string The client description.
      */
     public $clientDescription;
 
     /**
-     * @var integer The user location.
+     * @var string The user location.
      */
     public $userLocation;
 

@@ -15,17 +15,17 @@ class StartAuthenticationRequest extends AbstractRequest
     public $commandName = 'auth_ag';
 
     /**
-     * @var integer The authentication type.
+     * @var string The authentication type.
      */
     public $authenticationType = 'ext_user';
 
     /**
-     * @var integer The unused argument 1.
+     * @var string The unused argument 1.
      */
     public $firstUnusedArgument = 'none';
 
     /**
-     * @var integer The unused argument 2.
+     * @var string The unused argument 2.
      */
     public $secondUnusedArgument = 'none';
 

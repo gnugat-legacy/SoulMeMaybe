@@ -30,7 +30,7 @@ class EverythingIsFineResponse extends AbstractResponse
     public $firstWordMessage;
 
     /**
-     * @var integer The second word of the message.
+     * @var string The second word of the message.
      */
     public $secondWordMessage;
 
