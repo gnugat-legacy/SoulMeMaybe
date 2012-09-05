@@ -3,11 +3,11 @@
 namespace Gnugat\SoulMeMaybe\NetSoulProtocol\Request;
 
 /**
- * Authentication request class.
+ * Start authentication request class.
  *
  * @author Loic Chardonnet <loic.chardonnet@gmail.com>
  */
-class AuthenticationRequest extends AbstractRequest
+class StartAuthenticationRequest extends AbstractRequest
 {
     /**
      * @var string The command name.
