@@ -10,9 +10,10 @@
         }
     ],
     "require": {
-        "symfony/yaml": "2.1.*",
+        "symfony/yaml": "2.1.*"
     },
     "autoload": {
         "psr-0": { "": "src/" }
-    }
+    },
+    "minimum-stability": "dev"
 }
