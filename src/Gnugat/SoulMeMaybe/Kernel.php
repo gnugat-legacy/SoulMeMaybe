@@ -40,7 +40,8 @@ class Kernel
      */
     public function __construct($parametersFilePath)
     {
-        $this->parameters = Yaml::parse($parametersFilePath)['parameters'];
+        $this->parameters = Yaml::parse($parametersFilePath);
+        $this->parameters = $this->parameters['parameters'];
     }
 
     /**
@@ -104,7 +105,11 @@ class Kernel
         $pingResponse = new PingResponse();
         $pingResponse->setAttributesFromRawResponse($rawResponse);
 
-        sleep($pingResponse->timeoutInSeconds - 2);
+        $sleepTimeInSeconds = $pingResponse->timeoutInSeconds - 2;
+        if (5 > $sleepTimeInSeconds) {
+            $sleepTimeInSeconds = 5;
+        }
+        sleep($sleepTimeInSeconds);
 
         $pingRequest = new PingRequest();
         $rawRequest = $pingRequest->getRawRequestFromAttribute();
