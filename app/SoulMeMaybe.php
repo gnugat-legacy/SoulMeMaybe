@@ -12,6 +12,10 @@ require __DIR__.'/../vendor/autoload.php';
 try {
     $kernel = new Kernel(__DIR__.'/config/parameters.yml');
     $kernel->connect();
+    $kernel->authenticate();
+    while (true) {
+        $kernel->ping();
+    }
 } catch (\Exception $exception) {
     die($exception->getMessage());
 }
