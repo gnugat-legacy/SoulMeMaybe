@@ -1,1 +1,12 @@
-/nbproject
+# Local directories
+vendor/*
+
+# Composer files
+composer.phar
+composer.lock
+
+# Configuration files
+app/config/parameters.yml
+
+# IDE config
+nbproject/*

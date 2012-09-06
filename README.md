@@ -1,8 +1,11 @@
 # SoulMeMaybe, client NetSoul
 
 > Hey, I just met EPITECH,
+>
 > And this is crazy,
+>
 > But here's my NetSoul client,
+>
 > So soul me, maybe?
 
 NetSoul is a protocol used in EPITECH university allowing its students to:
@@ -14,13 +17,30 @@ NetSoul is a protocol used in EPITECH university allowing its students to:
 **SoulMeMaybe** is a simple client for NetSoul, sending ping requests so
 internet can be accessed (localization and IM won't be implemented).
 
+# Installation
+
+As SoulMeMaybe uses [Composer](http://getcomposer.org/) to manage its
+dependencies, the recommended way to install it is to use it.
+
+If you don't have Composer yet, download it following the instructions on
+http://getcomposer.org/ or just run the following command:
+
+    curl -s http://getcomposer.org/installer | php
+
+Then, use the `install` command to get the dependencies:
+
+    php composer.phar install
+
+Composer will install SoulMeMaybe's dependencies under the `vendor` directory.
+
 # Documentation
 
 You can find more documentation at the following links:
 
 * Copyright and MIT license: ``./LICENSE.md``;
 * version and change log: ``./VERSION.md`` and ``CHANGELOG.md``;
-* versioning, branch and public API models: ``./VERSIONING.md``.
+* versioning, branch and public API models: ``./VERSIONING.md``;
+* more documentation: see `./doc/01-index.md`.
 
 # Contributing
 
