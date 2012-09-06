@@ -53,8 +53,8 @@ class AuthenticationRequest extends AbstractRequest
             . $connectionResponse->clientPort
             . $parameters['password_socks']
         );
-        $this->clientDescription = $parameters['client_description'];
-        $this->userLocation = $parameters['user_location'];
+        $this->clientDescription = rawurlencode($parameters['client_description']);
+        $this->userLocation = rawurlencode($parameters['user_location']);
     }
 
     /**

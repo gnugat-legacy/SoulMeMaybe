@@ -25,6 +25,8 @@ abstract class AbstractRequest
      */
     protected function putsAttributeValuesInRawRequest($attributeValues)
     {
-        return implode(' ', $attributeValues);
+        $rawRequest = implode(' ', $attributeValues);
+
+        return "$rawRequest\n";
     }
 }

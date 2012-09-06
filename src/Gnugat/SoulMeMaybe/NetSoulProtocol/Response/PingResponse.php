@@ -30,5 +30,7 @@ class PingResponse extends AbstractResponse
         );
 
         $this->putsRawResponseValuesInAttributesByTheirNames($rawResponse, $attributeNames);
+
+        $this->timeoutInSeconds = intval($this->timeoutInSeconds);
     }
 }
