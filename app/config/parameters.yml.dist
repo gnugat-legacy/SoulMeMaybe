@@ -1,13 +1,12 @@
 parameters:
     # You MUST edit the following parameters.
-    login: 'login'
-    password_socks: 'password_socks'
+    user_login: "user_login"
+    password_socks: "password_socks"
 
     # You CAN edit the following parameters
-    client: 'SoulMeMaybe 0.0.0'
-    user_location: 'Somewhere'
-    ping_answer: 'Hey, You just pinged me, And this is crazy, But here's my ping answer, So soul me, maybe?'
+    client_description: "SoulMeMaybe 1.0.0"
+    user_location: "Somewhere"
 
     # You SHOULDN'T edit the following parameters
-    host: '10.42.1.59'
-    port: 4242
+    server_host: "10.42.1.59"
+    server_port: 4242
