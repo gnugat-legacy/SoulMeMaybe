@@ -51,7 +51,7 @@ class Kernel
      */
     public function connect()
     {
-        $this->fileDescriptor = fsockopen(
+        $this->fileDescriptor = @fsockopen(
             $this->parameters['server_host'],
             $this->parameters['server_port']
         );

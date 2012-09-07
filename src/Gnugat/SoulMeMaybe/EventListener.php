@@ -9,6 +9,9 @@ namespace Gnugat\SoulMeMaybe;
  */
 class EventListener
 {
+    /**
+     * Post install event.
+     */
     public static function postInstall()
     {
         $configurator = new Configurator();

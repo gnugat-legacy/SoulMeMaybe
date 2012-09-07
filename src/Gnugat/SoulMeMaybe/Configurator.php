@@ -43,6 +43,9 @@ class Configurator
         fclose($input);
     }
 
+    /**
+     * Writes the '/app/config/parameters.yml' file.
+     */
     public function writeParametersFile()
     {
         $configDirectoryPath = __DIR__.'/../../../app/config/';
