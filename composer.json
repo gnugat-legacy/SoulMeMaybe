@@ -14,5 +14,8 @@
     },
     "autoload": {
         "psr-0": { "": "src/" }
+    },
+    "scripts": {
+        "post-install-cmd": "Gnugat\\SoulMeMaybe\\EventListener::postInstall"
     }
 }

@@ -1,4 +1,4 @@
-# SoulMeMaybe, client NetSoul
+# SoulMeMaybe, NetSoul client
 
 > Hey, I just met EPITECH,
 >
@@ -27,11 +27,13 @@ http://getcomposer.org/ or just run the following command:
 
     curl -s http://getcomposer.org/installer | php
 
-Then, use the `install` command to get the dependencies:
+Then, use the `create-project` command to get the dependencies:
 
-    php composer.phar install
+    php composer.phar create-project gnugat/soul-me-maybe
 
-Composer will install SoulMeMaybe's dependencies under the `vendor` directory.
+Composer will install SoulMeMaybe under the `soul-me-maybe` directory and
+will ask you your login and password socks to create the configuration into
+the `app/config/parameters.yml` file.
 
 # Documentation
 
