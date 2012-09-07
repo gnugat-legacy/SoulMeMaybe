@@ -26,12 +26,10 @@ class PingRequest extends AbstractRequest
      */
     public function __construct()
     {
-        $this->nonMandatoryArgument = <<<EOT
-Hey, you just pinged me,
-And this is crazy,
-But here's my ping answer,
-So soul me, maybe?
-EOT
+        $this->nonMandatoryArgument = 'Hey, you just pinged me,'
+            .' And this is crazy,'
+            .' But here\'s my ping answer,'
+            .' So soul me, maybe?'
         ;
     }
 
