@@ -2,6 +2,12 @@
 
 This file logs the changes between versions.
 
+## 1.1.2
+
+* Fixing the ping response;
+* improving documenation;
+* updating dependencies.
+
 ## 1.1.1
 
 * Fixing the configurator.
