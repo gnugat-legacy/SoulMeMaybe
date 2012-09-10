@@ -100,20 +100,18 @@ class Kernel
      */
     public function ping()
     {
+        sleep(5);
+
         $rawResponse = fgets($this->fileDescriptor);
-        echo 'server: '.$rawResponse.PHP_EOL;
-        $pingResponse = new PingResponse();
-        $pingResponse->setAttributesFromRawResponse($rawResponse);
+        if (false !== $rawResponse) {
+            echo 'server: '.$rawResponse.PHP_EOL;
+            $pingResponse = new PingResponse();
+            $pingResponse->setAttributesFromRawResponse($rawResponse);
 
-        $sleepTimeInSeconds = $pingResponse->timeoutInSeconds - 2;
-        if (5 > $sleepTimeInSeconds) {
-            $sleepTimeInSeconds = 5;
+            $pingRequest = new PingRequest();
+            $rawRequest = $pingRequest->getRawRequestFromAttribute();
+            fwrite($this->fileDescriptor, $rawRequest);
+            echo 'client: '.$rawRequest.PHP_EOL;
         }
-        sleep($sleepTimeInSeconds);
-
-        $pingRequest = new PingRequest();
-        $rawRequest = $pingRequest->getRawRequestFromAttribute();
-        fwrite($this->fileDescriptor, $rawRequest);
-        echo 'client: '.$rawRequest.PHP_EOL;
     }
 }
