@@ -52,8 +52,8 @@ class Configurator
 
         $parametersContent = file_get_contents($configDirectoryPath.'parameters.yml.dist');
 
-        $parametersContent = str_replace('user_login', $this->userLogin, $parametersContent);
-        $parametersContent = str_replace('password_socks', $this->passwordSocks, $parametersContent);
+        $parametersContent = str_replace('YourLogin', $this->userLogin, $parametersContent);
+        $parametersContent = str_replace('YourPasswordSocks', $this->passwordSocks, $parametersContent);
 
         file_put_contents($configDirectoryPath.'parameters.yml', $parametersContent);
 
