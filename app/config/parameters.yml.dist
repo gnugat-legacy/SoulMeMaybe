@@ -1,10 +1,10 @@
 parameters:
     # You MUST edit the following parameters.
-    user_login: "user_login"
-    password_socks: "password_socks"
+    user_login: "YourLogin"
+    password_socks: "YourPasswordSocks"
 
     # You CAN edit the following parameters
-    client_description: "SoulMeMaybe 1.1.0"
+    client_description: "SoulMeMaybe 1.1.1"
     user_location: "Somewhere"
 
     # You SHOULDN'T edit the following parameters

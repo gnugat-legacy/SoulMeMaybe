@@ -2,6 +2,10 @@
 
 This file logs the changes between versions.
 
+## 1.1.1
+
+* Fixing the configurator.
+
 ## 1.1.0
 
 * Adding the installation via composer;
