@@ -27,7 +27,7 @@ http://getcomposer.org/ or just run the following command:
 
     curl -s http://getcomposer.org/installer | php
 
-Then, use the `create-project` command to get the dependencies:
+Then, use the `create-project` command to install SoulMeMaybe:
 
     php composer.phar create-project gnugat/soul-me-maybe
 
