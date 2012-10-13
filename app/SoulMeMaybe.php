@@ -10,7 +10,7 @@ require __DIR__.'/../vendor/autoload.php';
  * @author Loic Chardonnet <loic.chardonnet@gmail.com>
  */
 try {
-    $kernel = new Kernel(__DIR__.'/config/parameters.yml');
+    $kernel = new Kernel(__DIR__.'/../config/parameters.yml');
     $kernel->connect();
     $kernel->authenticate();
     while (true) {
