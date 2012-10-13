@@ -12,3 +12,12 @@ If you prefer to clone the repository, in order to update easily
 
 This will also ask you your login and password socks to create the
 configuration into the `./config/parameters.yml` file.
+
+# Updating the project
+
+If you've followed the above instructions, updating **SoulMeMaybe** can simply
+be done with the following commands:
+
+    git pull
+    php ./composer.phar self-update
+    php ./composer.phar update
