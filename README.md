@@ -19,25 +19,20 @@ internet can be accessed (localization and IM won't be implemented).
 
 # Installation
 
-As SoulMeMaybe uses [Composer](http://getcomposer.org/) to manage its
-dependencies, the recommended way to install it is to use it.
-
-If you don't have Composer yet, download it following the instructions on
-http://getcomposer.org/ or just run the following command:
+To quickly and easily install **SoulMeMaybe**, download
+[Composer](http://getcomposer.org/) and run its `create-project` as in the
+following commands:
 
     curl -s http://getcomposer.org/installer | php
-
-Then, use the `create-project` command to install SoulMeMaybe:
-
     php composer.phar create-project gnugat/soul-me-maybe
 
-Composer will install SoulMeMaybe under the `soul-me-maybe` directory and
+Composer will install **SoulMeMaybe** under the `soul-me-maybe` directory and
 will ask you your login and password socks to create the configuration into
 the `./config/parameters.yml` file.
 
 You can then run the project with the following command:
 
-    php ./app/SoulMeMaybe.php
+    php ./soul-me-maybe/app/SoulMeMaybe.php
 
 # Documentation
 
