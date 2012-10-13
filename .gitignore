@@ -6,7 +6,7 @@ composer.phar
 composer.lock
 
 # Configuration files
-app/config/parameters.yml
+config/parameters.yml
 
 # IDE config
 nbproject/*
