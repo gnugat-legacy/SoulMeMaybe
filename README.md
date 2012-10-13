@@ -34,7 +34,7 @@ You can then run the project with the following command:
 
     php ./soul-me-maybe/app/SoulMeMaybe.php
 
-# Documentation
+# Further documentation
 
 You can find more documentation at the following links:
 
