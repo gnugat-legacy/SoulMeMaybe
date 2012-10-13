@@ -1,4 +1,4 @@
-# Installation
+# Alternate installation
 
 The installation described in the `README.md` file is the quickest and easiest.
 
