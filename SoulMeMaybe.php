@@ -2,7 +2,7 @@
 
 use Gnugat\SoulMeMaybe\Kernel;
 
-require __DIR__.'/../vendor/autoload.php';
+require __DIR__.'/vendor/autoload.php';
 
 /**
  * Main file instanciating the Client and sending the requests.
