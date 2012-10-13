@@ -24,7 +24,7 @@ To quickly and easily install **SoulMeMaybe**, download
 following commands:
 
     curl -s http://getcomposer.org/installer | php
-    php composer.phar create-project gnugat/soul-me-maybe
+    php ./composer.phar create-project gnugat/soul-me-maybe
 
 Composer will install **SoulMeMaybe** under the `soul-me-maybe` directory and
 will ask you your login and password socks to create the configuration into
