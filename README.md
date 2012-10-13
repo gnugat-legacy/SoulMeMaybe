@@ -33,7 +33,7 @@ Then, use the `create-project` command to install SoulMeMaybe:
 
 Composer will install SoulMeMaybe under the `soul-me-maybe` directory and
 will ask you your login and password socks to create the configuration into
-the `app/config/parameters.yml` file.
+the `./config/parameters.yml` file.
 
 # Documentation
 
