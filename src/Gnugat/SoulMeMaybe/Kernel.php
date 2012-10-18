@@ -100,8 +100,6 @@ class Kernel
      */
     public function ping()
     {
-        sleep(5);
-
         $rawResponse = fgets($this->fileDescriptor);
         if (false !== $rawResponse) {
             echo 'server: '.$rawResponse.PHP_EOL;

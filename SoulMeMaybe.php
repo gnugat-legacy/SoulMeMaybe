@@ -14,6 +14,8 @@ try {
     $kernel->connect();
     $kernel->authenticate();
     while (true) {
+        sleep(5);
+
         $kernel->ping();
     }
 } catch (\Exception $exception) {
