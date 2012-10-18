@@ -48,7 +48,7 @@ class Configurator
      */
     public function writeParametersFile()
     {
-        $configDirectoryPath = __DIR__.'/../../../app/config/';
+        $configDirectoryPath = __DIR__.'/../../../config/';
 
         $parametersContent = file_get_contents($configDirectoryPath.'parameters.yml.dist');
 
