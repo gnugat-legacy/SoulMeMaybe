@@ -3,6 +3,7 @@
 namespace Gnugat\SoulMeMaybe\Command;
 
 use Symfony\Component\Console\Command\Command,
+    Symfony\Component\Console\Input\InputOption,
     Symfony\Component\Console\Input\InputInterface,
     Symfony\Component\Console\Output\OutputInterface;
 
@@ -20,6 +21,15 @@ class ConnectCommand extends Command
         $this
             ->setName('connect')
             ->setDescription('Connects to the NetSoul server')
+            ->addOption('--help', '-h', InputOption::VALUE_NONE, 'displays this help')
+            ->setHelp(<<<EOF
+The <info>%command.name%</info> command opens a connection to the NetSoul server,
+authenticates the user and keep the internet connection alive
+by pinging the server every 5 minutes.
+
+<info>php %command.full_name% [-h|--help]</info>
+EOF
+            )
         ;
     }
 
