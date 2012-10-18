@@ -9,7 +9,8 @@ use Symfony\Component\Console\Application as BaseApplication,
     Symfony\Component\Console\Formatter\OutputFormatter,
     Symfony\Component\Console\Output\ConsoleOutput;
 
-use Gnugat\SoulMeMaybe\Command\ConnectCommand;
+use Gnugat\SoulMeMaybe\Command\ConnectCommand,
+    Gnugat\SoulMeMaybe\Command\ConfigureCommand;
 
 /**
  * Application class.
@@ -60,6 +61,7 @@ class Application extends BaseApplication
     {
         $commands = parent::getDefaultCommands();
         $commands[] = new ConnectCommand();
+        $commands[] = new ConfigureCommand();
 
         return $commands;
     }
