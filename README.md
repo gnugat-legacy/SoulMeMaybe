@@ -32,7 +32,7 @@ the `./config/parameters.yml` file.
 
 You can then run the project with the following command:
 
-    php ./soul-me-maybe/app/SoulMeMaybe.php
+    php ./soul-me-maybe/SoulMeMaybe.php connect
 
 # Further documentation
 
