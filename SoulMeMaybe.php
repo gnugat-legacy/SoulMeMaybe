@@ -1,23 +1,14 @@
 <?php
 
-use Gnugat\SoulMeMaybe\Kernel;
+use Gnugat\SoulMeMaybe\Application;
 
 require __DIR__.'/vendor/autoload.php';
 
 /**
- * Main file instanciating the Client and sending the requests.
+ * Main file instanciating the Application.
  *
  * @author Loic Chardonnet <loic.chardonnet@gmail.com>
  */
-try {
-    $kernel = new Kernel(__DIR__.'/config/parameters.yml');
-    $kernel->connect();
-    $kernel->authenticate();
-    while (true) {
-        sleep(5);
+$application = new Application();
 
-        $kernel->ping();
-    }
-} catch (\Exception $exception) {
-    die($exception->getMessage());
-}
+$application->run();
