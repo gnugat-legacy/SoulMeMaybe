@@ -7,6 +7,9 @@ use Symfony\Component\Console\Command\Command,
     Symfony\Component\Console\Input\InputInterface,
     Symfony\Component\Console\Output\OutputInterface;
 
+use Monolog\Logger,
+    Monolog\Handler\RotatingFileHandler;
+
 use Gnugat\SoulMeMaybe\Kernel;
 
 /**
@@ -40,8 +43,15 @@ EOF
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $rootPath = __DIR__.'/../../../..';
+
+        $errorHandler = new RotatingFileHandler($rootPath.'/logs/errors.txt', 42);
+
+        $logger = new Logger('connect');
+        $logger->pushHandler($errorHandler);
+
         try {
-            $kernel = new Kernel(__DIR__.'/../../../../config/parameters.yml');
+            $kernel = new Kernel($rootPath.'/config/parameters.yml');
             $kernel->connect();
             $kernel->authenticate();
             $kernel->state();

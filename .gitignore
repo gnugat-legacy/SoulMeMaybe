@@ -1,5 +1,6 @@
 # Local directories
 vendor/*
+logs/*
 
 # Composer files
 composer.phar
