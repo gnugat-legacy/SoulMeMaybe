@@ -8,6 +8,7 @@ use Gnugat\SoulMeMaybe\NetSoulProtocol\Response\ConnectionResponse,
     Gnugat\SoulMeMaybe\NetSoulProtocol\Request\StartAuthenticationRequest,
     Gnugat\SoulMeMaybe\NetSoulProtocol\Response\EverythingIsFineResponse,
     Gnugat\SoulMeMaybe\NetSoulProtocol\Request\AuthenticationRequest,
+    Gnugat\SoulMeMaybe\NetSoulProtocol\Request\StateRequest,
     Gnugat\SoulMeMaybe\NetSoulProtocol\Response\PingResponse,
     Gnugat\SoulMeMaybe\NetSoulProtocol\Request\PingRequest;
 
@@ -93,6 +94,18 @@ class Kernel
         echo 'server: '.$rawResponse.PHP_EOL;
         $everythingIsFineResponse = new EverythingIsFineResponse();
         $everythingIsFineResponse->setAttributesFromRawResponse($rawResponse);
+    }
+
+    /**
+     * Defines the state.
+     */
+    public function state()
+    {
+        $stateRequest = new StateRequest();
+        $rawRequest = $stateRequest->getRawRequestFromAttribute();
+
+        echo 'client: '.$rawRequest.PHP_EOL;
+        fwrite($this->fileDescriptor, $rawRequest);
     }
 
     /**
