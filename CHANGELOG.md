@@ -2,6 +2,10 @@
 
 This file logs the changes between versions.
 
+## 1.1.3
+
+* Adding the state request.
+
 ## 1.1.2
 
 * Fixing the ping response;
