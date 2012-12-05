@@ -16,6 +16,9 @@ use Gnugat\SoulMeMaybe\Configurator;
  */
 class ConfigureCommand extends Command
 {
+    /**
+     * @see Command
+     */
     protected function configure()
     {
         $this
@@ -28,10 +31,12 @@ configure SoulMeMaybe.
 
 <info>php %command.full_name% [-h|--help]</info>
 EOF
-            )
-        ;
+            );
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $configurator = new Configurator();

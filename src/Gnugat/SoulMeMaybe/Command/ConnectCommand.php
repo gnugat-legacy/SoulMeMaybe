@@ -16,6 +16,9 @@ use Gnugat\SoulMeMaybe\Kernel;
  */
 class ConnectCommand extends Command
 {
+    /**
+     * @see Command
+     */
     protected function configure()
     {
         $this
@@ -29,10 +32,12 @@ by pinging the server every 5 minutes.
 
 <info>php %command.full_name% [-h|--help]</info>
 EOF
-            )
-        ;
+            );
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         try {
