@@ -39,6 +39,7 @@ EOF
             $kernel = new Kernel(__DIR__.'/../../../../config/parameters.yml');
             $kernel->connect();
             $kernel->authenticate();
+            $kernel->state();
             while (true) {
                 sleep(5);
 
