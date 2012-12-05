@@ -25,6 +25,11 @@ class Kernel
     private $parameters;
 
     /**
+     * @var \Monolog\Logger The logger.
+     */
+    private $logger;
+
+    /**
      * @var integer The file descriptor.
      */
     private $fileDescriptor;
@@ -37,12 +42,13 @@ class Kernel
     /**
      * The constructor.
      *
-     * @param string $parametersFilePath The parameters file path.
+     * @param array           $parameters The parameters.
+     * @param \Monolog\Logger $logger     The logger.
      */
-    public function __construct($parametersFilePath)
+    public function __construct($parameters, $logger)
     {
-        $this->parameters = Yaml::parse($parametersFilePath);
-        $this->parameters = $this->parameters['parameters'];
+        $this->parameters = $parameters;
+        $this->logger = $logger;
     }
 
     /**

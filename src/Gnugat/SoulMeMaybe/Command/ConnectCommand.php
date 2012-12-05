@@ -50,8 +50,10 @@ EOF
         $logger = new Logger('connect');
         $logger->pushHandler($errorHandler);
 
+        $parameters = Yaml::parse($rootPath.'/config/parameters.yml');
+
         try {
-            $kernel = new Kernel($rootPath.'/config/parameters.yml');
+            $kernel = new Kernel($parameters, $logger);
             $kernel->connect();
             $kernel->authenticate();
             $kernel->state();
