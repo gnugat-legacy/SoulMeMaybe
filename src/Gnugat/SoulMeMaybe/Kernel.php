@@ -2,8 +2,6 @@
 
 namespace Gnugat\SoulMeMaybe;
 
-use Symfony\Component\Yaml\Yaml;
-
 use Gnugat\SoulMeMaybe\NetSoulProtocol\Response\ConnectionResponse,
     Gnugat\SoulMeMaybe\NetSoulProtocol\Request\StartAuthenticationRequest,
     Gnugat\SoulMeMaybe\NetSoulProtocol\Response\EverythingIsFineResponse,

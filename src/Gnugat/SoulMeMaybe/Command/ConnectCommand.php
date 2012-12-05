@@ -5,7 +5,8 @@ namespace Gnugat\SoulMeMaybe\Command;
 use Symfony\Component\Console\Command\Command,
     Symfony\Component\Console\Input\InputOption,
     Symfony\Component\Console\Input\InputInterface,
-    Symfony\Component\Console\Output\OutputInterface;
+    Symfony\Component\Console\Output\OutputInterface,
+    Symfony\Component\Yaml\Yaml;
 
 use Monolog\Logger,
     Monolog\Handler\RotatingFileHandler;
