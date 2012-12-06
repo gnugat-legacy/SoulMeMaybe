@@ -7,7 +7,7 @@ namespace Gnugat\SoulMeMaybe\NetSoulProtocol\Request;
  *
  * @author Loic Chardonnet <loic.chardonnet@gmail.com>
  */
-class AuthenticationRequest extends AbstractRequest
+class StateRequest extends AbstractRequest
 {
     /**
      * @var string The command name.
