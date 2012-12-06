@@ -42,6 +42,11 @@ class Kernel
     public function __construct($parametersFilePath)
     {
         $this->parameters = Yaml::parse($parametersFilePath);
+
+        if (false === is_array($this->parameters)) {
+            die("Error: app/config/parameters.yml not found. Please copy app/config/parameters.yml/");
+        }
+
         $this->parameters = $this->parameters['parameters'];
     }
 
