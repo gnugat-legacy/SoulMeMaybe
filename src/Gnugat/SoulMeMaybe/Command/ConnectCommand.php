@@ -11,7 +11,8 @@ use Symfony\Component\Console\Command\Command,
 use Monolog\Logger,
     Monolog\Handler\RotatingFileHandler;
 
-use Gnugat\SoulMeMaybe\Kernel;
+use Gnugat\SoulMeMaybe\Output,
+    Gnugat\SoulMeMaybe\Kernel;
 
 /**
  * Connect command class.
@@ -51,20 +52,19 @@ EOF
         $logger = new Logger('connect');
         $logger->pushHandler($errorHandler);
 
+        $output = new Output($logger, $output);
+        $output->setVerbosityLevel(OutputInterface::VERBOSITY_NORMAL);
+
         $parameters = Yaml::parse($rootPath.'/config/parameters.yml');
 
-        try {
-            $kernel = new Kernel($parameters, $logger);
-            $kernel->connect();
-            $kernel->authenticate();
-            $kernel->state();
-            while (true) {
-                sleep(5);
+        $kernel = new Kernel($parameters, $output);
+        $kernel->connect();
+        $kernel->authenticate();
+        $kernel->state();
+        while (true) {
+            sleep(5);
 
-                $kernel->ping();
-            }
-        } catch (\Exception $exception) {
-            die($exception->getMessage());
+            $kernel->ping();
         }
     }
 }

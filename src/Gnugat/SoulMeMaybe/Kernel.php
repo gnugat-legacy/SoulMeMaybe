@@ -2,13 +2,16 @@
 
 namespace Gnugat\SoulMeMaybe;
 
-use Gnugat\SoulMeMaybe\NetSoulProtocol\Response\ConnectionResponse,
+use Gnugat\SoulMeMaybe\Output,
+    Gnugat\SoulMeMaybe\NetSoulProtocol\Response\ConnectionResponse,
     Gnugat\SoulMeMaybe\NetSoulProtocol\Request\StartAuthenticationRequest,
     Gnugat\SoulMeMaybe\NetSoulProtocol\Response\EverythingIsFineResponse,
     Gnugat\SoulMeMaybe\NetSoulProtocol\Request\AuthenticationRequest,
     Gnugat\SoulMeMaybe\NetSoulProtocol\Request\StateRequest,
     Gnugat\SoulMeMaybe\NetSoulProtocol\Response\PingResponse,
     Gnugat\SoulMeMaybe\NetSoulProtocol\Request\PingRequest;
+
+use Monolog\Logger;
 
 /**
  * Kernel class.
@@ -17,36 +20,28 @@ use Gnugat\SoulMeMaybe\NetSoulProtocol\Response\ConnectionResponse,
  */
 class Kernel
 {
-    /**
-     * @var array The parameters.
-     */
+    /** @var array The parameters. */
     private $parameters;
 
-    /**
-     * @var \Monolog\Logger The logger.
-     */
-    private $logger;
+    /** @var \Gnugat\SoulMeMaybe\Output The ouput. */
+    private $output;
 
-    /**
-     * @var integer The file descriptor.
-     */
+    /** @var integer The file descriptor. */
     private $fileDescriptor;
 
-    /**
-     * @var \Gnugat\SoulMeMaybe\NetSoulProtocol\Response\ConnectionResponse The connection response.
-     */
+    /** @var \Gnugat\SoulMeMaybe\NetSoulProtocol\Response\ConnectionResponse The connection response. */
     private $connectionResponse;
 
     /**
      * The constructor.
      *
      * @param array           $parameters The parameters.
-     * @param \Monolog\Logger $logger     The logger.
+     * @param \Monolog\Logger $output     The output.
      */
-    public function __construct($parameters, $logger)
+    public function __construct($parameters, $output)
     {
         $this->parameters = $parameters;
-        $this->logger = $logger;
+        $this->output = $output;
     }
 
     /**
@@ -62,11 +57,12 @@ class Kernel
         );
 
         if (false === $this->fileDescriptor) {
-            throw new \Exception("Error: Could not connect to the NetSoul server\n");
+            $this->output->manageMessageOfGivenLogLevel('Error: Could not connect to the NetSoul server', Logger::CRITICAL);
+            die();
         }
 
         $rawResponse = fgets($this->fileDescriptor);
-        echo 'server: '.$rawResponse.PHP_EOL;
+        $this->output->manageMessageOfGivenLogLevel('Server: '.$rawResponse, Logger::INFO);
 
         $this->connectionResponse = new ConnectionResponse();
         $this->connectionResponse->setAttributesFromRawResponse($rawResponse);
@@ -80,11 +76,11 @@ class Kernel
         $startAuthenticationRequest = new StartAuthenticationRequest();
         $rawRequest = $startAuthenticationRequest->getRawRequestFromAttribute();
 
-        echo 'client: '.$rawRequest.PHP_EOL;
+        $this->output->manageMessageOfGivenLogLevel('Client: '.$rawRequest, Logger::INFO);
         fwrite($this->fileDescriptor, $rawRequest);
 
         $rawResponse = fgets($this->fileDescriptor);
-        echo 'server: '.$rawResponse.PHP_EOL;
+        $this->output->manageMessageOfGivenLogLevel('Server: '.$rawResponse, Logger::INFO);
 
         $everythingIsFineResponse = new EverythingIsFineResponse();
         $everythingIsFineResponse->setAttributesFromRawResponse($rawResponse);
@@ -92,10 +88,10 @@ class Kernel
         $authenticationRequest = new AuthenticationRequest($this->connectionResponse, $this->parameters);
         $rawRequest = $authenticationRequest->getRawRequestFromAttribute();
         fwrite($this->fileDescriptor, $rawRequest);
-        echo 'client: '.$rawRequest.PHP_EOL;
+        $this->output->manageMessageOfGivenLogLevel('Client: '.$rawRequest, Logger::INFO);
 
         $rawResponse = fgets($this->fileDescriptor);
-        echo 'server: '.$rawResponse.PHP_EOL;
+        $this->output->manageMessageOfGivenLogLevel('Server: '.$rawResponse, Logger::INFO);
         $everythingIsFineResponse = new EverythingIsFineResponse();
         $everythingIsFineResponse->setAttributesFromRawResponse($rawResponse);
     }
@@ -108,7 +104,7 @@ class Kernel
         $stateRequest = new StateRequest();
         $rawRequest = $stateRequest->getRawRequestFromAttribute();
 
-        echo 'client: '.$rawRequest.PHP_EOL;
+        $this->output->manageMessageOfGivenLogLevel('Client: '.$rawRequest, Logger::INFO);
         fwrite($this->fileDescriptor, $rawRequest);
     }
 
@@ -119,14 +115,14 @@ class Kernel
     {
         $rawResponse = fgets($this->fileDescriptor);
         if (false !== $rawResponse) {
-            echo 'server: '.$rawResponse.PHP_EOL;
+            $this->output->manageMessageOfGivenLogLevel('Server: '.$rawResponse, Logger::INFO);
             $pingResponse = new PingResponse();
             $pingResponse->setAttributesFromRawResponse($rawResponse);
 
             $pingRequest = new PingRequest();
             $rawRequest = $pingRequest->getRawRequestFromAttribute();
             fwrite($this->fileDescriptor, $rawRequest);
-            echo 'client: '.$rawRequest.PHP_EOL;
+            $this->output->manageMessageOfGivenLogLevel('Client: '.$rawRequest, Logger::INFO);
         }
     }
 }
