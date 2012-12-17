@@ -51,8 +51,8 @@ EOF
     {
         $rootPath = __DIR__.'/../../../..';
 
-        $errorHandler = new RotatingFileHandler($rootPath.'/logs/errors.txt', 42, Logger::ERROR);
-        $networkHandler = new RotatingFileHandler($rootPath.'/logs/network.txt', 42, Logger::DEBUG);
+        $errorHandler = new RotatingFileHandler($rootPath.'/app/logs/errors.txt', 42, Logger::ERROR);
+        $networkHandler = new RotatingFileHandler($rootPath.'/app/logs/network.txt', 42, Logger::DEBUG);
 
         $logger = new Logger('connect');
         $logger->pushHandler($errorHandler);
@@ -69,7 +69,7 @@ EOF
         $output = new Output($logger, $output);
         $output->setVerbosityLevel($verbosityLevel);
 
-        $parameters = Yaml::parse($rootPath.'/config/parameters.yml');
+        $parameters = Yaml::parse($rootPath.'/app/config/parameters.yml');
 
         $kernel = new Kernel($parameters, $output);
         $kernel->connect();

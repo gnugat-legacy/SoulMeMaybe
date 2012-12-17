@@ -28,11 +28,11 @@ following commands:
 
 Composer will install **SoulMeMaybe** under the `soul-me-maybe` directory and
 will ask you your login and password socks to create the configuration into
-the `./config/parameters.yml` file.
+the `./app/config/parameters.yml` file.
 
 You can then run the project with the following command:
 
-    php ./soul-me-maybe/SoulMeMaybe.php connect
+    php ./soul-me-maybe/app/console.php connect
 
 # Further documentation
 
