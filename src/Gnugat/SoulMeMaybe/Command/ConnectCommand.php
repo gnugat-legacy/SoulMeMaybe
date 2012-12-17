@@ -30,12 +30,15 @@ class ConnectCommand extends Command
             ->setName('connect')
             ->setDescription('Connects to the NetSoul server')
             ->addOption('--help', '-h', InputOption::VALUE_NONE, 'displays this help')
+            ->addOption('--quiet', '-q', InputOption::VALUE_NONE, 'displays only important messages')
             ->setHelp(<<<EOF
 The <info>%command.name%</info> command opens a connection to the NetSoul server,
 authenticates the user and keep the internet connection alive
 by pinging the server every 5 minutes.
 
-<info>php %command.full_name% [-h|--help]</info>
+You can manage the verbosity level with the quiet option:
+
+<info>php %command.full_name% [-q|--quiet]</info>
 EOF
             );
     }
@@ -52,8 +55,13 @@ EOF
         $logger = new Logger('connect');
         $logger->pushHandler($errorHandler);
 
+        $verbosityLevel = OutputInterface::VERBOSITY_NORMAL;
+        if (true === $input->getOption('quiet')) {
+            $verbosityLevel = OutputInterface::VERBOSITY_QUIET;
+        }
+
         $output = new Output($logger, $output);
-        $output->setVerbosityLevel(OutputInterface::VERBOSITY_NORMAL);
+        $output->setVerbosityLevel($verbosityLevel);
 
         $parameters = Yaml::parse($rootPath.'/config/parameters.yml');
 
