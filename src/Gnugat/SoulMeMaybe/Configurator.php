@@ -9,14 +9,10 @@ namespace Gnugat\SoulMeMaybe;
  */
 class Configurator
 {
-    /**
-     * @var string The user login.
-     */
+    /** @var string The user login. */
     private $userLogin;
 
-    /**
-     * @var string The password socks.
-     */
+    /** @var string The password socks. */
     private $passwordSocks;
 
     /**

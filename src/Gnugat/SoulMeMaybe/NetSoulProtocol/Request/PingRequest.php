@@ -11,14 +11,10 @@ use Gnugat\SoulMeMaybe\NetSoulProtocol\Response\ConnectionResponse;
  */
 class PingRequest extends AbstractRequest
 {
-    /**
-     * @var string The command name.
-     */
+    /** @var string The command name. */
     public $commandName = 'ping';
 
-    /**
-     * @var string The non mandatory argument.
-     */
+    /** @var string The non mandatory argument. */
     public $nonMandatoryArgument;
 
     /**

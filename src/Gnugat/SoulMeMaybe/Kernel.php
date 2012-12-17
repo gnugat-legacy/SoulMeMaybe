@@ -46,8 +46,6 @@ class Kernel
 
     /**
      * Connects to the NetSoul server.
-     *
-     * @throws \Exception
      */
     public function connect()
     {
