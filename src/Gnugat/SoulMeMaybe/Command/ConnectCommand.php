@@ -51,7 +51,7 @@ EOF
     {
         $rootPath = __DIR__.'/../../../..';
 
-        $errorHandler = new RotatingFileHandler($rootPath.'/logs/errors.txt', 42);
+        $errorHandler = new RotatingFileHandler($rootPath.'/logs/errors.txt', 42, Logger::ERROR);
 
         $logger = new Logger('connect');
         $logger->pushHandler($errorHandler);
