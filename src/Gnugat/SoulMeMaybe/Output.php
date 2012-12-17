@@ -3,7 +3,7 @@
 namespace Gnugat\SoulMeMaybe;
 
 use Symfony\Component\Console\Output\OutputInterface,
-    Symfony\Component\Console\Output\ConsoleOutput;
+    Symfony\Component\Console\Output\OutputInterface;
 
 use Monolog\Logger;
 
@@ -19,7 +19,7 @@ class Output
     /** @var \Monolog\Logger The logger. */
     private $logger;
 
-    /** @var \Symfony\Component\Console\Output\ConsoleOutput The console output. */
+    /** @var \Symfony\Component\Console\Output\OutputInterface The console output. */
     private $consoleOutput;
 
     /** @var array The write permissions. */
@@ -31,10 +31,10 @@ class Output
     /**
      * The constructor.
      *
-     * @param \Monolog\Logger                                 $logger The logger.
-     * @param \Symfony\Component\Console\Output\ConsoleOutput $output The console output.
+     * @param \Monolog\Logger                                   $logger        The logger.
+     * @param \Symfony\Component\Console\Output\OutputInterface $consoleOutput The console output.
      */
-    public function __construct(Logger $logger, ConsoleOutput $consoleOutput)
+    public function __construct(Logger $logger, OutputInterface $consoleOutput)
     {
         $this->logger = $logger;
         $this->consoleOutput = $consoleOutput;
