@@ -9,14 +9,10 @@ namespace Gnugat\SoulMeMaybe\NetSoulProtocol\Request;
  */
 class StateRequest extends AbstractRequest
 {
-    /**
-     * @var string The command name.
-     */
+    /** @var string The command name. */
     public $commandName = 'state';
 
-    /**
-     * @var string The state and timestamp.
-     */
+    /** @var string The state and timestamp. */
     public $stateAndTimestamp;
 
     /**

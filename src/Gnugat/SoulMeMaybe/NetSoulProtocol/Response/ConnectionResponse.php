@@ -9,34 +9,22 @@ namespace Gnugat\SoulMeMaybe\NetSoulProtocol\Response;
  */
 class ConnectionResponse extends AbstractResponse
 {
-    /**
-     * @var string The command name.
-     */
+    /** @var string The command name. */
     public $commandName;
 
-    /**
-     * @var integer The file descriptor.
-     */
+    /** @var integer The file descriptor. */
     public $fileDescriptor;
 
-    /**
-     * @var string The hash seed.
-     */
+    /** @var string The hash seed. */
     public $hashSeed;
 
-    /**
-     * @var string The client host.
-     */
+    /** @var string The client host. */
     public $clientHost;
 
-    /**
-     * @var integer The client port.
-     */
+    /** @var integer The client port. */
     public $clientPort;
 
-    /**
-     * @var integer The connection timestamp.
-     */
+    /** @var integer The connection timestamp. */
     public $connectionTimestamp;
 
     /**
