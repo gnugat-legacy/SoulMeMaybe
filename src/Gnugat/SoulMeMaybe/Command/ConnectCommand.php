@@ -52,9 +52,11 @@ EOF
         $rootPath = __DIR__.'/../../../..';
 
         $errorHandler = new RotatingFileHandler($rootPath.'/logs/errors.txt', 42, Logger::ERROR);
+        $networkHandler = new RotatingFileHandler($rootPath.'/logs/network.txt', 42, Logger::DEBUG);
 
         $logger = new Logger('connect');
         $logger->pushHandler($errorHandler);
+        $logger->pushHandler($networkHandler);
 
         $verbosityLevel = OutputInterface::VERBOSITY_NORMAL;
         if (true === $input->getOption('quiet')) {
