@@ -15,11 +15,11 @@ use Gnugat\SoulMeMaybe\Output,
     Gnugat\SoulMeMaybe\Kernel;
 
 /**
- * Connect command class.
+ * Client command class.
  *
  * @author Loic Chardonnet <loic.chardonnet@gmail.com>
  */
-class ConnectCommand extends Command
+class ClientCommand extends Command
 {
     /**
      * @see Command
@@ -27,7 +27,7 @@ class ConnectCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('connect')
+            ->setName('client')
             ->setDescription('Connects to the NetSoul server')
             ->addOption('--help', '-h', InputOption::VALUE_NONE, 'displays this help')
             ->addOption('--quiet', '-q', InputOption::VALUE_NONE, 'displays only important messages')
@@ -54,7 +54,7 @@ EOF
         $errorHandler = new RotatingFileHandler($rootPath.'/app/logs/errors.txt', 42, Logger::ERROR);
         $networkHandler = new RotatingFileHandler($rootPath.'/app/logs/network.txt', 42, Logger::DEBUG);
 
-        $logger = new Logger('connect');
+        $logger = new Logger('client');
         $logger->pushHandler($errorHandler);
         $logger->pushHandler($networkHandler);
 

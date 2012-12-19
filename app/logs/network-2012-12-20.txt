@@ -1,0 +1,1 @@
+[2012-12-20 00:51:35] client.CRITICAL: Error: Could not connect to the NetSoul server [] []
