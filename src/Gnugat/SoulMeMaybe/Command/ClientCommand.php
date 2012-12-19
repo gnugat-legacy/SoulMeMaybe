@@ -34,7 +34,7 @@ class ClientCommand extends Command
             ->addOption('--verbose', '-v', InputOption::VALUE_NONE, 'displays every messages')
             ->setHelp(<<<EOF
 The <info>%command.name%</info> command opens a connection to the NetSoul server,
-authenticates the user and keep the internet connection alive
+authenticates the user and keeps the internet connection alive
 by pinging the server every 5 minutes.
 
 You can manage the verbosity level with the quiet and verbose options:
