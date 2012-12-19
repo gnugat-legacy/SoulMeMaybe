@@ -2,8 +2,7 @@
 
 namespace Gnugat\SoulMeMaybe;
 
-use Symfony\Component\Console\Output\OutputInterface,
-    Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 
 use Monolog\Logger;
 
