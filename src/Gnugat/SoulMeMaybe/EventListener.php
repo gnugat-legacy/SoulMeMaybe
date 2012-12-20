@@ -2,6 +2,8 @@
 
 namespace Gnugat\SoulMeMaybe;
 
+use Gnugat\SoulMeMaybe\Configurator\Kernel as Configurator;
+
 /**
  * EventListener class.
  *

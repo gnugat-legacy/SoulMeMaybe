@@ -13,7 +13,7 @@ use Symfony\Component\Console\Application as BaseApplication,
     Symfony\Component\Console\Output\ConsoleOutput;
 
 use Gnugat\SoulMeMaybe\Client\Command as ClientCommand,
-    Gnugat\SoulMeMaybe\Command\ConfigureCommand;
+    Gnugat\SoulMeMaybe\Configurator\Command as ConfiguratorCommand;
 
 /**
  * Application class.
@@ -86,7 +86,7 @@ class Application extends BaseApplication
     {
         $commands = parent::getDefaultCommands();
         $commands[] = new ClientCommand();
-        $commands[] = new ConfigureCommand();
+        $commands[] = new ConfiguratorCommand();
 
         return $commands;
     }
