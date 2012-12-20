@@ -1,20 +1,20 @@
 <?php
 
-namespace Gnugat\SoulMeMaybe\Command;
+namespace Gnugat\SoulMeMaybe\Configurator;
 
-use Symfony\Component\Console\Command\Command,
+use Symfony\Component\Console\Command\Command as BaseCommand,
     Symfony\Component\Console\Input\InputOption,
     Symfony\Component\Console\Input\InputInterface,
     Symfony\Component\Console\Output\OutputInterface;
 
-use Gnugat\SoulMeMaybe\Configurator;
+use Gnugat\SoulMeMaybe\Configurator\Kernel;
 
 /**
- * Configure command class.
+ * Command class.
  *
  * @author Loic Chardonnet <loic.chardonnet@gmail.com>
  */
-class ConfigureCommand extends Command
+class Command extends BaseCommand
 {
     /**
      * @see Command
@@ -22,7 +22,7 @@ class ConfigureCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('configure')
+            ->setName('configurator')
             ->setDescription('Configures the login and the password socks')
             ->addOption('--help', '-h', InputOption::VALUE_NONE, 'displays this help')
             ->setHelp(<<<EOF
@@ -39,7 +39,7 @@ EOF
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $configurator = new Configurator();
+        $configurator = new Kernel();
         $configurator->getUserLoginFromCli();
         $configurator->getPasswordSocksFromCli();
         $configurator->writeParametersFile();

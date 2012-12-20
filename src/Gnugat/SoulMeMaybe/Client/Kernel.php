@@ -1,6 +1,6 @@
 <?php
 
-namespace Gnugat\SoulMeMaybe;
+namespace Gnugat\SoulMeMaybe\Client;
 
 use Gnugat\SoulMeMaybe\Output,
     Gnugat\SoulMeMaybe\NetSoulProtocol\Response\ConnectionResponse,

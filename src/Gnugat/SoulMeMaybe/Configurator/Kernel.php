@@ -1,13 +1,13 @@
 <?php
 
-namespace Gnugat\SoulMeMaybe;
+namespace Gnugat\SoulMeMaybe\Configurator;
 
 /**
- * Configurator class.
+ * Kernel class.
  *
  * @author Loic Chardonnet <loic.chardonnet@gmail.com>
  */
-class Configurator
+class Kernel
 {
     /** @var string The user login. */
     private $userLogin;
@@ -44,7 +44,7 @@ class Configurator
      */
     public function writeParametersFile()
     {
-        $configDirectoryPath = __DIR__.'/../../../app/config/';
+        $configDirectoryPath = __DIR__.'/../../../../app/config/';
 
         $parametersContent = file_get_contents($configDirectoryPath.'parameters.yml.dist');
 

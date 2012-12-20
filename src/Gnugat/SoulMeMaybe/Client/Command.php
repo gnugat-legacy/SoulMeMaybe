@@ -1,8 +1,8 @@
 <?php
 
-namespace Gnugat\SoulMeMaybe\Command;
+namespace Gnugat\SoulMeMaybe\Client;
 
-use Symfony\Component\Console\Command\Command,
+use Symfony\Component\Console\Command\Command as BaseCommand,
     Symfony\Component\Console\Input\InputOption,
     Symfony\Component\Console\Input\InputInterface,
     Symfony\Component\Console\Output\OutputInterface,
@@ -12,14 +12,14 @@ use Monolog\Logger,
     Monolog\Handler\RotatingFileHandler;
 
 use Gnugat\SoulMeMaybe\Output,
-    Gnugat\SoulMeMaybe\Kernel;
+    Gnugat\SoulMeMaybe\Client\Kernel;
 
 /**
- * Client command class.
+ * Command class.
  *
  * @author Loic Chardonnet <loic.chardonnet@gmail.com>
  */
-class ClientCommand extends Command
+class Command extends BaseCommand
 {
     /**
      * @see Command
@@ -49,6 +49,29 @@ EOF
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $dependencies = $this->getDependencies($input, $output);
+
+        $kernel = new Kernel($dependencies['parameters'], $dependencies['output']);
+        $kernel->connect();
+        $kernel->authenticate();
+        $kernel->state();
+        while (true) {
+            sleep(5);
+
+            $kernel->ping();
+        }
+    }
+
+    /**
+     * Gets the dependencies.
+     *
+     * @param \Symfony\Component\Console\Input\InputInterface   $input  The input.
+     * @param \Symfony\Component\Console\Output\OutputInterface $output The output.
+     *
+     * @return array The dependencies with their names associated to their values.
+     */
+    private function getDependencies(InputInterface $input, OutputInterface $output)
+    {
         $rootPath = __DIR__.'/../../../..';
 
         $errorHandler = new RotatingFileHandler($rootPath.'/app/logs/errors.txt', 42, Logger::ERROR);
@@ -71,14 +94,9 @@ EOF
 
         $parameters = Yaml::parse($rootPath.'/app/config/parameters.yml');
 
-        $kernel = new Kernel($parameters, $output);
-        $kernel->connect();
-        $kernel->authenticate();
-        $kernel->state();
-        while (true) {
-            sleep(5);
-
-            $kernel->ping();
-        }
+        return array(
+            'output' => $output,
+            'parameters' => $parameters['parameters'],
+        );
     }
 }

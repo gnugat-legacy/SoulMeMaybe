@@ -1,13 +1,13 @@
 # Local directories
 vendor/*
-logs/*
+app/logs/*.txt
 
 # Composer files
 composer.phar
 composer.lock
 
 # Configuration files
-config/parameters.yml
+app/config/parameters.yml
 
 # IDE config
 nbproject/*
