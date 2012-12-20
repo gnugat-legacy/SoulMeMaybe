@@ -1,8 +1,8 @@
 <?php
 
-namespace Gnugat\SoulMeMaybe\Command;
+namespace Gnugat\SoulMeMaybe\Client;
 
-use Symfony\Component\Console\Command\Command,
+use Symfony\Component\Console\Command\Command as BaseCommand,
     Symfony\Component\Console\Input\InputOption,
     Symfony\Component\Console\Input\InputInterface,
     Symfony\Component\Console\Output\OutputInterface,
@@ -12,14 +12,14 @@ use Monolog\Logger,
     Monolog\Handler\RotatingFileHandler;
 
 use Gnugat\SoulMeMaybe\Output,
-    Gnugat\SoulMeMaybe\Kernel;
+    Gnugat\SoulMeMaybe\Client\Kernel;
 
 /**
- * Client command class.
+ * Command class.
  *
  * @author Loic Chardonnet <loic.chardonnet@gmail.com>
  */
-class ClientCommand extends Command
+class Command extends BaseCommand
 {
     /**
      * @see Command

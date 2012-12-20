@@ -12,7 +12,7 @@ use Symfony\Component\Console\Application as BaseApplication,
     Symfony\Component\Console\Formatter\OutputFormatter,
     Symfony\Component\Console\Output\ConsoleOutput;
 
-use Gnugat\SoulMeMaybe\Command\ClientCommand,
+use Gnugat\SoulMeMaybe\Client\Command as ClientCommand,
     Gnugat\SoulMeMaybe\Command\ConfigureCommand;
 
 /**
