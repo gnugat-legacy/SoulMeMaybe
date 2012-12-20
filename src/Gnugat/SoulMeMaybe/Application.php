@@ -65,8 +65,8 @@ class Application extends BaseApplication
         return new InputDefinition(array(
             new InputArgument('command', InputArgument::REQUIRED, 'The command to execute'),
 
-            new InputOption('--help',           '-h', InputOption::VALUE_NONE, 'Display this help message.'),
-            new InputOption('--version',        '-V', InputOption::VALUE_NONE, 'Display this application version.'),
+            new InputOption('--help', '-h', InputOption::VALUE_NONE, 'Display this help message.'),
+            new InputOption('--version', '-V', InputOption::VALUE_NONE, 'Display this application version.'),
         ));
     }
 
