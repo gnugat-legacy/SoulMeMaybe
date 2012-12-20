@@ -22,12 +22,18 @@ use Gnugat\SoulMeMaybe\Command\ClientCommand,
  */
 class Application extends BaseApplication
 {
+    /** @const The application's name. */
+    const NAME = 'SoulMeMaybe';
+
+    /** @const The application' name's version. */
+    const VERSION = '2.0.0';
+
     /**
      * Constructor.
      */
     public function __construct()
     {
-        parent::__construct('SoulMeMaybe', '2.0.0');
+        parent::__construct(self::NAME, self::VERSION);
     }
 
     /**
@@ -51,7 +57,10 @@ class Application extends BaseApplication
     public function doRun(InputInterface $input, OutputInterface $output)
     {
         if (true === version_compare(PHP_VERSION, '5.3.3', '<')) {
-            $output->writeln('<warning>SoulMeMaybe only officially supports PHP 5.3.3 and above, you will most likely encounter problems with your PHP '.PHP_VERSION.', upgrading is strongly recommended.</warning>');
+            $output->writeln(
+                '<warning>'.self::NAME.' only officially supports PHP 5.3.3 and above, you will most likely encounter'
+                .' problems with your PHP '.PHP_VERSION.', upgrading is strongly recommended.</warning>'
+            );
         }
 
         return parent::doRun($input, $output);
