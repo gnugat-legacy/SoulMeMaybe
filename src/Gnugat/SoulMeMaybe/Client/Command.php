@@ -96,7 +96,7 @@ EOF
 
         return array(
             'output' => $output,
-            'parameters' => $parameters,
+            'parameters' => $parameters['parameters'],
         );
     }
 }
