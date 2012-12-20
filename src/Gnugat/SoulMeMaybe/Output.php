@@ -39,36 +39,9 @@ class Output
         $this->consoleOutput = $consoleOutput;
 
         $this->writePermissions = array(
-            OutputInterface::VERBOSITY_QUIET => array(
-                Logger::DEBUG => false,
-                Logger::INFO => false,
-                Logger::NOTICE => false,
-                Logger::WARNING => false,
-                Logger::ERROR => false,
-                Logger::CRITICAL => true,
-                Logger::ALERT => true,
-                Logger::EMERGENCY => true,
-            ),
-            OutputInterface::VERBOSITY_NORMAL => array(
-                Logger::DEBUG => false,
-                Logger::INFO => true,
-                Logger::NOTICE => true,
-                Logger::WARNING => true,
-                Logger::ERROR => true,
-                Logger::CRITICAL => true,
-                Logger::ALERT => true,
-                Logger::EMERGENCY => true,
-            ),
-            OutputInterface::VERBOSITY_VERBOSE => array(
-                Logger::DEBUG => true,
-                Logger::INFO => true,
-                Logger::NOTICE => true,
-                Logger::WARNING => true,
-                Logger::ERROR => true,
-                Logger::CRITICAL => true,
-                Logger::ALERT => true,
-                Logger::EMERGENCY => true,
-            ),
+            OutputInterface::VERBOSITY_QUIET => Logger::CRITICAL,
+            OutputInterface::VERBOSITY_NORMAL => Logger::INFO,
+            OutputInterface::VERBOSITY_VERBOSE => Logger::DEBUG,
         );
     }
 
@@ -90,7 +63,7 @@ class Output
      */
     public function manageMessageOfGivenLogLevel($message, $logLevel)
     {
-        $hasToBeWritten = $this->writePermissions[$this->verbosityLevel][$logLevel];
+        $hasToBeWritten = $this->writePermissions[$this->verbosityLevel] <= $logLevel;
 
         $this->logger->addRecord($logLevel, $message);
         if ($hasToBeWritten === true) {
