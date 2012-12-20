@@ -3,6 +3,7 @@
 namespace Gnugat\SoulMeMaybe;
 
 use Symfony\Component\Console\Application as BaseApplication,
+    Symfony\Component\Console\Input\ArrayInput,
     Symfony\Component\Console\Input\InputDefinition,
     Symfony\Component\Console\Input\InputOption,
     Symfony\Component\Console\Input\InputArgument,
@@ -63,7 +64,43 @@ class Application extends BaseApplication
             );
         }
 
-        return parent::doRun($input, $output);
+        $name = $this->getCommandName($input);
+
+        if (true === $input->hasParameterOption(array('--help', '-h'))) {
+            if (!$name) {
+                $name = 'help';
+                $input = new ArrayInput(array('command' => 'help'));
+            } else {
+                $this->wantHelps = true;
+            }
+        }
+
+        if (function_exists('posix_isatty') && $this->getHelperSet()->has('dialog')) {
+            $inputStream = $this->getHelperSet()->get('dialog')->getInputStream();
+            if (!posix_isatty($inputStream)) {
+                $input->setInteractive(false);
+            }
+        }
+
+        if (true === $input->hasParameterOption(array('--version', '-V'))) {
+            $output->writeln($this->getLongVersion());
+
+            return 0;
+        }
+
+        if (!$name) {
+            $name = 'list';
+            $input = new ArrayInput(array('command' => 'list'));
+        }
+
+        // the command name MUST be the first element of the input.
+        $command = $this->find($name);
+
+        $this->runningCommand = $command;
+        $statusCode = $command->run($input, $output);
+        $this->runningCommand = null;
+
+        return is_numeric($statusCode) ? $statusCode : 0;
     }
 
     /**
