@@ -35,10 +35,10 @@ class Kernel
     /**
      * The constructor.
      *
-     * @param array           $parameters The parameters.
-     * @param \Monolog\Logger $output     The output.
+     * @param array                      $parameters The parameters.
+     * @param \Gnugat\SoulMeMaybe\Output $output     The output.
      */
-    public function __construct($parameters, $output)
+    public function __construct($parameters, Output $output)
     {
         $this->parameters = $parameters;
         $this->output = $output;

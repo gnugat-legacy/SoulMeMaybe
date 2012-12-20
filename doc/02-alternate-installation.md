@@ -11,7 +11,7 @@ If you prefer to clone the repository, in order to update easily
     php ./composer.phar install
 
 This will also ask you your login and password socks to create the
-configuration into the `./config/parameters.yml` file.
+configuration into the `./app/config/parameters.yml` file.
 
 # Updating the project
 

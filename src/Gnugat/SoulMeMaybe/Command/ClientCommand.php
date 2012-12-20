@@ -15,11 +15,11 @@ use Gnugat\SoulMeMaybe\Output,
     Gnugat\SoulMeMaybe\Kernel;
 
 /**
- * Connect command class.
+ * Client command class.
  *
  * @author Loic Chardonnet <loic.chardonnet@gmail.com>
  */
-class ConnectCommand extends Command
+class ClientCommand extends Command
 {
     /**
      * @see Command
@@ -27,14 +27,14 @@ class ConnectCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('connect')
+            ->setName('client')
             ->setDescription('Connects to the NetSoul server')
             ->addOption('--help', '-h', InputOption::VALUE_NONE, 'displays this help')
             ->addOption('--quiet', '-q', InputOption::VALUE_NONE, 'displays only important messages')
             ->addOption('--verbose', '-v', InputOption::VALUE_NONE, 'displays every messages')
             ->setHelp(<<<EOF
 The <info>%command.name%</info> command opens a connection to the NetSoul server,
-authenticates the user and keep the internet connection alive
+authenticates the user and keeps the internet connection alive
 by pinging the server every 5 minutes.
 
 You can manage the verbosity level with the quiet and verbose options:
@@ -51,10 +51,10 @@ EOF
     {
         $rootPath = __DIR__.'/../../../..';
 
-        $errorHandler = new RotatingFileHandler($rootPath.'/logs/errors.txt', 42, Logger::ERROR);
-        $networkHandler = new RotatingFileHandler($rootPath.'/logs/network.txt', 42, Logger::DEBUG);
+        $errorHandler = new RotatingFileHandler($rootPath.'/app/logs/errors.txt', 42, Logger::ERROR);
+        $networkHandler = new RotatingFileHandler($rootPath.'/app/logs/network.txt', 42, Logger::DEBUG);
 
-        $logger = new Logger('connect');
+        $logger = new Logger('client');
         $logger->pushHandler($errorHandler);
         $logger->pushHandler($networkHandler);
 
@@ -69,7 +69,7 @@ EOF
         $output = new Output($logger, $output);
         $output->setVerbosityLevel($verbosityLevel);
 
-        $parameters = Yaml::parse($rootPath.'/config/parameters.yml');
+        $parameters = Yaml::parse($rootPath.'/app/config/parameters.yml');
 
         $kernel = new Kernel($parameters, $output);
         $kernel->connect();
