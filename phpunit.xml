@@ -9,7 +9,7 @@
     processIsolation="false"
     stopOnFailure="false"
     syntaxCheck="false"
-    bootstrap="tests/Gnugat/bootstrap.php"
+    bootstrap="tests/bootstrap.php"
 >
     <testsuites>
         <testsuite name="SoulMeMaybe Test Suite">

@@ -5,5 +5,5 @@
  *
  * @author Loic Chardonnet <loic.chardonnet@gmail.com>
  */
-$loader = require __DIR__.'/../../vendor/autoload.php';
+$loader = require __DIR__.'/../vendor/autoload.php';
 $loader->add('Gnugat\\Tests', __DIR__);

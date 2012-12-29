@@ -9,5 +9,8 @@ composer.lock
 # Configuration files
 app/config/parameters.yml
 
+# Testing
+report/*
+
 # IDE config
 nbproject/*
