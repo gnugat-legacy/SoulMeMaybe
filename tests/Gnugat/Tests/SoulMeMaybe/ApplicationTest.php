@@ -17,12 +17,23 @@ use PHPUnit_Framework_TestCase;
  */
 class ApplicationTest extends PHPUnit_Framework_TestCase
 {
-    public function testConstructor()
+    public function testName()
     {
         $application = new Application();
 
         $this->assertSame(Application::NAME, $application->getName());
+    }
+
+    public function testVersion()
+    {
+        $application = new Application();
+
         $this->assertSame(Application::VERSION, $application->getVersion());
+    }
+
+    public function testDefaultCommands()
+    {
+        $application = new Application();
 
         $defaultCommands = array(
             'help',
@@ -34,7 +45,7 @@ class ApplicationTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($defaultCommands, array_keys($application->all()));
     }
 
-    public function testRun()
+    public function testVerbosity()
     {
         $command = new PublicOutputCommand();
         $application = new Application();
@@ -48,13 +59,41 @@ class ApplicationTest extends PHPUnit_Framework_TestCase
         ob_end_clean();
 
         $this->assertSame(ConsoleOutput::VERBOSITY_NORMAL, $command->output->getVerbosity());
+    }
 
-        $expectedHighlightFormater = new OutputFormatterStyle('red');
-        $actualHighlightFormater = $command->output->getFormatter()->getStyle('highlight');
-        $this->assertSame($expectedHighlightFormater->apply('test'), $actualHighlightFormater->apply('test'));
+    public function testHighlightFormater()
+    {
+        $command = new PublicOutputCommand();
+        $application = new Application();
+        $application->setAutoExit(false);
 
-        $expectedWarningFormater = new OutputFormatterStyle('black', 'yellow');
-        $actualWarningFormater = $command->output->getFormatter()->getStyle('warning');
-        $this->assertSame($expectedWarningFormater->apply('test'), $actualWarningFormater->apply('test'));
+        $application->add($command);
+        $_SERVER['argv'] = array('cli.php', $command->getName());
+
+        ob_start();
+        $application->run();
+        ob_end_clean();
+
+        $expectedFormater = new OutputFormatterStyle('red');
+        $actualFormater = $command->output->getFormatter()->getStyle('highlight');
+        $this->assertSame($expectedFormater->apply('test'), $actualFormater->apply('test'));
+    }
+
+    public function testWarningFormater()
+    {
+        $command = new PublicOutputCommand();
+        $application = new Application();
+        $application->setAutoExit(false);
+
+        $application->add($command);
+        $_SERVER['argv'] = array('cli.php', $command->getName());
+
+        ob_start();
+        $application->run();
+        ob_end_clean();
+
+        $expectedFormater = new OutputFormatterStyle('black', 'yellow');
+        $actualFormater = $command->output->getFormatter()->getStyle('warning');
+        $this->assertSame($expectedFormater->apply('test'), $actualFormater->apply('test'));
     }
 }
