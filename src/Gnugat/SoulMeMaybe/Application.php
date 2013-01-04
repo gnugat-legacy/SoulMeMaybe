@@ -14,7 +14,8 @@ use Symfony\Component\Console\Application as BaseApplication,
     Symfony\Component\Console\Output\ConsoleOutput;
 
 use Gnugat\SoulMeMaybe\Client\Command as ClientCommand,
-    Gnugat\SoulMeMaybe\Configurator\Command as ConfiguratorCommand;
+    Gnugat\SoulMeMaybe\Configurator\Command as ConfiguratorCommand,
+    Gnugat\SoulMeMaybe\Help\Command as HelpCommand;
 
 /**
  * Application class.
@@ -65,14 +66,9 @@ class Application extends BaseApplication
         }
 
         $name = $this->getCommandName($input);
-
-        if (true === $input->hasParameterOption(array('--help', '-h'))) {
-            if (!$name) {
-                $name = 'help';
-                $input = new ArrayInput(array('command' => 'help'));
-            } else {
-                $this->wantHelps = true;
-            }
+        if (NULL === $name) {
+            $name = 'help';
+            $input = new ArrayInput(array('command' => 'help'));
         }
 
         if (function_exists('posix_isatty') && $this->getHelperSet()->has('dialog')) {
@@ -86,11 +82,6 @@ class Application extends BaseApplication
             $output->writeln($this->getLongVersion());
 
             return 0;
-        }
-
-        if (!$name) {
-            $name = 'list';
-            $input = new ArrayInput(array('command' => 'list'));
         }
 
         // the command name MUST be the first element of the input.
@@ -111,7 +102,6 @@ class Application extends BaseApplication
         return new InputDefinition(array(
             new InputArgument('command', InputArgument::REQUIRED, 'The command to execute'),
 
-            new InputOption('--help', '-h', InputOption::VALUE_NONE, 'Display this help message.'),
             new InputOption('--version', '-V', InputOption::VALUE_NONE, 'Display this application version.'),
         ));
     }
@@ -121,9 +111,11 @@ class Application extends BaseApplication
      */
     protected function getDefaultCommands()
     {
-        $commands = parent::getDefaultCommands();
-        $commands[] = new ClientCommand();
-        $commands[] = new ConfiguratorCommand();
+        $commands = array(
+            new ClientCommand(),
+            new ConfiguratorCommand(),
+            new HelpCommand(),
+        );
 
         return $commands;
     }

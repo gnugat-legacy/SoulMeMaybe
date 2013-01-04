@@ -4,11 +4,9 @@ Usage:
   [options] command [arguments]
 
 Options:
-  --help           -h Display this help message.
   --version        -V Display this application version.
 
 Available commands:
   client         Connects to the NetSoul server
   configurator   Configures the login and the password socks
-  help           Displays help for a command
-  list           Lists commands
+  help           Displays this help message

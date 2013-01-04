@@ -22,7 +22,7 @@ class ApplicationTest extends PHPUnit_Framework_TestCase
 
     public static function setUpBeforeClass()
     {
-        self::$fixturesPath = realpath(__DIR__.'/../Fixtures/');
+        self::$fixturesPath = realpath(__DIR__.'/../Fixtures');
     }
 
     public function testName()
@@ -44,10 +44,9 @@ class ApplicationTest extends PHPUnit_Framework_TestCase
         $application = new Application();
 
         $defaultCommands = array(
-            'help',
-            'list',
             'client',
             'configurator',
+            'help',
         );
 
         $this->assertEquals($defaultCommands, array_keys($application->all()));
@@ -105,7 +104,7 @@ class ApplicationTest extends PHPUnit_Framework_TestCase
         $this->assertSame($expectedFormater->apply('test'), $actualFormater->apply('test'));
     }
 
-    public function testSimpleRun()
+    public function testRunHelp()
     {
         $application = new Application();
         $application->setAutoExit(false);
@@ -113,6 +112,6 @@ class ApplicationTest extends PHPUnit_Framework_TestCase
         $tester = new ApplicationTester($application);
 
         $tester->run(array(), array('decorated' => false));
-        $this->assertStringEqualsFile(self::$fixturesPath.'/application_output.txt', $tester->getDisplay());
+        $this->assertStringEqualsFile(self::$fixturesPath.'/run_help.txt', $tester->getDisplay());
     }
 }
