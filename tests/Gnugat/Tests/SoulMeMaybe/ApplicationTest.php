@@ -6,7 +6,8 @@ use Gnugat\SoulMeMaybe\Application,
     Gnugat\Tests\Fixtures\PublicOutputCommand;
 
 use Symfony\Component\Console\Formatter\OutputFormatterStyle,
-    Symfony\Component\Console\Output\ConsoleOutput;
+    Symfony\Component\Console\Output\ConsoleOutput,
+    Symfony\Component\Console\Tester\ApplicationTester;
 
 use PHPUnit_Framework_TestCase;
 
@@ -17,6 +18,13 @@ use PHPUnit_Framework_TestCase;
  */
 class ApplicationTest extends PHPUnit_Framework_TestCase
 {
+    protected static $fixturesPath;
+
+    public static function setUpBeforeClass()
+    {
+        self::$fixturesPath = realpath(__DIR__.'/../Fixtures/');
+    }
+
     public function testName()
     {
         $application = new Application();
@@ -95,5 +103,16 @@ class ApplicationTest extends PHPUnit_Framework_TestCase
         $expectedFormater = new OutputFormatterStyle('black', 'yellow');
         $actualFormater = $command->output->getFormatter()->getStyle('warning');
         $this->assertSame($expectedFormater->apply('test'), $actualFormater->apply('test'));
+    }
+
+    public function testSimpleRun()
+    {
+        $application = new Application();
+        $application->setAutoExit(false);
+
+        $tester = new ApplicationTester($application);
+
+        $tester->run(array(), array('decorated' => false));
+        $this->assertStringEqualsFile(self::$fixturesPath.'/application_output.txt', $tester->getDisplay());
     }
 }
