@@ -8,6 +8,8 @@ use Symfony\Component\Console\Command\Command,
 
 /**
  * Fixture commands publicing its output.
+ *
+ * @author Loic Chardonnet <loic.chardonnet@gmail.com>
  */
 class PublicOutputCommand extends Command
 {
