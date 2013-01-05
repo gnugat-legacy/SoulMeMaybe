@@ -13,4 +13,4 @@ php ./composer.phar install
 echo 'Optimizing the autoloading...'
 php ./composer.phar dump-autoload -o
 
-echo 'SoulMeMaybe is now fully installed, you can run "php ./app/console" to use it'
+echo 'You can run "php ./SoulMeMaybe/app/console" to use it'
