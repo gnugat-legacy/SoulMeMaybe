@@ -30,7 +30,7 @@ password sock. To use it, just run the following commands:
 
 You can then run the project with the following command:
 
-    php ./SoulMeMaybe/app/console connect
+    php ./SoulMeMaybe/app/console
 
 # Further documentation
 
