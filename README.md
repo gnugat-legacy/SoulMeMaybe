@@ -1,11 +1,8 @@
 # SoulMeMaybe, an open source client for Netsoul
 
-> Hey, I just met EPITECH,
->
-> And this is crazy,
->
-> But here's my NetSoul client,
->
+> Hey, I just met EPITECH,  
+> And this is crazy,  
+> But here's my NetSoul client,  
 > So soul me, maybe?
 
 **SoulMeMaybe** is a simple client for NetSoul, a protocol used in EPITECH
