@@ -1,4 +1,4 @@
-# SoulMeMaybe, NetSoul client
+# SoulMeMaybe, an open source client for Netsoul
 
 > Hey, I just met EPITECH,
 >
