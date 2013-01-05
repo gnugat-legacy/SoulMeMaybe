@@ -8,14 +8,16 @@
 >
 > So soul me, maybe?
 
-NetSoul is a protocol used in EPITECH university allowing its students to:
+**SoulMeMaybe** is a simple client for NetSoul, a protocol used in EPITECH
+university allowing its students to:
 
-* use internet;
-* locate each others;
-* send instant messages.
+1. **use internet**;
+2. **log their active presence**;
+3. localize each other;
+4. instant message.
 
-**SoulMeMaybe** is a simple client for NetSoul, sending ping requests so
-internet can be accessed (localization and IM won't be implemented).
+By simply sending ping requests, **SoulMeMaybe** only supports the two first
+points and does not plan on doing more.
 
 # Installation
 
