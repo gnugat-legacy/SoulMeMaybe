@@ -25,9 +25,12 @@ password sock. To use it, just run the following commands:
     wget https://raw.github.com/gnugat/SoulMeMaybe/develop/bin/install.sh
     sh ./install.sh
 
-You can then run the project with the following command:
+# Usage and help
 
-    php ./SoulMeMaybe/app/console
+To run and display the help (description, commands and options available),
+simply use the following command:
+
+    php app/console
 
 # Updates
 
