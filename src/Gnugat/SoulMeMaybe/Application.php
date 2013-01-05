@@ -67,6 +67,12 @@ class Application extends BaseApplication
 
         $name = $this->getCommandName($input);
         if (NULL === $name) {
+            if (true === $input->hasParameterOption(array('--version', '-V'))) {
+                $output->writeln($this->getLongVersion());
+
+                return 0;
+            }
+
             $name = 'help';
             $input = new ArrayInput(array('command' => 'help'));
         }
@@ -76,12 +82,6 @@ class Application extends BaseApplication
             if (!posix_isatty($inputStream)) {
                 $input->setInteractive(false);
             }
-        }
-
-        if (true === $input->hasParameterOption(array('--version', '-V'))) {
-            $output->writeln($this->getLongVersion());
-
-            return 0;
         }
 
         // the command name MUST be the first element of the input.
