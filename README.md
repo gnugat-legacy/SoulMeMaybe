@@ -19,14 +19,12 @@ internet can be accessed (localization and IM won't be implemented).
 
 # Installation
 
-To quickly and easily install **SoulMeMaybe**, download the installer and run
-it with the following commands:
+The installer allows you to create the `SoulMeMaybe` directory, install the
+project inside and configure it automatically by asking you your login and
+password sock. To use it, just run the following commands:
 
     wget https://raw.github.com/gnugat/SoulMeMaybe/develop/bin/install.sh
     sh ./install.sh
-
-This will install the project into the `SoulMeMaybe` directory, and ask you
-your login and password sock to configure it.
 
 You can then run the project with the following command:
 
