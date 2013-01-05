@@ -1,17 +1,20 @@
-# SoulMeMaybe RFC
+# Client's RFC
 
 This file will contain the official documentation of the project.
 
 ## NetSoul server
 
-SoulMeMaybe will connect to the following server:
+By default, SoulMeMaybe will connect to the following server:
 
 * **name**: `10.42.1.59`;
 * **port**: `4242`.
 
+You can change these values in the `./app/config/parameters.yml` file, however
+it is not advised to.
+
 ## Protocol
 
-Here is the protocol followed by SoulMeMaybe:
+Here is the protocol followed by the client:
 
 1. **server**: `salut <file descriptor> <hash seed> <client host> <client port> <connection timestamp>`;
 2. **client**: `auth_ag ext_user none none`;
