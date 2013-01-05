@@ -29,6 +29,13 @@ You can then run the project with the following command:
 
     php ./SoulMeMaybe/app/console
 
+# Updates
+
+If you have used the installer, updating **SoulMeMaybe** is as easy as running
+the following command:
+
+    sh ./bin/update.sh
+
 # Further documentation
 
 You can find more documentation at the following links:
