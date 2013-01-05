@@ -19,20 +19,18 @@ internet can be accessed (localization and IM won't be implemented).
 
 # Installation
 
-To quickly and easily install **SoulMeMaybe**, download
-[Composer](http://getcomposer.org/) and run its `create-project` as in the
-following commands:
+To quickly and easily install **SoulMeMaybe**, download the installer and run
+it with the following commands:
 
-    curl -s http://getcomposer.org/installer | php
-    php ./composer.phar create-project gnugat/soul-me-maybe
+    wget https://raw.github.com/gnugat/SoulMeMaybe/develop/bin/install.sh
+    sh ./install.sh
 
-Composer will install **SoulMeMaybe** under the `soul-me-maybe` directory and
-will ask you your login and password socks to create the configuration into
-the `./app/config/parameters.yml` file.
+This will install the project into the `SoulMeMaybe` directory, and ask you
+your login and password sock to configure it.
 
 You can then run the project with the following command:
 
-    php ./soul-me-maybe/app/console.php connect
+    php ./SoulMeMaybe/app/console connect
 
 # Further documentation
 
