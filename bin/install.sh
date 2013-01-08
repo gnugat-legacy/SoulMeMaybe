@@ -3,7 +3,9 @@
 echo 'Installing SoulMeMaybe...'
 git clone https://github.com/gnugat/SoulMeMaybe.git
 cd ./SoulMeMaybe
-chmod +x ./bin/*
+
+echo 'Setting rights...'
+chmod +x ./bin/* ./app/console
 
 echo 'Installing composer...'
 curl -s http://getcomposer.org/installer | php
