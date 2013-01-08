@@ -10,7 +10,7 @@ university allowing its students to:
 
 1. **use internet**;
 2. **log their active presence**;
-3. localize each other;
+3. localise each other;
 4. instant message.
 
 By simply sending ping requests, **SoulMeMaybe** only supports the two first
