@@ -14,7 +14,7 @@ This file will describe how the `bin/install.sh` works.
 To get **SoulMeMaybe**, you can:
 
 * use composer's command `create-project`;
-* downoad the project from Github as a tarball/zipball;
+* download the project from Github as a tarball/zipball;
 * clone the sources.
 
 The last option seems to be by far the best as it allows you to run `git pull`
@@ -54,18 +54,18 @@ to configure the project and make it ready to run.
 
 For more information about this command, check its own documentation.
 
-## 4) Optimization
+## 4) Optimisation
 
 We previously mentioned that composer is also an autoloader. Autoloading
 classes can require some time, in order to find them. The
-`Optimizing the autoloading...` section of the script is here to solve this
+`Optimising the autoloading...` section of the script is here to solve this
 problem, by making a mapping file of the classes to autoload.
 
 ## 5) Ready to use
 
 Once these steps have been done, a new `SoulMeMaybe` directory with a working
 project is here. The command described in the last message runs the console
-which will print a usefull help on how to use it.
+which will print a useful help on how to use it.
 
 If you are in the project directory, all you have to do to run the console is
 `php app/console`.

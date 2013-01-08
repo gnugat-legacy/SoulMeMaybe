@@ -15,7 +15,7 @@ This file logs the changes between versions.
 ## 1.1.2
 
 * Fixing the ping response;
-* improving documenation;
+* improving documentation;
 * updating dependencies.
 
 ## 1.1.1
@@ -25,9 +25,9 @@ This file logs the changes between versions.
 ## 1.1.0
 
 * Adding the installation via composer;
-* adding the configurator on post-install compsoer's event;
+* adding the configurator on post-install composer's event;
 * fixing the ping request message;
-* hidding PHP warning on connection fail.
+* hiding PHP warning on connection fail.
 
 ## v1.0.3
 
