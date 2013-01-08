@@ -1,6 +1,6 @@
 # VERSIONING
 
-This file explains the versioning, branching and API model of this bundle.
+This file explains the versioning and, branching models of this project.
 
 ## Semantic Versioning
 
