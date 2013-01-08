@@ -4,11 +4,10 @@ This file explains the versioning and, branching models of this project.
 
 ## Semantic Versioning
 
-[Semantic Versioning](http://semver.org/) is used. For a X.Y.Z version, we
-have:
-* fixes or new tests will increase patch number (Z);
+[Semantic Versioning](http://semver.org/) is used. For a version X.Y.Z, we have:
+* removal or name modification of commands and options will increase major number (X);
 * new commands or options will increase minor number (Y);
-* removal or name modification of commands and options will increase major number (X).
+* fixes or new tests will increase patch number (Z).
 
 ## Branching Model
 
