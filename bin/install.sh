@@ -13,7 +13,7 @@ curl -s http://getcomposer.org/installer | php
 echo 'Installing SoulMeMaybe dependencies...'
 php ./composer.phar install
 
-echo 'Optimizing the autoloading...'
+echo 'Optimising the autoloading...'
 php ./composer.phar dump-autoload -o
 
 echo 'You can run "php ./SoulMeMaybe/app/console" to use it'
