@@ -5,7 +5,7 @@ As described in the `README.md` file, by downloading and executing the script
 commands:
 
     wget https://raw.github.com/gnugat/SoulMeMaybe/develop/bin/install.sh
-    sh ./install.sh
+    sh install.sh
 
 This file will describe how the `bin/install.sh` works.
 
@@ -68,4 +68,4 @@ project is here. The command described in the last message runs the console
 which will print a useful help on how to use it.
 
 If you are in the project directory, all you have to do to run the console is
-`php app/console`.
+`app/console`.
