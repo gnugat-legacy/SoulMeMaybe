@@ -20,20 +20,23 @@ commands and options. This is what the `getApplication` call is for.
 
 ## Configurator
 
-This command is structure like the `client` command: it create an instance of
-of `Configurator\Kernel` and the calls its method.
+This command is structured like the `client` command: it creates an instance of
+of `Configurator\Kernel` and then calls its method.
 
 ## Client
 
-The `Client\Kernel` class needs some dependencies, so the `Client\Class`
+The `Client\Kernel` class needs some dependencies, so the `Client\Command`
 provides them:
 
 * the parameters retrieved from the `app/config/parameters.yml` file;
 * the output which will be described in the following sub-section.
 
+The kernel itself manages a socket to send and receive the requests and
+responses.
+
 ### The Output
 
-To inform the user, the kernel uses to types of outputs:
+To inform the user, the kernel uses two types of outputs:
 
 * the standard console output;
 * the log files.
