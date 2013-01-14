@@ -9,5 +9,5 @@ php ./composer.phar self-update
 echo 'Updating SoulMeMaybe dependencies...'
 php ./composer.phar update
 
-echo 'Optimizing the autoloading...'
+echo 'Optimising the autoloading...'
 php ./composer.phar dump-autoload -o
