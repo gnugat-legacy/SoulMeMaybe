@@ -2,6 +2,9 @@
 
 namespace Gnugat\SoulMeMaybe\Configurator;
 
+use Symfony\Component\Console\Helper\DialogHelper,
+    Symfony\Component\Console\Output\OutputInterface;
+
 /**
  * Kernel class.
  *
@@ -9,6 +12,12 @@ namespace Gnugat\SoulMeMaybe\Configurator;
  */
 class Kernel
 {
+    /** @var \Symfony\Component\Console\Output\OutputInterface The output. */
+    private $output;
+
+    /** @var \Symfony\Component\Console\Helper\DialogHelper The dialog helper */
+    private $dialogHelper;
+
     /** @var string The user login. */
     private $userLogin;
 
@@ -16,15 +25,26 @@ class Kernel
     private $passwordSocks;
 
     /**
+     * The constructor.
+     *
+     * @param \Symfony\Component\Console\Output\OutputInterface $output       The output.
+     * @param \Symfony\Component\Console\Helper\DialogHelper    $dialogHelper The dialog helper.
+     */
+    public function __construct(OutputInterface $output, DialogHelper $dialogHelper)
+    {
+        $this->output = $output;
+        $this->dialogHelper = $dialogHelper;
+    }
+
+    /**
      * Gets the user login from CLI.
      */
     public function getUserLoginFromCli()
     {
-        echo 'Enter your login: ';
-
-        $input = fopen('php://stdin', 'r');
-        $this->userLogin = trim(fgets($input));
-        fclose($input);
+        $this->userLogin = $this->dialogHelper->ask(
+            $this->output,
+            'Enter your login: '
+        );
     }
 
     /**
@@ -32,11 +52,10 @@ class Kernel
      */
     public function getPasswordSocksFromCli()
     {
-        echo 'Enter your password socks: ';
-
-        $input = fopen('php://stdin', 'r');
-        $this->passwordSocks = trim(fgets($input));
-        fclose($input);
+        $this->passwordSocks = $this->dialogHelper->ask(
+            $this->output,
+            'Enter your password socks: '
+        );
     }
 
     /**
@@ -53,6 +72,6 @@ class Kernel
 
         file_put_contents($configDirectoryPath.'parameters.yml', $parametersContent);
 
-        echo "Parameters file created\n";
+        $this->output->writeln('Parameters file created');
     }
 }
