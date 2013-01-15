@@ -4,7 +4,6 @@ Usage:
   [options] command [arguments]
 
 Options:
-  --version        -V Display this application version.
 
 Available commands:
   client         Connects to the NetSoul server

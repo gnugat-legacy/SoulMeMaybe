@@ -67,12 +67,6 @@ class Application extends BaseApplication
 
         $name = $this->getCommandName($input);
         if (NULL === $name) {
-            if (true === $input->hasParameterOption(array('--version', '-V'))) {
-                $output->writeln($this->getLongVersion());
-
-                return 0;
-            }
-
             $name = 'help';
             $input = new ArrayInput(array('command' => 'help'));
         }
@@ -101,8 +95,6 @@ class Application extends BaseApplication
     {
         return new InputDefinition(array(
             new InputArgument('command', InputArgument::REQUIRED, 'The command to execute'),
-
-            new InputOption('--version', '-V', InputOption::VALUE_NONE, 'Display this application version.'),
         ));
     }
 
