@@ -5,7 +5,6 @@ namespace Gnugat\SoulMeMaybe;
 use Symfony\Component\Console\Application as BaseApplication,
     Symfony\Component\Console\Input\ArrayInput,
     Symfony\Component\Console\Input\InputDefinition,
-    Symfony\Component\Console\Input\InputOption,
     Symfony\Component\Console\Input\InputArgument,
     Symfony\Component\Console\Input\InputInterface,
     Symfony\Component\Console\Output\OutputInterface,
