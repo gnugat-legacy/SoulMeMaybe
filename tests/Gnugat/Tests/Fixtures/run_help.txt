@@ -1,9 +1,7 @@
 SoulMeMaybe version 2.0.0
 
 Usage:
-  [options] command [arguments]
-
-Options:
+  app/console [command]
 
 Available commands:
   client         Connects to the NetSoul server
