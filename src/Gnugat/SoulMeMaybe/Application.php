@@ -111,4 +111,19 @@ class Application extends BaseApplication
 
         return $commands;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getHelp()
+    {
+        $help = <<< EOF
+%s
+
+<comment>Usage:</comment>
+  app/console [command]
+EOF;
+
+        return sprintf($help, $this->getLongVersion());
+    }
 }
