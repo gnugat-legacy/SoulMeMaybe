@@ -107,6 +107,26 @@ class Kernel
     }
 
     /**
+     * Draws a rainbow by switching states.
+     */
+    public function rainbow()
+    {
+        foreach (StateRequest::$states as $state) {
+            $stateRequest = new StateRequest($state);
+            $rawRequest = $stateRequest->getRawRequestFromAttribute();
+
+            $this->output->manageMessageOfGivenLogLevel('Client: '.$rawRequest, Logger::INFO);
+            fwrite($this->fileDescriptor, $rawRequest);
+            sleep(1);
+        }
+        $stateRequest = new StateRequest(StateRequest::$states[0]);
+        $rawRequest = $stateRequest->getRawRequestFromAttribute();
+
+        $this->output->manageMessageOfGivenLogLevel('Client: '.$rawRequest, Logger::INFO);
+        fwrite($this->fileDescriptor, $rawRequest);
+    }
+
+    /**
      * Pings the server.
      */
     public function ping()

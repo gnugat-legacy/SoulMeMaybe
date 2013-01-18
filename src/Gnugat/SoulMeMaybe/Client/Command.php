@@ -32,6 +32,7 @@ class Command extends BaseCommand
             ->addOption('--help', '-h', InputOption::VALUE_NONE, 'displays this help')
             ->addOption('--quiet', '-q', InputOption::VALUE_NONE, 'displays only important messages')
             ->addOption('--verbose', '-v', InputOption::VALUE_NONE, 'displays every messages')
+            ->addOption('--rainbow', '-r', InputOption::VALUE_NONE, 'switches the state to draw a rainbow')
             ->setHelp(<<<EOF
 The <info>%command.name%</info> command opens a connection to the NetSoul server,
 authenticates the user and keeps the internet connection alive
@@ -40,6 +41,10 @@ by pinging the server every 5 minutes.
 You can manage the verbosity level with the quiet and verbose options:
 
 <info>%command.full_name% [-q|--quiet] [-v|--verbose]</info>
+
+You can make other clients draw rainbow by switching your state automatically:
+
+<info>%command.full_name% [-r|--rainbow]</info>
 EOF
             );
     }
@@ -56,6 +61,9 @@ EOF
         $kernel->authenticate();
         $kernel->state();
         while (true) {
+            if (true === $input->getOption('rainbow')) {
+                $kernel->rainbow();
+            }
             sleep(5);
 
             $kernel->ping();
