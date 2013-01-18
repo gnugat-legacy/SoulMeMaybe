@@ -5,7 +5,6 @@ namespace Gnugat\SoulMeMaybe;
 use Symfony\Component\Console\Application as BaseApplication,
     Symfony\Component\Console\Input\ArrayInput,
     Symfony\Component\Console\Input\InputDefinition,
-    Symfony\Component\Console\Input\InputOption,
     Symfony\Component\Console\Input\InputArgument,
     Symfony\Component\Console\Input\InputInterface,
     Symfony\Component\Console\Output\OutputInterface,
@@ -65,14 +64,11 @@ class Application extends BaseApplication
             );
         }
 
+        $hasHelpOption = true === $input->hasParameterOption(array('--help', '-h'));
+
         $name = $this->getCommandName($input);
-        if (NULL === $name) {
-            if (true === $input->hasParameterOption(array('--version', '-V'))) {
-                $output->writeln($this->getLongVersion());
-
-                return 0;
-            }
-
+        $originalName = $name;
+        if (null === $name || true === $hasHelpOption) {
             $name = 'help';
             $input = new ArrayInput(array('command' => 'help'));
         }
@@ -86,6 +82,13 @@ class Application extends BaseApplication
 
         // the command name MUST be the first element of the input.
         $command = $this->find($name);
+        if (true === $hasHelpOption) {
+            if (null === $originalName || 'help' === $originalName) {
+                throw new \RuntimeException('The "-h" or "--help" option does not exist.');
+            }
+            $originalCommand = $this->find($originalName);
+            $command->setCommand($originalCommand);
+        }
 
         $this->runningCommand = $command;
         $statusCode = $command->run($input, $output);
@@ -101,8 +104,6 @@ class Application extends BaseApplication
     {
         return new InputDefinition(array(
             new InputArgument('command', InputArgument::REQUIRED, 'The command to execute'),
-
-            new InputOption('--version', '-V', InputOption::VALUE_NONE, 'Display this application version.'),
         ));
     }
 
@@ -118,5 +119,18 @@ class Application extends BaseApplication
         );
 
         return $commands;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getHelp()
+    {
+        return <<< EOF
+{$this->getLongVersion()}
+
+<comment>Usage:</comment>
+  {$_SERVER['PHP_SELF']} [command]
+EOF;
     }
 }

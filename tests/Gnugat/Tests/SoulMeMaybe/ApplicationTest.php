@@ -23,6 +23,8 @@ class ApplicationTest extends PHPUnit_Framework_TestCase
     public static function setUpBeforeClass()
     {
         self::$fixturesPath = realpath(__DIR__.'/../Fixtures');
+
+        $_SERVER['PHP_SELF'] = 'app/console';
     }
 
     public function testName()
@@ -113,26 +115,5 @@ class ApplicationTest extends PHPUnit_Framework_TestCase
 
         $tester->run(array(), array('decorated' => false));
         $this->assertStringEqualsFile(self::$fixturesPath.'/run_help.txt', $tester->getDisplay());
-    }
-
-    public function testRunVersion()
-    {
-        $options = array(
-            '-V',
-            '--version',
-        );
-
-        $application = new Application();
-        $application->setAutoExit(false);
-
-        $tester = new ApplicationTester($application);
-
-        foreach ($options as $option) {
-            $tester->run(array($option => true), array('decorated' => false));
-            $this->assertSame(
-                $application->getName().' version '.$application->getVersion().PHP_EOL,
-                $tester->getDisplay()
-            );
-        }
     }
 }

@@ -13,6 +13,9 @@ use Symfony\Component\Console\Command\Command as BaseCommand,
  */
 class Command extends BaseCommand
 {
+    /** @var \Symfony\Component\Console\Command\Command The command. */
+    private $command = null;
+
     /**
      * @see Command
      */
@@ -24,10 +27,26 @@ class Command extends BaseCommand
     }
 
     /**
+     * Sets the command
+     *
+     * @param \Symfony\Component\Console\Command\Command $command The command to set.
+     */
+    public function setCommand(BaseCommand $command)
+    {
+        $this->command = $command;
+    }
+
+    /**
      * {@inheritdoc}
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln($this->getApplication()->asText());
+        if (null === $this->command) {
+            $this->command = $this->getApplication();
+        }
+
+        $output->writeln($this->command->asText());
+
+        $this->command = null;
     }
 }

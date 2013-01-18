@@ -29,7 +29,7 @@ class Command extends BaseCommand
 The <info>%command.name%</info> command asks the login and password socks to
 configure SoulMeMaybe.
 
-<info>php %command.full_name% [-h|--help]</info>
+<info>%command.full_name%</info>
 EOF
             );
     }
