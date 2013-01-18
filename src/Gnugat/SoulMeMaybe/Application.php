@@ -130,7 +130,7 @@ class Application extends BaseApplication
 {$this->getLongVersion()}
 
 <comment>Usage:</comment>
-  app/console [command]
+  {$_SERVER['PHP_SELF']} [command]
 EOF;
     }
 }
