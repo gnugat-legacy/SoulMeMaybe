@@ -23,6 +23,8 @@ class ApplicationTest extends PHPUnit_Framework_TestCase
     public static function setUpBeforeClass()
     {
         self::$fixturesPath = realpath(__DIR__.'/../Fixtures');
+
+        $_SERVER['PHP_SELF'] = 'app/console';
     }
 
     public function testName()
