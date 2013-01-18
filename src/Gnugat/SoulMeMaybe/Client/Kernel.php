@@ -99,7 +99,7 @@ class Kernel
      */
     public function state()
     {
-        $stateRequest = new StateRequest();
+        $stateRequest = new StateRequest(StateRequest::$states[0]);
         $rawRequest = $stateRequest->getRawRequestFromAttribute();
 
         $this->output->manageMessageOfGivenLogLevel('Client: '.$rawRequest, Logger::INFO);

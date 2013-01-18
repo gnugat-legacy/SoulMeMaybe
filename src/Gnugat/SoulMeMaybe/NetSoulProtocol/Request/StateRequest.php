@@ -9,6 +9,17 @@ namespace Gnugat\SoulMeMaybe\NetSoulProtocol\Request;
  */
 class StateRequest extends AbstractRequest
 {
+    /** @var array The states. */
+    public static $states = array(
+        'actif',
+        'away',
+        'connection',
+        'idle',
+        'lock',
+        'server',
+        'none',
+    );
+
     /** @var string The command name. */
     public $commandName = 'state';
 
@@ -17,11 +28,13 @@ class StateRequest extends AbstractRequest
 
     /**
      * The constructor.
+     *
+     * @param string $state The state.
      */
-    public function __construct()
+    public function __construct($state)
     {
         $this->stateAndTimestamp = implode(':', array(
-            'active',
+            $state,
             strval(time()),
         ));
     }
