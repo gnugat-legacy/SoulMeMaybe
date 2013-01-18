@@ -64,8 +64,11 @@ class Application extends BaseApplication
             );
         }
 
+        $hasHelpOption = true === $input->hasParameterOption(array('--help', '-h'));
+
         $name = $this->getCommandName($input);
-        if (NULL === $name) {
+        $originalName = $name;
+        if (null === $name || true === $hasHelpOption) {
             $name = 'help';
             $input = new ArrayInput(array('command' => 'help'));
         }
@@ -79,6 +82,13 @@ class Application extends BaseApplication
 
         // the command name MUST be the first element of the input.
         $command = $this->find($name);
+        if (true === $hasHelpOption) {
+            if (null === $originalName || 'help' === $originalName) {
+                throw new \RuntimeException('The "-h" or "--help" option does not exist.');
+            }
+            $originalCommand = $this->find($originalName);
+            $command->setCommand($originalCommand);
+        }
 
         $this->runningCommand = $command;
         $statusCode = $command->run($input, $output);
