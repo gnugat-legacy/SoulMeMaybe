@@ -39,7 +39,7 @@ by pinging the server every 5 minutes.
 
 You can manage the verbosity level with the quiet and verbose options:
 
-<info>php %command.full_name% [-q|--quiet] [-v|--verbose]</info>
+<info>%command.full_name% [-q|--quiet] [-v|--verbose]</info>
 EOF
             );
     }
