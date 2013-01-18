@@ -126,13 +126,11 @@ class Application extends BaseApplication
      */
     public function getHelp()
     {
-        $help = <<< EOF
-%s
+        return <<< EOF
+{$this->getLongVersion()}
 
 <comment>Usage:</comment>
   app/console [command]
 EOF;
-
-        return sprintf($help, $this->getLongVersion());
     }
 }
