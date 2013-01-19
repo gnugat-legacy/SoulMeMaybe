@@ -2,6 +2,10 @@
 
 This file logs the changes between versions.
 
+## 2.0.1
+
+* Fixing the configuration error on install.
+
 ## 2.0.0
 
 * Adding a rainbow mode;
