@@ -2,6 +2,22 @@
 
 This file logs the changes between versions.
 
+## 2.0.0
+
+* Adding a rainbow mode;
+* a begining of tests for the output and the application;
+* install and update scripts;
+* possibility to manage the verbosity level;
+* logging the output;
+* creating complete doc on installation, update, console commands and NetSoul implementation;
+* improving the `README.md`;
+* adding a `CONTRIBUTION.md` file to help contributors;
+* change from script to console with commands (use of `Symfony/Console` component):
+  * `help`: the default one, printing the list of available commands;
+  * `configurator`: helps to configure the project;
+  * `client`: connects to the NetSoul and provide internet access.
+* moving `app/SoulMeMaybe.php` to `app/console`.
+
 ## 1.1.4
 
 * fixing the v1.1.3 crash;
