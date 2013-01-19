@@ -9,29 +9,19 @@ namespace Gnugat\SoulMeMaybe\NetSoulProtocol\Response;
  */
 class EverythingIsFineResponse extends AbstractResponse
 {
-    /**
-     * @var string The command name.
-     */
+    /** @var string The command name. */
     public $commandName;
 
-    /**
-     * @var integer The code number.
-     */
+    /** @var integer The code number. */
     public $codeNumber;
 
-    /**
-     * @var string The separator.
-     */
+    /** @var string The separator. */
     public $separator;
 
-    /**
-     * @var string The first word of the message.
-     */
+    /** @var string The first word of the message. */
     public $firstWordMessage;
 
-    /**
-     * @var string The second word of the message.
-     */
+    /** @var string The second word of the message. */
     public $secondWordMessage;
 
     /**

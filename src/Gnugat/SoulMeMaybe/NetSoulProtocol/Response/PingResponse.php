@@ -9,14 +9,10 @@ namespace Gnugat\SoulMeMaybe\NetSoulProtocol\Response;
  */
 class PingResponse extends AbstractResponse
 {
-    /**
-     * @var string The command name.
-     */
+    /** @var string The command name. */
     public $commandName;
 
-    /**
-     * @var integer The timeout in seconds.
-     */
+    /** @var integer The timeout in seconds. */
     public $timeoutInSeconds;
 
     /**

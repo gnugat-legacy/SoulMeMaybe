@@ -5,4 +5,4 @@ project.
 
 ## Current version
 
-1.1.4
+2.0.0

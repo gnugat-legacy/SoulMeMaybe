@@ -1,36 +1,81 @@
 # Installation
 
-There's many way to install SoulMeMaybe, mainly using git and composer.
-If you don't have Composer yet, download it following the instructions on
-http://getcomposer.org/ or just run the following command:
+As described in the `README.md` file, by downloading and executing the script
+`bin/install.sh` you can easily install **SoulMeMaybe** with the two following
+commands:
 
-    curl -s http://getcomposer.org/installer | php
+    wget https://raw.github.com/gnugat/SoulMeMaybe/develop/bin/install.sh
+    sh install.sh
 
-## Composer create-project
+This file will describe how the `bin/install.sh` works.
 
-Run the `create-project` command from composer to install the project:
+## 1) Clone the sources
 
-    php composer.phar create-project gnugat/soul-me-maybe
+To get **SoulMeMaybe**, you can:
 
-This will create a folder `soul-me-maybe` with the NetSoul client inside and
-will ask you your login and password socks, to create the configuration.
+* use composer's command `create-project`;
+* download the project from Github as a tarball/zipball;
+* clone the sources.
 
-## Git clone and composer install
+The last option seems to be by far the best as it allows you to run `git pull`
+to get the new version.
 
-Another way to install SoulMeMaybe is to directly clone the repository and then
-using the `install` command from composer to get the dependencies:
+The `Installing SoulMeMaybe...` section of the script does only 2 things:
 
-    git clone https://github.com/gnugat/SoulMeMaybe.git
-    cd ./SoulMeMaybe
-    php composer.phar install
+1. clone the sources with git;
+2. make the project directory the working directory for its next actions.
 
-This will get the main application inside the SoulMeMaybe folder, and then ask
-you your login and password socks.
+## 2) Execution rights
 
-# Configuration
+The `Setting rights...` section will add execution rights to the following
+files:
 
-The file `app/config/parameters.yml` can be edited to configure SoulMeMaybe.
+* `bin/install.sh`: although it should not be used after the installation;
+* `bin/update.sh`: allowing you to update easily;
+* `app/console`: so you do not have to call PHP each time you use **SoulMeMaybe**.
 
-# Usage
+3. add executable rights to **SoulMeMaybe**'s binaries inside the `bin` folder.
 
-To use SoulMeMaybe, just run `php app/SoulMeMaybe.php`.
+## 3) Getting composer
+
+To make sure we don't re-invent the wheel, we use many existing libraries for
+**SoulMeMaybe**. These are called dependencies. Composer is a dependency
+manager, allowing projects like **SoulMeMaybe** to specify which version of
+which library should be use and avoiding to version them.
+
+It also provides an autoloading tool allowing to require the dependencies when
+they are needed.
+
+This means for you that you need to get composer in order to make
+**SoulMeMaybe** work. So the `Installing composer...` section of the script
+downloads it in the root directory of the project.
+
+## 4) Getting dependencies
+
+As explained in the previous section, the dependencies are not versioned with
+**SoulMeMaybe**, which means that they need to be downloaded.
+
+The `Installing composer...` section of the script downloads them using
+composer.
+
+Once the download is complete, an event is triggered, calling the
+`configurator` command which will ask you your login and password sock in order
+to configure the project and make it ready to run.
+
+For more information about this command, check its own documentation.
+
+## 5) Optimisation
+
+We previously mentioned that composer is also an autoloader. Autoloading
+classes can require some time, in order to find them. The
+`Optimising the autoloading...` section of the script is here to solve this
+problem, by making a mapping file of the classes to autoload.
+
+## 6) Ready to use
+
+Once these steps have been done, a new `SoulMeMaybe` directory with a working
+project is here. The command described in the last message runs the console
+which will print a useful help on how to use it.
+
+If you are in the project directory, all you have to do to run the console is
+`app/console`.

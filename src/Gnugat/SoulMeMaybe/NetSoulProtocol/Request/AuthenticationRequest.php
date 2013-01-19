@@ -11,29 +11,19 @@ use Gnugat\SoulMeMaybe\NetSoulProtocol\Response\ConnectionResponse;
  */
 class AuthenticationRequest extends AbstractRequest
 {
-    /**
-     * @var string The command name.
-     */
+    /** @var string The command name. */
     public $commandName = 'ext_user_log';
 
-    /**
-     * @var string The user login.
-     */
+    /** @var string The user login. */
     public $userLogin;
 
-    /**
-     * @var string The authentication hash.
-     */
+    /** @var string The authentication hash. */
     public $authenticationHash;
 
-    /**
-     * @var string The client description.
-     */
+    /** @var string The client description. */
     public $clientDescription;
 
-    /**
-     * @var string The user location.
-     */
+    /** @var string The user location. */
     public $userLocation;
 
     /**

@@ -1,0 +1,9 @@
+SoulMeMaybe version 2.0.0
+
+Usage:
+  app/console [command]
+
+Available commands:
+  client         Connects to the NetSoul server
+  configurator   Configures the login and the password socks
+  help           Displays this help message
