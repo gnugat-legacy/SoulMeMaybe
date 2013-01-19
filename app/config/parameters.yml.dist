@@ -4,7 +4,7 @@ parameters:
     password_socks: "YourPasswordSocks"
 
     # You CAN edit the following parameters
-    client_description: "SoulMeMaybe 2.0.0"
+    client_description: "SoulMeMaybe 2.0.1"
     user_location: "Somewhere"
 
     # You SHOULDN'T edit the following parameters
