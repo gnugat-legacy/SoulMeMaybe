@@ -27,7 +27,7 @@ class Application extends BaseApplication
     const NAME = 'SoulMeMaybe';
 
     /** @const The application' name's version. */
-    const VERSION = '2.0.0';
+    const VERSION = '2.0.1';
 
     /**
      * Constructor.
