@@ -1,8 +1,8 @@
 # SoulMeMaybe, an open source client for Netsoul
 
-> Hey, I just met EPITECH,  
-> And this is crazy,  
-> But here's my NetSoul client,  
+> Hey, I just met EPITECH,
+> And this is crazy,
+> But here's my NetSoul client,
 > So soul me, maybe?
 
 **SoulMeMaybe** is a simple client for NetSoul, a protocol used in EPITECH
@@ -22,7 +22,7 @@ The installer allows you to create the `SoulMeMaybe` directory, install the
 project inside and configure it automatically by asking you your login and
 password sock. To use it, just run the following commands:
 
-    wget https://raw.github.com/gnugat/SoulMeMaybe/develop/bin/install.sh
+    wget https://raw.github.com/gnugat/SoulMeMaybe/master/bin/install.sh
     sh install.sh
 
 # Usage and help
