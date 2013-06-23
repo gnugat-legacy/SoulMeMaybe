@@ -8,5 +8,5 @@ parameters:
     user_location: "Somewhere"
 
     # You SHOULDN'T edit the following parameters
-    server_host: "10.42.1.59"
+    server_host: "ns-server.epita.fr"
     server_port: 4242
