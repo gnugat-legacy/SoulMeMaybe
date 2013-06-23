@@ -6,13 +6,17 @@ use Symfony\Component\Console\Command\Command as BaseCommand,
     Symfony\Component\Console\Input\InputOption,
     Symfony\Component\Console\Input\InputInterface,
     Symfony\Component\Console\Output\OutputInterface,
+    Symfony\Component\Console\Formatter\OutputFormatter,
     Symfony\Component\Yaml\Yaml;
 
 use Monolog\Logger,
     Monolog\Handler\RotatingFileHandler;
 
 use Gnugat\SoulMeMaybe\Output,
-    Gnugat\SoulMeMaybe\Client\Kernel;
+    Gnugat\SoulMeMaybe\Client\Kernel,
+    Gnugat\SoulMeMaybe\FabOutputFormatterStyle;
+
+use Fab\Fab;
 
 /**
  * Command class.
@@ -54,6 +58,12 @@ EOF
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        if ($input->getOption('rainbow')) {
+            $output->setFormatter(new OutputFormatter(true, array(
+                'fabulous' => new FabOutputFormatterStyle(new Fab()),
+            )));
+        }
+
         $dependencies = $this->getDependencies($input, $output);
 
         $kernel = new Kernel($dependencies['parameters'], $dependencies['output']);
@@ -61,9 +71,6 @@ EOF
         $kernel->authenticate();
         $kernel->state();
         while (true) {
-            if (true === $input->getOption('rainbow')) {
-                $kernel->rainbow();
-            }
             sleep(5);
 
             $kernel->ping();
