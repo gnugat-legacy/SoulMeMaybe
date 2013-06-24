@@ -37,6 +37,7 @@ class Command extends BaseCommand
             ->addOption('--quiet', '-q', InputOption::VALUE_NONE, 'displays only important messages')
             ->addOption('--verbose', '-v', InputOption::VALUE_NONE, 'displays every messages')
             ->addOption('--rainbow', '-r', InputOption::VALUE_NONE, 'switches the state to draw a rainbow')
+            ->addOption('--location', '-l', InputOption::VALUE_REQUIRED, 'sets your location')
             ->setHelp(<<<EOF
 The <info>%command.name%</info> command opens a connection to the NetSoul server,
 authenticates the user and keeps the internet connection alive
@@ -49,6 +50,11 @@ You can manage the verbosity level with the quiet and verbose options:
 You can make other clients draw rainbow by switching your state automatically:
 
 <info>%command.full_name% [-r|--rainbow]</info>
+
+If you want to specify your location (and temporarily overwrite the one
+specified in the <comment>app/config/parameters.yml</comment> file, use the following option:
+
+<info>%command.full_name% [-l|--location] "I'm in the machine room 42"</info>
 EOF
             );
     }
@@ -65,6 +71,10 @@ EOF
         }
 
         $dependencies = $this->getDependencies($input, $output);
+
+        if ($input->hasOption('location')) {
+            $dependencies['parameters']['user_location'] = $input->getOption('location');
+        }
 
         $kernel = new Kernel($dependencies['parameters'], $dependencies['output']);
         $kernel->connect();
