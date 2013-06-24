@@ -73,7 +73,7 @@ class Application extends BaseApplication
             );
         }
 
-        $hasHelpOption = true === $input->hasParameterOption(array('--help', '-h'));
+        $hasHelpOption = $input->hasParameterOption(array('--help', '-h'));
 
         $name = $this->getCommandName($input);
         $originalName = $name;
