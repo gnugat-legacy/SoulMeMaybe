@@ -64,7 +64,12 @@ class Output
     public function manageMessageOfGivenLogLevel($message, $logLevel)
     {
         $hasToBeWritten = $this->writePermissions[$this->verbosityLevel] <= $logLevel;
-        $isFabulous = $this->consoleOutput->getFormatter()->hasStyle('fabulous');
+
+        $isFabulous = false;
+        $formatter = $this->consoleOutput->getFormatter();
+        if ($formatter) {
+            $isFabulous = $formatter->hasStyle('fabulous');
+        }
 
         $this->logger->addRecord($logLevel, $message);
         if ($hasToBeWritten === true) {

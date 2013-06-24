@@ -16,6 +16,8 @@ use Gnugat\SoulMeMaybe\Client\Command as ClientCommand,
     Gnugat\SoulMeMaybe\Configurator\Command as ConfiguratorCommand,
     Gnugat\SoulMeMaybe\Help\Command as HelpCommand;
 
+use Gnugat\SoulMeMaybe\VersionExtractor;
+
 /**
  * Application class.
  *
@@ -26,15 +28,20 @@ class Application extends BaseApplication
     /** @const The application's name. */
     const NAME = 'SoulMeMaybe';
 
-    /** @const The application' name's version. */
-    const VERSION = '2.0.1';
+    /**
+     * @param \Gnugat\SoulMeMaybe\VersionExtractor
+     */
+    private $versionExtractor;
 
     /**
-     * Constructor.
+     * @param \Gnugat\SoulMeMaybe\VersionExtractor $versionExtractor
      */
-    public function __construct()
+    public function __construct(VersionExtractor $versionExtractor)
     {
-        parent::__construct(self::NAME, self::VERSION);
+        $this->versionExtractor = $versionExtractor;
+        $version = $versionExtractor->getVersionNumber();
+
+        parent::__construct(self::NAME, $version);
     }
 
     /**
@@ -132,5 +139,13 @@ class Application extends BaseApplication
 <comment>Usage:</comment>
   {$_SERVER['PHP_SELF']} [command]
 EOF;
+    }
+
+    /**
+     * @return Gnugat\SoulMeMaybe\VersionExtractor
+     */
+    public function getVersionExtractor()
+    {
+        return $this->versionExtractor;
     }
 }

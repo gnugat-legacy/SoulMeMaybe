@@ -5,6 +5,8 @@ namespace Gnugat\Tests\SoulMeMaybe;
 use Gnugat\SoulMeMaybe\Application,
     Gnugat\Tests\Fixtures\PublicOutputCommand;
 
+use Gnugat\SoulMeMaybe\VersionExtractor;
+
 use Symfony\Component\Console\Formatter\OutputFormatterStyle,
     Symfony\Component\Console\Output\ConsoleOutput,
     Symfony\Component\Console\Tester\ApplicationTester;
@@ -29,21 +31,21 @@ class ApplicationTest extends PHPUnit_Framework_TestCase
 
     public function testName()
     {
-        $application = new Application();
+        $application = new Application(new VersionExtractor(self::$fixturesPath.'/version_file.md'));
 
         $this->assertSame(Application::NAME, $application->getName());
     }
 
     public function testVersion()
     {
-        $application = new Application();
+        $application = new Application(new VersionExtractor(self::$fixturesPath.'/version_file.md'));
 
-        $this->assertSame(Application::VERSION, $application->getVersion());
+        $this->assertSame('2.1.0', $application->getVersion());
     }
 
     public function testDefaultCommands()
     {
-        $application = new Application();
+        $application = new Application(new VersionExtractor(self::$fixturesPath.'/version_file.md'));
 
         $defaultCommands = array(
             'client',
@@ -57,7 +59,7 @@ class ApplicationTest extends PHPUnit_Framework_TestCase
     public function testVerbosity()
     {
         $command = new PublicOutputCommand();
-        $application = new Application();
+        $application = new Application(new VersionExtractor(self::$fixturesPath.'/version_file.md'));
         $application->setAutoExit(false);
 
         $application->add($command);
@@ -73,7 +75,7 @@ class ApplicationTest extends PHPUnit_Framework_TestCase
     public function testHighlightFormater()
     {
         $command = new PublicOutputCommand();
-        $application = new Application();
+        $application = new Application(new VersionExtractor(self::$fixturesPath.'/version_file.md'));
         $application->setAutoExit(false);
 
         $application->add($command);
@@ -91,7 +93,7 @@ class ApplicationTest extends PHPUnit_Framework_TestCase
     public function testWarningFormater()
     {
         $command = new PublicOutputCommand();
-        $application = new Application();
+        $application = new Application(new VersionExtractor(self::$fixturesPath.'/version_file.md'));
         $application->setAutoExit(false);
 
         $application->add($command);
@@ -108,7 +110,7 @@ class ApplicationTest extends PHPUnit_Framework_TestCase
 
     public function testRunHelp()
     {
-        $application = new Application();
+        $application = new Application(new VersionExtractor(self::$fixturesPath.'/version_file.md'));
         $application->setAutoExit(false);
 
         $tester = new ApplicationTester($application);

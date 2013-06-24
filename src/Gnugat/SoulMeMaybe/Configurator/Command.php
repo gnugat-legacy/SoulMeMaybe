@@ -39,7 +39,11 @@ EOF
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $configurator = new Kernel($output, $this->getHelper('dialog'));
+        $configurator = new Kernel(
+            $output,
+            $this->getHelper('dialog'),
+            $this->getApplication()->getVersionExtractor()
+        );
         $configurator->getUserLoginFromCli();
         $configurator->getPasswordSocksFromCli();
         $configurator->writeParametersFile();
