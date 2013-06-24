@@ -38,6 +38,8 @@ class Application extends BaseApplication
      */
     public function __construct(VersionExtractor $versionExtractor)
     {
+        $this->manageUnixSignals();
+
         $this->versionExtractor = $versionExtractor;
         $version = $versionExtractor->getVersionNumber();
 
@@ -147,5 +149,16 @@ EOF;
     public function getVersionExtractor()
     {
         return $this->versionExtractor;
+    }
+
+    private function manageUnixSignals()
+    {
+        declare(ticks = 1);
+
+        $cleanExit = function() {
+            exit;
+        };
+        pcntl_signal(SIGINT, $cleanExit);
+        pcntl_signal(SIGTERM, $cleanExit);
     }
 }

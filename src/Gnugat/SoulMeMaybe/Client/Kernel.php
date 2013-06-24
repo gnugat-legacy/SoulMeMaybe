@@ -9,7 +9,8 @@ use Gnugat\SoulMeMaybe\Output,
     Gnugat\SoulMeMaybe\NetSoulProtocol\Request\AuthenticationRequest,
     Gnugat\SoulMeMaybe\NetSoulProtocol\Request\StateRequest,
     Gnugat\SoulMeMaybe\NetSoulProtocol\Response\PingResponse,
-    Gnugat\SoulMeMaybe\NetSoulProtocol\Request\PingRequest;
+    Gnugat\SoulMeMaybe\NetSoulProtocol\Request\PingRequest,
+    Gnugat\SoulMeMaybe\NetSoulProtocol\Request\ExitRequest;
 
 use Monolog\Logger;
 
@@ -142,5 +143,20 @@ class Kernel
             fwrite($this->fileDescriptor, $rawRequest);
             $this->output->manageMessageOfGivenLogLevel('Client: '.$rawRequest, Logger::INFO);
         }
+    }
+
+    /**
+     * Tells the server that the client is closing the connection and closes
+     * the socket.
+     */
+    public function __destruct()
+    {
+        $exitRequest = new ExitRequest();
+        $rawRequest = $exitRequest->getRawRequestFromAttribute();
+
+        $this->output->manageMessageOfGivenLogLevel('Client: '.$rawRequest, Logger::INFO);
+        fwrite($this->fileDescriptor, $rawRequest);
+
+        fclose($this->fileDescriptor);
     }
 }
