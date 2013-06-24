@@ -24,6 +24,7 @@
         "psr-0": { "": "src/" }
     },
     "scripts": {
-        "post-install-cmd": "Gnugat\\SoulMeMaybe\\EventListener::postInstall"
+        "post-install-cmd": "Gnugat\\SoulMeMaybe\\EventListener::postInstall",
+        "post-update-cmd": "Gnugat\\SoulMeMaybe\\EventListener::postUpdate"
     }
 }
