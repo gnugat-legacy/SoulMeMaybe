@@ -59,7 +59,7 @@ class Kernel
      */
     public function getPasswordSocksFromCli()
     {
-        $this->passwordSocks = $this->dialogHelper->ask(
+        $this->passwordSocks = $this->dialogHelper->askHiddenResponse(
             $this->output,
             'Enter your password socks: '
         );
