@@ -9,6 +9,8 @@ use Symfony\Component\Console\Formatter\OutputFormatterStyle,
     Symfony\Component\Console\Output\ConsoleOutput,
     Symfony\Component\Console\Helper\DialogHelper;
 
+use Gnugat\SoulMeMaybe\VersionExtractor;
+
 /**
  * EventListener class.
  *
@@ -26,7 +28,11 @@ class EventListener
         $formatter = new OutputFormatter(null, $styles);
         $output = new ConsoleOutput(ConsoleOutput::VERBOSITY_NORMAL, null, $formatter);
 
-        $configurator = new Configurator($output, new DialogHelper());
+        $configurator = new Configurator(
+            $output,
+            new DialogHelper(),
+            new VersionExtractor(__DIR__.'/../../../VERSION.md')
+        );
         $configurator->getUserLoginFromCli();
         $configurator->getPasswordSocksFromCli();
         $configurator->writeParametersFile();
