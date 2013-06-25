@@ -51,6 +51,6 @@ You can find more documentation at the following links:
 
 * [Copyright and MIT license](LICENSE.md);
 * [version](VERSION.md) and [change logs](CHANGELOG.md);
-* [versioning, branch and public API models](VERSIONING.md);
+* [versioning and branching models](VERSIONING.md);
 * [contribution guide](CONTRIBUTING.md);
 * [more documentation](doc/01-index.md).
