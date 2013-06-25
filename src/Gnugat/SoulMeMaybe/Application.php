@@ -98,7 +98,7 @@ class Application extends BaseApplication
             }
         }
 
-        // the command name MUST be the first element of the input.
+        // The command name MUST be the first element of the input.
         $command = $this->find($name);
         if (true === $hasHelpOption) {
             if (null === $originalName || 'help' === $originalName) {

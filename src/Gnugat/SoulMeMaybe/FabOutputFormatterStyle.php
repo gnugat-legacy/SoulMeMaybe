@@ -23,7 +23,7 @@ use Symfony\Component\Console\Formatter\OutputFormatterStyleInterface;
 class FabOutputFormatterStyle implements OutputFormatterStyleInterface
 {
     /**
-     * @param Fab\Fab $fab The dependency that will paint characters
+     * @param Fab\Fab $fab The dependency that will paint characters.
      */
     public function __construct(Fab $fab)
     {

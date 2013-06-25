@@ -26,7 +26,7 @@ class Kernel
     /** @var \Symfony\Component\Console\Output\OutputInterface The output. */
     private $output;
 
-    /** @var \Symfony\Component\Console\Helper\DialogHelper The dialog helper */
+    /** @var \Symfony\Component\Console\Helper\DialogHelper The dialog helper. */
     private $dialogHelper;
 
     /** @var \Gnugat\SoulMeMaybe\VersionExtractor */

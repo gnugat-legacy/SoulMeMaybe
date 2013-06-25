@@ -27,7 +27,7 @@ class PingRequest extends AbstractRequest
     public $nonMandatoryArgument;
 
     /**
-     * The constructor
+     * The constructor.
      */
     public function __construct()
     {

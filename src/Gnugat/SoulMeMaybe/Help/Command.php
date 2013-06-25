@@ -36,7 +36,7 @@ class Command extends BaseCommand
     }
 
     /**
-     * Sets the command
+     * Sets the command.
      *
      * @param \Symfony\Component\Console\Command\Command $command The command to set.
      */

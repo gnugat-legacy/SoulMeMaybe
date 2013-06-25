@@ -31,7 +31,7 @@ class VersionExtractor
     /**
      * @param string $versionFilePath
      *
-     * @throws \RuntimeException If the file couldn't be opened
+     * @throws \RuntimeException If the file couldn't be opened.
      */
     public function __construct($versionFilePath)
     {
