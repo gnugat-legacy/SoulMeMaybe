@@ -11,14 +11,23 @@ This file will describe how the console work technically.
 
 ## The entry point
 
-The `app/console` file is a simple PHP script with 3 simple steps.
+The `app/console` file is a simple PHP script with 4 simple steps.
 
 ### Getting Composer's autoload
 
 The `require` line calls the autoloader, which job is to include automatically
-the project files.
+the project files and load their classes.
 
 You shouldn't concern yourself too much about it.
+
+### Creation of a colorful output
+
+The creation of the `ConsoleOutput` object allows us to print colorful text.
+
+### Checking of the PHP version
+
+If the user uses an unsupported version of PHP, the `version_compare` section
+will print a warning.
 
 ### Creation of the version extractor
 
@@ -42,10 +51,8 @@ Instantiating a new `Application` object will set:
 
 Calling the `run` method will:
 
-* set the input and a colorful output;
 * call the `doRun` method:
-  * check the PHP version;
   * manage the options of the application;
-  * sets the help command as the default behavior;
-  * runs the command.
-* exits with the proper code.
+  * set the help command as the default behavior;
+  * run the command.
+* exit with the proper code.

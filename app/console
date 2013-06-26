@@ -13,8 +13,37 @@
 use Gnugat\SoulMeMaybe\Application;
 use Gnugat\SoulMeMaybe\VersionExtractor;
 
+use Symfony\Component\Console\Formatter\OutputFormatterStyle;
+use Symfony\Component\Console\Formatter\OutputFormatter;
+use Symfony\Component\Console\Output\ConsoleOutput;
+
 require __DIR__.'/../vendor/autoload.php';
+
+/**
+ * @return \Symfony\Component\Console\Output\ConsoleOutput
+ */
+function make_colorful_output()
+{
+    $styles['highlight'] = new OutputFormatterStyle('red');
+    $styles['warning'] = new OutputFormatterStyle('black', 'yellow');
+    $formatter = new OutputFormatter(null, $styles);
+
+    return new ConsoleOutput(ConsoleOutput::VERBOSITY_NORMAL, null, $formatter);
+}
+
+$output = make_colorful_output();
+
+$minimumPhpVersion = '5.3.3';
+$userPhpVersion = PHP_VERSION;
+if (version_compare($userPhpVersion, $minimumPhpVersion, '<')) {
+    $output->writeln(<<<EOT
+<warning>SoulMeMaybe only officially supports PHP {$minimumPhpVersion} and
+above, you will most likely encounter problems with your PHP {$userPhpVersion},
+upgrading is strongly recommended.</warning>
+EOT
+    );
+}
 
 $versionExtractor = new VersionExtractor(__DIR__.'/../VERSION.md');
 $application = new Application($versionExtractor);
-$application->run();
+$application->run(null, $output);
