@@ -25,9 +25,9 @@ For example, the `symfony/console` dependency was used since its `2.1` version.
 Updating it to the `2.2` version will provide support for autocompletion of
 the commands.
 
-## 4) Optimisation
+## 4) Optimization
 
-Just as described in the `installation` documentation, we need to optimise the
+Just as described in the `installation` documentation, we need to optimize the
 autoloading of the dependencies once composer has updated them.
 
-The `Optimising the autoloading...` section of the script will handle it.
+The `Optimizing the autoloading...` section of the script will handle it.
