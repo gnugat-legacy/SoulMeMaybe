@@ -81,42 +81,6 @@ class ApplicationTest extends PHPUnit_Framework_TestCase
         $this->assertSame(ConsoleOutput::VERBOSITY_NORMAL, $command->output->getVerbosity());
     }
 
-    public function testHighlightFormater()
-    {
-        $command = new PublicOutputCommand();
-        $application = new Application(new VersionExtractor(self::$fixturesPath.'/version_file.md'));
-        $application->setAutoExit(false);
-
-        $application->add($command);
-        $_SERVER['argv'] = array('cli.php', $command->getName());
-
-        ob_start();
-        $application->run();
-        ob_end_clean();
-
-        $expectedFormater = new OutputFormatterStyle('red');
-        $actualFormater = $command->output->getFormatter()->getStyle('highlight');
-        $this->assertSame($expectedFormater->apply('test'), $actualFormater->apply('test'));
-    }
-
-    public function testWarningFormater()
-    {
-        $command = new PublicOutputCommand();
-        $application = new Application(new VersionExtractor(self::$fixturesPath.'/version_file.md'));
-        $application->setAutoExit(false);
-
-        $application->add($command);
-        $_SERVER['argv'] = array('cli.php', $command->getName());
-
-        ob_start();
-        $application->run();
-        ob_end_clean();
-
-        $expectedFormater = new OutputFormatterStyle('black', 'yellow');
-        $actualFormater = $command->output->getFormatter()->getStyle('warning');
-        $this->assertSame($expectedFormater->apply('test'), $actualFormater->apply('test'));
-    }
-
     public function testRunHelp()
     {
         $application = new Application(new VersionExtractor(self::$fixturesPath.'/version_file.md'));
