@@ -14,13 +14,13 @@ namespace Gnugat\Tests\Fixtures;
 use Symfony\Component\Console\Output\Output;
 
 /**
- * Test output class.
- *
- * @author Loic Chardonnet <loic.chardonnet@gmail.com>
+ * A wrapping of the Output class, making the last message available.
  */
 class TestOutput extends Output
 {
-    /** @var string The last message. */
+    /**
+     * @var string
+     */
     public $lastMessage;
 
     /**

@@ -20,7 +20,7 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 require __DIR__.'/../vendor/autoload.php';
 
 /**
- * @return \Symfony\Component\Console\Output\ConsoleOutput
+ * @return ConsoleOutput
  */
 function make_colorful_output()
 {

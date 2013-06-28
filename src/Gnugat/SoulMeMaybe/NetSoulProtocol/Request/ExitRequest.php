@@ -12,13 +12,13 @@
 namespace Gnugat\SoulMeMaybe\NetSoulProtocol\Request;
 
 /**
- * Exit request class.
- *
- * @author Loic Chardonnet <loic.chardonnet@gmail.com>
+ * Request sent to close the connection.
  */
 class ExitRequest extends AbstractRequest
 {
-    /** @var string The command name. */
+    /**
+     * @var string
+     */
     public $commandName = 'exit';
 
     /**

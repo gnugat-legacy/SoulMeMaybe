@@ -11,17 +11,16 @@
 
 namespace Gnugat\SoulMeMaybe\Configurator;
 
-use Symfony\Component\Console\Command\Command as BaseCommand,
-    Symfony\Component\Console\Input\InputOption,
-    Symfony\Component\Console\Input\InputInterface,
-    Symfony\Component\Console\Output\OutputInterface;
-
 use Gnugat\SoulMeMaybe\Configurator\Kernel;
 
+use Symfony\Component\Console\Command\Command as BaseCommand;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
+
 /**
- * Command class.
- *
- * @author Loic Chardonnet <loic.chardonnet@gmail.com>
+ * Asks the user his login and password and passes them to the
+ * `Configurator\Kernel`.
  */
 class Command extends BaseCommand
 {

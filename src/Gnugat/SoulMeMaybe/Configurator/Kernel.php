@@ -11,39 +11,45 @@
 
 namespace Gnugat\SoulMeMaybe\Configurator;
 
-use Symfony\Component\Console\Helper\DialogHelper,
-    Symfony\Component\Console\Output\OutputInterface;
-
 use Gnugat\SoulMeMaybe\VersionExtractor;
 
+use Symfony\Component\Console\Helper\DialogHelper;
+use Symfony\Component\Console\Output\OutputInterface;
+
 /**
- * Kernel class.
- *
- * @author Loic Chardonnet <loic.chardonnet@gmail.com>
+ * Writes the given information to the configuration file.
  */
 class Kernel
 {
-    /** @var \Symfony\Component\Console\Output\OutputInterface The output. */
+    /**
+     * @var OutputInterface
+     */
     private $output;
 
-    /** @var \Symfony\Component\Console\Helper\DialogHelper The dialog helper. */
+    /**
+     * @var DialogHelper
+     */
     private $dialogHelper;
 
-    /** @var \Gnugat\SoulMeMaybe\VersionExtractor */
+    /**
+     * @var VersionExtractor
+     */
     private $versionExtractor;
 
-    /** @var string The user login. */
+    /**
+     * @var string
+     */
     private $userLogin;
 
-    /** @var string The password socks. */
+    /**
+     * @var string
+     */
     private $passwordSocks;
 
     /**
-     * The constructor.
-     *
-     * @param \Symfony\Component\Console\Output\OutputInterface $output       The output.
-     * @param \Symfony\Component\Console\Helper\DialogHelper    $dialogHelper The dialog helper.
-     * @param \Gnugat\SoulMeMaybe\VersionExtractor              $versionExtractor
+     * @param OutputInterface  $output
+     * @param DialogHelper     $dialogHelper
+     * @param VersionExtractor $versionExtractor
      */
     public function __construct(OutputInterface $output, DialogHelper $dialogHelper, VersionExtractor $versionExtractor)
     {
@@ -75,10 +81,10 @@ class Kernel
     }
 
     /**
-     * Gets the content of the `app/config/parameters.yml.dist`.
-     * Replaces the login and password with the given ones and replace the
-     * version using the version extractor.
-     * Then creates the `app/config/parameters.yml` file.
+     * Creates the `app/config/parameters.yml` configuration file based on
+     * the `app/config/parameters.yml.dist` file and the given login and
+     * password.
+     * Also sets the current version in the client description.
      */
     public function writeParametersFile()
     {
@@ -100,9 +106,9 @@ class Kernel
     }
 
     /**
-     * Gets the content of the `app/config/parameters.yml`.
-     * Replaces the version using the version extractor.
-     * Then saves the file.
+     * Updates the `app/config/parameters.yml` configuration file based on
+     * the given login and password.
+     * Also tries to set the current version in the client description.
      */
     public function updateParametersFile()
     {

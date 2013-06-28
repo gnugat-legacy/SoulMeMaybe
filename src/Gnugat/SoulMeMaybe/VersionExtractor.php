@@ -12,9 +12,8 @@
 namespace Gnugat\SoulMeMaybe;
 
 /**
- * Extracts the version from a file.
- *
- * @author Loic Chardonnet <loic.chardonnet@gmail.com>
+ * Provides the project informations.
+ * The version is extracted from a specific line of a given file.
  */
 class VersionExtractor
 {

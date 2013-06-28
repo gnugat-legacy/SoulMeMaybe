@@ -16,31 +16,33 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Monolog\Logger;
 
 /**
- * Output class.
- *
  * Logs and writes given messages, according to the verbosity and log levels.
- *
- * @author Loic Chardonnet <loic.chardonnet@gmail.com>
  */
 class Output
 {
-    /** @var \Monolog\Logger The logger. */
+    /**
+     * @var Logger
+     */
     private $logger;
 
-    /** @var \Symfony\Component\Console\Output\OutputInterface The console output. */
+    /**
+     * @var OutputInterface
+     */
     private $consoleOutput;
 
-    /** @var array The write permissions. */
+    /**
+     * @var array
+     */
     private $writePermissions = array();
 
-    /** @var integer The verbosity level, as defined in \Symfony\Component\Console\Output\OutputInterface. */
+    /**
+     * @var integer
+     */
     private $verbosityLevel = OutputInterface::VERBOSITY_NORMAL;
 
     /**
-     * The constructor.
-     *
-     * @param \Monolog\Logger                                   $logger        The logger.
-     * @param \Symfony\Component\Console\Output\OutputInterface $consoleOutput The console output.
+     * @param Logger          $logger
+     * @param OutputInterface $consoleOutput
      */
     public function __construct(Logger $logger, OutputInterface $consoleOutput)
     {
@@ -55,9 +57,7 @@ class Output
     }
 
     /**
-     * Sets the verbosity level.
-     *
-     * @param integer $verbosityLevel The verbosity level.
+     * @param integer $verbosityLevel
      */
     public function setVerbosityLevel($verbosityLevel)
     {
@@ -65,10 +65,12 @@ class Output
     }
 
     /**
-     * Manages the message of the given log level.
+     * Manages the message of the given log level (as defined in Logger).
+     * If the output's formatter has the `fabulous` style, adds
+     * `<fabulous></fabulous>` decoration tags to the message.
      *
-     * @param string  $message  The message.
-     * @param integer $logLevel The log level as defined in \Monolog\Logger.
+     * @param string  $message
+     * @param integer $logLevel
      */
     public function manageMessageOfGivenLogLevel($message, $logLevel)
     {

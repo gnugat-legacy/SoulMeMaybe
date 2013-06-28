@@ -11,22 +11,17 @@
 
 namespace Gnugat\Tests\SoulMeMaybe;
 
-use Gnugat\SoulMeMaybe\Output,
-    Gnugat\Tests\Fixtures\TestOutput;
+use Gnugat\SoulMeMaybe\Output;
+use Gnugat\Tests\Fixtures\TestOutput;
 
-use Monolog\Logger,
-    Monolog\Handler\TestHandler,
-    Monolog\Handler\NullHandler;
-
-use Symfony\Component\Console\Output\OutputInterface;
+use Monolog\Handler\NullHandler;
+use Monolog\Handler\TestHandler;
+use Monolog\Logger;
 
 use PHPUnit_Framework_TestCase;
 
-/**
- * Output test class.
- *
- * @author Loic Chardonnet <loic.chardonnet@gmail.com>
- */
+use Symfony\Component\Console\Output\OutputInterface;
+
 class OutputTest extends PHPUnit_Framework_TestCase
 {
     public function testLog()
@@ -49,8 +44,8 @@ class OutputTest extends PHPUnit_Framework_TestCase
             $logger->pushHandler($handler);
 
             $console = $this->getMockBuilder('Symfony\Component\Console\Output\OutputInterface')
-                    ->disableOriginalConstructor()
-                    ->getMock();
+                ->disableOriginalConstructor()
+                ->getMock();
 
             $output = new Output($logger, $console);
 
@@ -98,12 +93,12 @@ class OutputTest extends PHPUnit_Framework_TestCase
                 $message = uniqid();
 
                 $formatter = $this->getMockBuilder('Symfony\Component\Console\Formatter\OutputFormatter')
-                        ->disableOriginalConstructor()
-                        ->getMock();
+                    ->disableOriginalConstructor()
+                    ->getMock();
 
                 $formatter->expects($this->any())
-                 ->method('format')
-                 ->will($this->returnValue($message));
+                    ->method('format')
+                    ->will($this->returnValue($message));
 
                 $consoleOutput = new TestOutput(OutputInterface::VERBOSITY_NORMAL, false, $formatter);
 

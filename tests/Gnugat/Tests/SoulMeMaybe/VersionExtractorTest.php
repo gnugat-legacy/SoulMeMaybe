@@ -15,16 +15,13 @@ use Gnugat\SoulMeMaybe\VersionExtractor;
 
 use PHPUnit_Framework_TestCase;
 
-/**
- * Version extractor test class.
- *
- * @author Loic Chardonnet <loic.chardonnet@gmail.com>
- */
 class VersionExtractorTest extends PHPUnit_Framework_TestCase
 {
-    public function test()
+    public function testRetrievalOfVersionNumber()
     {
         $versionExtractor = new VersionExtractor(__DIR__.'/../Fixtures/version_file.md');
+
+        // The version of the fixture file is static and set to 2.1.0
         $this->assertSame('2.1.0', $versionExtractor->getVersionNumber());
     }
 }

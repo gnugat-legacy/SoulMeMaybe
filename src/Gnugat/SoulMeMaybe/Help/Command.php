@@ -11,18 +11,19 @@
 
 namespace Gnugat\SoulMeMaybe\Help;
 
-use Symfony\Component\Console\Command\Command as BaseCommand,
-    Symfony\Component\Console\Input\InputInterface,
-    Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Command\Command as BaseCommand;
+use Symfony\Component\Console\Helper\DescriptorHelper;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Command class.
- *
- * @author Loic Chardonnet <loic.chardonnet@gmail.com>
+ * Displays the description of a command or the application.
  */
 class Command extends BaseCommand
 {
-    /** @var \Symfony\Component\Console\Command\Command The command. */
+    /**
+     * @var Command
+     */
     private $command = null;
 
     /**
@@ -36,9 +37,7 @@ class Command extends BaseCommand
     }
 
     /**
-     * Sets the command.
-     *
-     * @param \Symfony\Component\Console\Command\Command $command The command to set.
+     * @param Command $command
      */
     public function setCommand(BaseCommand $command)
     {
@@ -54,7 +53,8 @@ class Command extends BaseCommand
             $this->command = $this->getApplication();
         }
 
-        $output->writeln($this->command->asText());
+        $helper = new DescriptorHelper();
+        $helper->describe($output, $this->command);
 
         $this->command = null;
     }

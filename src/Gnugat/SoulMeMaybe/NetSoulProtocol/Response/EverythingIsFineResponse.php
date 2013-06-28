@@ -12,25 +12,33 @@
 namespace Gnugat\SoulMeMaybe\NetSoulProtocol\Response;
 
 /**
- * Everything is fine response class.
- *
- * @author Loic Chardonnet <loic.chardonnet@gmail.com>
+ * The generic response sent by the server.
  */
 class EverythingIsFineResponse extends AbstractResponse
 {
-    /** @var string The command name. */
+    /**
+     * @var string
+     */
     public $commandName;
 
-    /** @var integer The code number. */
+    /**
+     * @var integer
+     */
     public $codeNumber;
 
-    /** @var string The separator. */
+    /**
+     * @var string
+     */
     public $separator;
 
-    /** @var string The first word of the message. */
+    /**
+     * @var string
+     */
     public $firstWordMessage;
 
-    /** @var string The second word of the message. */
+    /**
+     * @var string
+     */
     public $secondWordMessage;
 
     /**

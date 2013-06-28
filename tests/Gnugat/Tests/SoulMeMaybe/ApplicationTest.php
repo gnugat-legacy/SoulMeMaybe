@@ -11,24 +11,22 @@
 
 namespace Gnugat\Tests\SoulMeMaybe;
 
-use Gnugat\SoulMeMaybe\Application,
-    Gnugat\Tests\Fixtures\PublicOutputCommand;
+use Gnugat\SoulMeMaybe\Application;
+use Gnugat\Tests\Fixtures\PublicOutputCommand;
 
 use Gnugat\SoulMeMaybe\VersionExtractor;
 
-use Symfony\Component\Console\Formatter\OutputFormatterStyle,
-    Symfony\Component\Console\Output\ConsoleOutput,
-    Symfony\Component\Console\Tester\ApplicationTester;
-
 use PHPUnit_Framework_TestCase;
 
-/**
- * Application test class.
- *
- * @author Loic Chardonnet <loic.chardonnet@gmail.com>
- */
+use Symfony\Component\Console\Formatter\OutputFormatterStyle;
+use Symfony\Component\Console\Output\ConsoleOutput;
+use Symfony\Component\Console\Tester\ApplicationTester;
+
 class ApplicationTest extends PHPUnit_Framework_TestCase
 {
+    /**
+     * @var string
+     */
     protected static $fixturesPath;
 
     public static function setUpBeforeClass()
@@ -49,6 +47,7 @@ class ApplicationTest extends PHPUnit_Framework_TestCase
     {
         $application = new Application(new VersionExtractor(self::$fixturesPath.'/version_file.md'));
 
+        // The version of the fixture file is static and set to 2.1.0
         $this->assertSame('2.1.0', $application->getVersion());
     }
 

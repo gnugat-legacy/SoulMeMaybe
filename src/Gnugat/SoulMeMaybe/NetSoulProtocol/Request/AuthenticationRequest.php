@@ -14,32 +14,39 @@ namespace Gnugat\SoulMeMaybe\NetSoulProtocol\Request;
 use Gnugat\SoulMeMaybe\NetSoulProtocol\Response\ConnectionResponse;
 
 /**
- * Authentication request class.
- *
- * @author Loic Chardonnet <loic.chardonnet@gmail.com>
+ * The authentication request requires some parameters given by the user as
+ * well as the Connection response.
  */
 class AuthenticationRequest extends AbstractRequest
 {
-    /** @var string The command name. */
+    /**
+     * @var string
+     */
     public $commandName = 'ext_user_log';
 
-    /** @var string The user login. */
+    /**
+     * @var string
+     */
     public $userLogin;
 
-    /** @var string The authentication hash. */
+    /**
+     * @var string
+     */
     public $authenticationHash;
 
-    /** @var string The client description. */
+    /**
+     * @var string
+     */
     public $clientDescription;
 
-    /** @var string The user location. */
+    /**
+     * @var string
+     */
     public $userLocation;
 
     /**
-     * The constructor.
-     *
-     * @param \Gnugat\SoulMeMaybe\NetSoulProtocol\Response\ConnectionResponse $connectionResponse The connection response.
-     * @param array                                                           $parameters         The parameters.
+     * @param ConnectionResponse $connectionResponse
+     * @param array              $parameters
      */
     public function __construct(ConnectionResponse $connectionResponse, array $parameters)
     {

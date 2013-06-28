@@ -11,36 +11,35 @@
 
 namespace Gnugat\SoulMeMaybe;
 
-use Symfony\Component\Console\Application as BaseApplication,
-    Symfony\Component\Console\Input\ArrayInput,
-    Symfony\Component\Console\Input\InputDefinition,
-    Symfony\Component\Console\Input\InputArgument,
-    Symfony\Component\Console\Input\InputInterface,
-    Symfony\Component\Console\Output\OutputInterface;
-
-use Gnugat\SoulMeMaybe\Client\Command as ClientCommand,
-    Gnugat\SoulMeMaybe\Configurator\Command as ConfiguratorCommand,
-    Gnugat\SoulMeMaybe\Help\Command as HelpCommand;
-
+use Gnugat\SoulMeMaybe\Client\Command as ClientCommand;
+use Gnugat\SoulMeMaybe\Configurator\Command as ConfiguratorCommand;
+use Gnugat\SoulMeMaybe\Help\Command as HelpCommand;
 use Gnugat\SoulMeMaybe\VersionExtractor;
 
+use Symfony\Component\Console\Application as BaseApplication;
+use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputDefinition;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+
 /**
- * Application class.
- *
- * @author Loic Chardonnet <loic.chardonnet@gmail.com>
+ * Container of the available commands, providing a standard CLI environment.
  */
 class Application extends BaseApplication
 {
-    /** @const The application's name. */
+    /**
+     * @const NAME The application's name.
+     */
     const NAME = 'SoulMeMaybe';
 
     /**
-     * @param \Gnugat\SoulMeMaybe\VersionExtractor
+     * @param VersionExtractor
      */
     private $versionExtractor;
 
     /**
-     * @param \Gnugat\SoulMeMaybe\VersionExtractor $versionExtractor
+     * @param VersionExtractor $versionExtractor
      */
     public function __construct(VersionExtractor $versionExtractor)
     {
@@ -128,13 +127,17 @@ EOF;
     }
 
     /**
-     * @return Gnugat\SoulMeMaybe\VersionExtractor
+     * @return VersionExtractor
      */
     public function getVersionExtractor()
     {
         return $this->versionExtractor;
     }
 
+    /**
+     * Catches the interruption signals and exits the program cleanly by
+     * calling the destructors.
+     */
     private function manageUnixSignals()
     {
         declare(ticks = 1);

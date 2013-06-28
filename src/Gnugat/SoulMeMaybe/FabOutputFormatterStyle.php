@@ -17,13 +17,11 @@ use Symfony\Component\Console\Formatter\OutputFormatterStyleInterface;
 
 /**
  * Paints each characters of the output with a random color.
- *
- * @author Loic Chardonnet <loic.chardonnet@gmail.com>
  */
 class FabOutputFormatterStyle implements OutputFormatterStyleInterface
 {
     /**
-     * @param Fab\Fab $fab The dependency that will paint characters.
+     * @param Fab $fab
      */
     public function __construct(Fab $fab)
     {

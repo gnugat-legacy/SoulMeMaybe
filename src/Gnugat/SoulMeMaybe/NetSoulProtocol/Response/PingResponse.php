@@ -12,16 +12,19 @@
 namespace Gnugat\SoulMeMaybe\NetSoulProtocol\Response;
 
 /**
- * Ping response class.
- *
- * @author Loic Chardonnet <loic.chardonnet@gmail.com>
+ * Message sent reguarly by the server to check if the client is still
+ * connected.
  */
 class PingResponse extends AbstractResponse
 {
-    /** @var string The command name. */
+    /**
+     * @var string
+     */
     public $commandName;
 
-    /** @var integer The timeout in seconds. */
+    /**
+     * @var integer
+     */
     public $timeoutInSeconds;
 
     /**

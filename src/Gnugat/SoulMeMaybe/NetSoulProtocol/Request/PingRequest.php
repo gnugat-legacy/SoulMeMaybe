@@ -14,21 +14,20 @@ namespace Gnugat\SoulMeMaybe\NetSoulProtocol\Request;
 use Gnugat\SoulMeMaybe\NetSoulProtocol\Response\ConnectionResponse;
 
 /**
- * Ping request class.
- *
- * @author Loic Chardonnet <loic.chardonnet@gmail.com>
+ * Ping answer to the server's one, to keep the connection alive.
  */
 class PingRequest extends AbstractRequest
 {
-    /** @var string The command name. */
+    /**
+     * @var string
+     */
     public $commandName = 'ping';
 
-    /** @var string The non mandatory argument. */
+    /**
+     * @var string
+     */
     public $nonMandatoryArgument;
 
-    /**
-     * The constructor.
-     */
     public function __construct()
     {
         $this->nonMandatoryArgument = 'Hey, you just pinged me,'
