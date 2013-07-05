@@ -121,12 +121,14 @@ class Kernel
         $selectorPosition = strpos($parametersContent, $versionSelector);
         if (false === $selectorPosition) {
             $this->output->writeln('Parameters file doesn\'t need to be updated');
+
             return;
         }
 
         $endOfLinePosition = strpos($parametersContent, $endSelector, $selectorPosition);
         if (false === $endOfLinePosition) {
             $this->output->writeln('An error occured, the parameters file seems messed up!');
+
             return;
         }
 
