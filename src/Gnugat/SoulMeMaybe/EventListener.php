@@ -1,25 +1,31 @@
 <?php
 
+/*
+ * This file is part of the SoulMeMaybe software.
+ *
+ * (c) Loïc Chardonnet <loic.chardonnet@gmail.com>
+ *
+ * For the full copyright and license information, please view the `/LICENSE.md`
+ * file that was distributed with this source code.
+ */
+
 namespace Gnugat\SoulMeMaybe;
 
 use Gnugat\SoulMeMaybe\Configurator\Kernel as Configurator;
-
-use Symfony\Component\Console\Formatter\OutputFormatterStyle,
-    Symfony\Component\Console\Formatter\OutputFormatter,
-    Symfony\Component\Console\Output\ConsoleOutput,
-    Symfony\Component\Console\Helper\DialogHelper;
-
 use Gnugat\SoulMeMaybe\VersionExtractor;
 
+use Symfony\Component\Console\Formatter\OutputFormatterStyle;
+use Symfony\Component\Console\Formatter\OutputFormatter;
+use Symfony\Component\Console\Helper\DialogHelper;
+use Symfony\Component\Console\Output\ConsoleOutput;
+
 /**
- * EventListener class.
- *
- * @author Loic Chardonnet <loic.chardonnet@gmail.com>
+ * Composer's scripts, called before/after installation/update.
  */
 class EventListener
 {
     /**
-     * Post install event.
+     * Creation of the configuration file.
      */
     public static function postInstall()
     {
@@ -39,7 +45,7 @@ class EventListener
     }
 
     /**
-     * Post install event.
+     * Update of the version in the configuration file.
      */
     public static function postUpdate()
     {

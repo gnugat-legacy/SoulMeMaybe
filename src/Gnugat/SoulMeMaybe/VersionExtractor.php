@@ -1,11 +1,19 @@
 <?php
 
+/*
+ * This file is part of the SoulMeMaybe software.
+ *
+ * (c) Loïc Chardonnet <loic.chardonnet@gmail.com>
+ *
+ * For the full copyright and license information, please view the `/LICENSE.md`
+ * file that was distributed with this source code.
+ */
+
 namespace Gnugat\SoulMeMaybe;
 
 /**
- * Extracts the version from a file.
- *
- * @author Loic Chardonnet <loic.chardonnet@gmail.com>
+ * Provides the project informations.
+ * The version is extracted from a specific line of a given file.
  */
 class VersionExtractor
 {
@@ -22,7 +30,7 @@ class VersionExtractor
     /**
      * @param string $versionFilePath
      *
-     * @throws \RuntimeException If the file couldn't be opened
+     * @throws \RuntimeException If the file couldn't be opened.
      */
     public function __construct($versionFilePath)
     {

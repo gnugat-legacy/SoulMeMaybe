@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the SoulMeMaybe software.
+ *
+ * (c) Loïc Chardonnet <loic.chardonnet@gmail.com>
+ *
+ * For the full copyright and license information, please view the `/LICENSE.md`
+ * file that was distributed with this source code.
+ */
+
 namespace Gnugat\SoulMeMaybe;
 
 use Fab\Fab;
@@ -8,13 +17,11 @@ use Symfony\Component\Console\Formatter\OutputFormatterStyleInterface;
 
 /**
  * Paints each characters of the output with a random color.
- *
- * @author Loic Chardonnet <loic.chardonnet@gmail.com>
  */
 class FabOutputFormatterStyle implements OutputFormatterStyleInterface
 {
     /**
-     * @param Fab\Fab $fab The dependency that will paint characters
+     * @param Fab $fab
      */
     public function __construct(Fab $fab)
     {

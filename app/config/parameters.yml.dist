@@ -3,10 +3,10 @@ parameters:
     user_login: "YourLogin"
     password_socks: "YourPasswordSocks"
 
-    # You CAN edit the following parameters
+    # You CAN edit the following parameters.
     client_description: "SoulMeMaybe Version 2"
     user_location: "Somewhere"
 
-    # You SHOULDN'T edit the following parameters
+    # You SHOULDN'T edit the following parameters.
     server_host: "ns-server.epita.fr"
     server_port: 4242

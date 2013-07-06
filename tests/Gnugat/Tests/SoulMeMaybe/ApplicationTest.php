@@ -1,25 +1,32 @@
 <?php
 
+/*
+ * This file is part of the SoulMeMaybe software.
+ *
+ * (c) Loïc Chardonnet <loic.chardonnet@gmail.com>
+ *
+ * For the full copyright and license information, please view the `/LICENSE.md`
+ * file that was distributed with this source code.
+ */
+
 namespace Gnugat\Tests\SoulMeMaybe;
 
-use Gnugat\SoulMeMaybe\Application,
-    Gnugat\Tests\Fixtures\PublicOutputCommand;
+use Gnugat\SoulMeMaybe\Application;
+use Gnugat\Tests\Fixtures\PublicOutputCommand;
 
 use Gnugat\SoulMeMaybe\VersionExtractor;
 
-use Symfony\Component\Console\Formatter\OutputFormatterStyle,
-    Symfony\Component\Console\Output\ConsoleOutput,
-    Symfony\Component\Console\Tester\ApplicationTester;
-
 use PHPUnit_Framework_TestCase;
 
-/**
- * Application test class.
- *
- * @author Loic Chardonnet <loic.chardonnet@gmail.com>
- */
+use Symfony\Component\Console\Formatter\OutputFormatterStyle;
+use Symfony\Component\Console\Output\ConsoleOutput;
+use Symfony\Component\Console\Tester\ApplicationTester;
+
 class ApplicationTest extends PHPUnit_Framework_TestCase
 {
+    /**
+     * @var string
+     */
     protected static $fixturesPath;
 
     public static function setUpBeforeClass()
@@ -40,6 +47,7 @@ class ApplicationTest extends PHPUnit_Framework_TestCase
     {
         $application = new Application(new VersionExtractor(self::$fixturesPath.'/version_file.md'));
 
+        // The version of the fixture file is static and set to 2.1.0
         $this->assertSame('2.1.0', $application->getVersion());
     }
 
@@ -70,42 +78,6 @@ class ApplicationTest extends PHPUnit_Framework_TestCase
         ob_end_clean();
 
         $this->assertSame(ConsoleOutput::VERBOSITY_NORMAL, $command->output->getVerbosity());
-    }
-
-    public function testHighlightFormater()
-    {
-        $command = new PublicOutputCommand();
-        $application = new Application(new VersionExtractor(self::$fixturesPath.'/version_file.md'));
-        $application->setAutoExit(false);
-
-        $application->add($command);
-        $_SERVER['argv'] = array('cli.php', $command->getName());
-
-        ob_start();
-        $application->run();
-        ob_end_clean();
-
-        $expectedFormater = new OutputFormatterStyle('red');
-        $actualFormater = $command->output->getFormatter()->getStyle('highlight');
-        $this->assertSame($expectedFormater->apply('test'), $actualFormater->apply('test'));
-    }
-
-    public function testWarningFormater()
-    {
-        $command = new PublicOutputCommand();
-        $application = new Application(new VersionExtractor(self::$fixturesPath.'/version_file.md'));
-        $application->setAutoExit(false);
-
-        $application->add($command);
-        $_SERVER['argv'] = array('cli.php', $command->getName());
-
-        ob_start();
-        $application->run();
-        ob_end_clean();
-
-        $expectedFormater = new OutputFormatterStyle('black', 'yellow');
-        $actualFormater = $command->output->getFormatter()->getStyle('warning');
-        $this->assertSame($expectedFormater->apply('test'), $actualFormater->apply('test'));
     }
 
     public function testRunHelp()

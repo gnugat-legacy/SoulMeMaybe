@@ -1,15 +1,24 @@
 <?php
 
+/*
+ * This file is part of the SoulMeMaybe software.
+ *
+ * (c) Loïc Chardonnet <loic.chardonnet@gmail.com>
+ *
+ * For the full copyright and license information, please view the `/LICENSE.md`
+ * file that was distributed with this source code.
+ */
+
 namespace Gnugat\SoulMeMaybe\NetSoulProtocol\Request;
 
 /**
- * State request class.
- *
- * @author Loic Chardonnet <loic.chardonnet@gmail.com>
+ * The status of the user (active, away, etc).
  */
 class StateRequest extends AbstractRequest
 {
-    /** @var array The states. */
+    /**
+     * @var array
+     */
     public static $states = array(
         'actif',
         'away',
@@ -20,16 +29,18 @@ class StateRequest extends AbstractRequest
         'none',
     );
 
-    /** @var string The command name. */
+    /**
+     * @var string
+     */
     public $commandName = 'state';
 
-    /** @var string The state and timestamp. */
+    /**
+     * @var string
+     */
     public $stateAndTimestamp;
 
     /**
-     * The constructor.
-     *
-     * @param string $state The state.
+     * @param string $state
      */
     public function __construct($state)
     {

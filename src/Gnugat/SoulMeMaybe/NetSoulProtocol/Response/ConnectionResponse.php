@@ -1,30 +1,49 @@
 <?php
 
+/*
+ * This file is part of the SoulMeMaybe software.
+ *
+ * (c) Loïc Chardonnet <loic.chardonnet@gmail.com>
+ *
+ * For the full copyright and license information, please view the `/LICENSE.md`
+ * file that was distributed with this source code.
+ */
+
 namespace Gnugat\SoulMeMaybe\NetSoulProtocol\Response;
 
 /**
- * Connection response class.
- *
- * @author Loic Chardonnet <loic.chardonnet@gmail.com>
+ * The response of the server when a client connects to it.
  */
 class ConnectionResponse extends AbstractResponse
 {
-    /** @var string The command name. */
+    /**
+     * @var string
+     */
     public $commandName;
 
-    /** @var integer The file descriptor. */
+    /**
+     * @var integer
+     */
     public $fileDescriptor;
 
-    /** @var string The hash seed. */
+    /**
+     * @var string
+     */
     public $hashSeed;
 
-    /** @var string The client host. */
+    /**
+     * @var string
+     */
     public $clientHost;
 
-    /** @var integer The client port. */
+    /**
+     * @var integer
+     */
     public $clientPort;
 
-    /** @var integer The connection timestamp. */
+    /**
+     * @var integer
+     */
     public $connectionTimestamp;
 
     /**

@@ -4,60 +4,52 @@ This file logs the changes between versions.
 
 ## 2.0.1
 
-* Fixing the configuration error on install.
+* Fixed `configurator` failure caused by missing dependencies
 
 ## 2.0.0
 
-* Adding a rainbow mode;
-* a begining of tests for the output and the application;
-* install and update scripts;
-* possibility to manage the verbosity level;
-* logging the output;
-* creating complete doc on installation, update, console commands and NetSoul implementation;
-* improving the `README.md`;
-* adding a `CONTRIBUTION.md` file to help contributors;
-* change from script to console with commands (use of `Symfony/Console` component):
-  * `help`: the default one, printing the list of available commands;
-  * `configurator`: helps to configure the project;
-  * `client`: connects to the NetSoul and provide internet access.
-* moving `app/SoulMeMaybe.php` to `app/console`.
+* Added rainbow mode
+* Added install and update scripts
+* Added support of verbosity level management
+* Added support for logging the output
+* Changed from script to console with commands (use of `Symfony/Console` component)
+* Changed `app/SoulMeMaybe.php` to `app/console`
 
 ## 1.1.4
 
-* fixing the v1.1.3 crash;
-* fixing the version number;
-* checking the presence of the configuration file.
+* Fixed verification of the configuration file presence
+* Fixed `StateRequest` class name
+* Fixed version number
 
-## 1.1.3
+## 1.1.3 (released after 1.0.2)
 
-* Adding the state request.
+* Fixed user's state with the addition of `StateRequest`
 
 ## 1.1.2
 
-* Fixing the ping response;
-* improving documentation;
-* updating dependencies.
+* Updated `symfony/Yaml` component from 2.0 to 2.1
+* Fixed `PingResponse` failure by checking `fgets` return value
 
 ## 1.1.1
 
-* Fixing the configurator.
+* Fixed `configurator` by using a value different from the key in the default configuration
 
-## 1.1.0
+## 1.1.0 (released after 1.0.1)
 
-* Adding the installation via composer;
-* adding the configurator on post-install composer's event;
-* fixing the ping request message;
-* hiding PHP warning on connection fail.
+* Fixed PHP warning on connection failure
+* Fixed ping message by removing line endings
+* Added `configurator` command to allow auto-configuration via Composer's events
 
-## v1.0.3
+## 1.0.3 (released after 1.1.4)
 
-* fixing the v1.0.2 crash;
-* updating the symfony/Yaml component.
+* Updated `symfony/Yaml` component from 2.0 to 2.1
+* Fixed verification of the configuration file presence
+* Fixed `StateRequest` class name
 
-## v1.0.2
+## 1.0.2 (released during the development of 2.0.0)
 
-* adding the state request.
+* Fixed user's state with the addition of `StateRequest`
 
-## v1.0.1
+## 1.0.1
 
-* fixing the composer package name.
+* Fixed composer package name

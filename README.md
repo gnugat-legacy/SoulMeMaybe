@@ -10,41 +10,54 @@ university allowing its students to:
 
 1. **use internet**;
 2. **log their active presence**;
-3. localise each other;
-4. instant message.
+3. **localize each other**;
+4. send messages to each other.
 
-By simply sending ping requests, **SoulMeMaybe** only supports the two first
+By simply sending ping requests, **SoulMeMaybe** only supports the three first
 points and does not plan on doing more.
 
-# Installation
+## Installation
 
-The installer allows you to create the `SoulMeMaybe` directory, install the
-project inside and configure it automatically by asking you your login and
-password sock. To use it, just run the following commands:
+The installer allows you to:
+
+1. create the `SoulMeMaybe` directory;
+2. install the project inside it;
+3. and configure it automatically by asking you:
+   * your login;
+   * and your password sock.
+
+To use it, just run the following commands:
 
     wget https://raw.github.com/gnugat/SoulMeMaybe/master/bin/install.sh
     sh install.sh
 
-# Usage and help
+### Requirements
+
+**SoulMeMaybe** requires:
+
+* PHP >= 5.3.3: use of namespaces
+* Git: installation, update and dependency management scripts use it
+
+### Usage and help
 
 To run and display the help (description, commands and options available),
 simply use the following command:
 
     app/console
 
-# Updates
+### Updates
 
 If you have used the installer, updating **SoulMeMaybe** is as easy as running
 the following command:
 
     bin/update.sh
 
-# Further documentation
+## Further documentation
 
 You can find more documentation at the following links:
 
-* Copyright and MIT license: `LICENSE.md`;
-* version and change log: `VERSION.md` and `CHANGELOG.md`;
-* versioning, branch and public API models: `VERSIONING.md`;
-* contributing: `CONTRIBUTING.md`;
-* more documentation: see `doc/01-index.md`.
+* [Copyright and MIT license](LICENSE.md);
+* [version](VERSION.md) and [change logs](CHANGELOG.md);
+* [versioning and branching models](VERSIONING.md);
+* [contribution guide](CONTRIBUTING.md);
+* [more documentation](doc/01-index.md).

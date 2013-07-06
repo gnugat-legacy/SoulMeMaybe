@@ -11,7 +11,7 @@ explode it into predefined attributes.
 
 By default, SoulMeMaybe will connect to the following server:
 
-* **name**: `10.42.1.59`;
+* **name**: `ns-server.epita.fr`;
 * **port**: `4242`.
 
 You can change these values in the `./app/config/parameters.yml` file, however

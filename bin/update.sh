@@ -1,5 +1,14 @@
 #!/bin/sh
 
+#
+# This file is part of the SoulMeMaybe software.
+#
+# (c) Loïc Chardonnet <loic.chardonnet@gmail.com>
+#
+# For the full copyright and license information, please view the `/LICENSE.md`
+# file that was distributed with this source code.
+#
+
 echo 'Updating SoulMeMaybe...'
 git pull
 
@@ -9,5 +18,5 @@ php ./composer.phar self-update
 echo 'Updating SoulMeMaybe dependencies...'
 php ./composer.phar update
 
-echo 'Optimising the autoloading...'
+echo 'Optimizing the autoloading...'
 php ./composer.phar dump-autoload -o
