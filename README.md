@@ -31,6 +31,13 @@ To use it, just run the following commands:
     wget https://raw.github.com/gnugat/SoulMeMaybe/master/bin/install.sh
     sh install.sh
 
+### Requirements
+
+**SoulMeMaybe** requires:
+
+* PHP >= 5.3.3: use of namespaces
+* Git: installation, update and dependency management scripts use it
+
 ### Usage and help
 
 To run and display the help (description, commands and options available),
