@@ -145,12 +145,14 @@ class Kernel
      */
     public function __destruct()
     {
-        $exitRequest = new ExitRequest();
-        $rawRequest = $exitRequest->getRawRequestFromAttribute();
+        if ($this->fileDescriptor) {
+            $exitRequest = new ExitRequest();
+            $rawRequest = $exitRequest->getRawRequestFromAttribute();
 
-        $this->output->manageMessageOfGivenLogLevel('Client: '.$rawRequest, Logger::INFO);
-        fwrite($this->fileDescriptor, $rawRequest);
+            $this->output->manageMessageOfGivenLogLevel('Client: '.$rawRequest, Logger::INFO);
+            fwrite($this->fileDescriptor, $rawRequest);
 
-        fclose($this->fileDescriptor);
+            fclose($this->fileDescriptor);
+        }
     }
 }
