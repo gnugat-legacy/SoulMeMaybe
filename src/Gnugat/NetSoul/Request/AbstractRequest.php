@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Gnugat\SoulMeMaybe\NetSoulProtocol\Request;
+namespace Gnugat\NetSoul\Request;
 
 /**
  * A representation of a NetSoul request where attributes are its fields such

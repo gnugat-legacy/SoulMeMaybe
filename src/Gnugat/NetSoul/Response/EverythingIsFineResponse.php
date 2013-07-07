@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Gnugat\SoulMeMaybe\NetSoulProtocol\Response;
+namespace Gnugat\NetSoul\Response;
 
 /**
  * The generic response sent by the server.

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Gnugat\SoulMeMaybe\NetSoulProtocol\Request;
+namespace Gnugat\NetSoul\Request;
 
 /**
  * Request sent to close the connection.

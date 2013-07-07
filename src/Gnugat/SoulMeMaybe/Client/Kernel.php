@@ -11,14 +11,14 @@
 
 namespace Gnugat\SoulMeMaybe\Client;
 
-use Gnugat\SoulMeMaybe\NetSoulProtocol\Request\AuthenticationRequest;
-use Gnugat\SoulMeMaybe\NetSoulProtocol\Request\ExitRequest;
-use Gnugat\SoulMeMaybe\NetSoulProtocol\Request\PingRequest;
-use Gnugat\SoulMeMaybe\NetSoulProtocol\Request\StartAuthenticationRequest;
-use Gnugat\SoulMeMaybe\NetSoulProtocol\Request\StateRequest;
-use Gnugat\SoulMeMaybe\NetSoulProtocol\Response\ConnectionResponse;
-use Gnugat\SoulMeMaybe\NetSoulProtocol\Response\EverythingIsFineResponse;
-use Gnugat\SoulMeMaybe\NetSoulProtocol\Response\PingResponse;
+use Gnugat\NetSoul\Request\AuthenticationRequest;
+use Gnugat\NetSoul\Request\ExitRequest;
+use Gnugat\NetSoul\Request\PingRequest;
+use Gnugat\NetSoul\Request\StartAuthenticationRequest;
+use Gnugat\NetSoul\Request\StateRequest;
+use Gnugat\NetSoul\Response\ConnectionResponse;
+use Gnugat\NetSoul\Response\EverythingIsFineResponse;
+use Gnugat\NetSoul\Response\PingResponse;
 use Gnugat\SoulMeMaybe\Output;
 
 use Monolog\Logger;

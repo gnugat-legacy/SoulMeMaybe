@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Gnugat\SoulMeMaybe\NetSoulProtocol\Request;
+namespace Gnugat\NetSoul\Request;
 
-use Gnugat\SoulMeMaybe\NetSoulProtocol\Response\ConnectionResponse;
+use Gnugat\NetSoul\Response\ConnectionResponse;
 
 /**
  * The authentication request requires some parameters given by the user as

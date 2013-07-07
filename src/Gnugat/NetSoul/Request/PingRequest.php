@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Gnugat\SoulMeMaybe\NetSoulProtocol\Request;
+namespace Gnugat\NetSoul\Request;
 
-use Gnugat\SoulMeMaybe\NetSoulProtocol\Response\ConnectionResponse;
+use Gnugat\NetSoul\Response\ConnectionResponse;
 
 /**
  * Ping answer to the server's one, to keep the connection alive.

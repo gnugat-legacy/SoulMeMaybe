@@ -9,12 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Gnugat\SoulMeMaybe\NetSoulProtocol\Response;
+namespace Gnugat\NetSoul\Response;
 
 /**
- * The response of the server when a client connects to it.
+ * Message sent reguarly by the server to check if the client is still
+ * connected.
  */
-class ConnectionResponse extends AbstractResponse
+class PingResponse extends AbstractResponse
 {
     /**
      * @var string
@@ -24,27 +25,7 @@ class ConnectionResponse extends AbstractResponse
     /**
      * @var integer
      */
-    public $fileDescriptor;
-
-    /**
-     * @var string
-     */
-    public $hashSeed;
-
-    /**
-     * @var string
-     */
-    public $clientHost;
-
-    /**
-     * @var integer
-     */
-    public $clientPort;
-
-    /**
-     * @var integer
-     */
-    public $connectionTimestamp;
+    public $timeoutInSeconds;
 
     /**
      * {@inheritdoc}
@@ -53,13 +34,11 @@ class ConnectionResponse extends AbstractResponse
     {
         $attributeNames = array(
             'commandName',
-            'fileDescriptor',
-            'hashSeed',
-            'clientHost',
-            'clientPort',
-            'connectionTimestamp',
+            'timeoutInSeconds',
         );
 
         $this->putsRawResponseValuesInAttributesByTheirNames($rawResponse, $attributeNames);
+
+        $this->timeoutInSeconds = intval($this->timeoutInSeconds);
     }
 }

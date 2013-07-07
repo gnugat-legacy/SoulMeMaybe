@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Gnugat\SoulMeMaybe\NetSoulProtocol\Response;
+namespace Gnugat\NetSoul\Response;
 
 /**
  * A representation of a NetSoul response where attributes are its fields, such
