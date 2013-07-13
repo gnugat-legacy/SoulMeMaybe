@@ -28,7 +28,7 @@ class CommandFactory
             Commands\NewConnection::NAME => 'NewConnection',
         );
 
-        if (!array_key_exists($commandName, $namesAndClasses)) {
+        if (!isset($namesAndClasses[$commandName])) {
             throw new Exception('Unknown command name: '.$commandName);
         }
 
