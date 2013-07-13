@@ -27,7 +27,7 @@ class CommandFactory
         );
 
         if (!array_key_exists($commandName, $namesAndClasses)) {
-            throw new Exception('Unknown message name: '.$commandName);
+            throw new Exception('Unknown command name: '.$commandName);
         }
 
         $class = 'Gnugat\\NetSoul\\Commands\\'.$namesAndClasses[$commandName];
