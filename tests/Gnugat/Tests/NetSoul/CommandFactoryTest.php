@@ -14,6 +14,7 @@ namespace Gnugat\Tests\NetSoul;
 use Exception;
 
 use Gnugat\NetSoul\CommandFactory;
+use Gnugat\NetSoul\Commands;
 
 use PHPUnit_Framework_TestCase;
 
@@ -22,7 +23,7 @@ class CommandFactoryTest extends PHPUnit_Framework_TestCase
     public function testSuccessfulMake()
     {
         $namesAndClasses = array(
-            CommandFactory::NEW_CONNECTION => 'NewConnection',
+            Commands\NewConnection::NAME => 'NewConnection',
         );
 
         $factory = new CommandFactory();

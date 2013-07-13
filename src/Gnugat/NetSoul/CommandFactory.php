@@ -11,23 +11,23 @@
 
 namespace Gnugat\NetSoul;
 
+use Exception;
+
 use Gnugat\NetSoul\Commands;
 
 class CommandFactory
 {
-    const NEW_CONNECTION = 'salut';
-
     /**
      * @param string $commandName The first word of the sent or received string.
      */
     public function make($commandName)
     {
         $namesAndClasses = array(
-            self::NEW_CONNECTION => 'NewConnection',
+            Commands\NewConnection::NAME => 'NewConnection',
         );
 
         if (!array_key_exists($commandName, $namesAndClasses)) {
-            throw new \Exception('Unknown message name: '.$commandName);
+            throw new Exception('Unknown message name: '.$commandName);
         }
 
         $class = 'Gnugat\\NetSoul\\Commands\\'.$namesAndClasses[$commandName];
