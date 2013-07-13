@@ -47,6 +47,8 @@ class NewConnection
      * @param string $rawCommand
      *
      * @return NewConnection
+     *
+     * @throws Exception If wrong number of parameters given.
      */
     public static function makeFromRawCommand($rawCommand)
     {

@@ -19,6 +19,8 @@ class CommandFactory
 {
     /**
      * @param string $commandName The first word of the sent or received string.
+     *
+     * @throws Exception If given command name is unknown.
      */
     public function make($commandName)
     {
