@@ -59,4 +59,20 @@ class NewConnectionTest extends PHPUnit_Framework_TestCase
             $parameters[] = 'parameter';
         }
     }
+
+    /**
+     * @expectedException Exception
+     */
+    public function testFailureTooManyParameters()
+    {
+        $parameters = array(NewConnection::NAME);
+        for ($numberOfParameters = 0; $numberOfParameters > NewConnection::NUMBER_OF_PARAMETERS; $numberOfParameters++) {
+            $parameters[] = 'parameter';
+        }
+
+        $rawCommand = implode(' ', $parameters).PHP_EOL;
+
+        $hasRaisedException = false;
+        NewConnection::makeFromRawCommand($rawCommand);
+    }
 }
