@@ -40,7 +40,7 @@ class NewConnectionTest extends PHPUnit_Framework_TestCase
             $this->assertSame($parameter, $newConnection->$getter());
         }
     }
-    
+
     /**
      * @expectedException Exception
      */

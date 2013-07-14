@@ -39,7 +39,7 @@ class RawCommandTest extends PHPUnit_Framework_TestCase
             $this->assertSame($rawCommand->getName(), $namespacedClass::NAME);
         }
     }
-    
+
     public function testParameters()
     {
         $supportedCommands = array(
@@ -55,7 +55,7 @@ class RawCommandTest extends PHPUnit_Framework_TestCase
             $this->assertSame($numberOfParameters, $namespacedClass::NUMBER_OF_PARAMETERS);
         }
     }
-    
+
     public function testLastParameter()
     {
         $supportedCommands = array(
@@ -71,7 +71,7 @@ class RawCommandTest extends PHPUnit_Framework_TestCase
             $this->assertFalse(strpos($lastParameter, PHP_EOL));
         }
     }
-    
+
     /**
      * @expectedException Exception
      */
@@ -79,7 +79,7 @@ class RawCommandTest extends PHPUnit_Framework_TestCase
     {
         $rawCommand = new RawCommand('command without line ending');
     }
-    
+
     /**
      * @expectedException Exception
      */

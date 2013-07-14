@@ -37,7 +37,7 @@ class CommandFactory
                 return new $class($rawCommand);
             }
         }
-        
+
         throw new Exception('Unsupported command: '.$commandName);
     }
 }

@@ -19,12 +19,12 @@ class RawCommand
      * @var string
      */
     private $name;
-    
+
     /**
      * @var array
      */
     private $parameters;
-    
+
     /**
      * @param string $command The sent or received string.
      */
@@ -33,18 +33,18 @@ class RawCommand
         if (false === strpos($command, PHP_EOL)) {
             throw new Exception(sprintf('Error: missing line ending in (%s)', $command));
         }
-        
+
         $parsedCommand = trim($command);
         $commandParameters = explode(' ', $parsedCommand);
-        
+
         if (empty($parsedCommand)) {
             throw new Exception('Error: empty string');
         }
-        
+
         $this->name = array_shift($commandParameters);
         $this->parameters = $commandParameters;
     }
-    
+
     /**
      * @return string
      */
@@ -52,7 +52,7 @@ class RawCommand
     {
         return $this->name;
     }
-    
+
     /**
      * @return array
      */
