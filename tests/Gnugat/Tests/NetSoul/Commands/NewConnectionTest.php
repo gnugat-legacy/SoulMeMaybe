@@ -47,7 +47,7 @@ class NewConnectionTest extends PHPUnit_Framework_TestCase
     public function testWrongCommandName()
     {
         $parameters = array('wrong_command');
-        for ($numberOfParameters = 0; $numberOfParameters <= NewConnection::NUMBER_OF_PARAMETERS; $numberOfParameters++) {
+        for ($numberOfParameters = 0; $numberOfParameters !== NewConnection::NUMBER_OF_PARAMETERS; $numberOfParameters++) {
             $parameters[] = 'parameter';
         }
 
