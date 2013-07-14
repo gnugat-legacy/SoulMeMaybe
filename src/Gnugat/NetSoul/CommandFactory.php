@@ -28,6 +28,7 @@ class CommandFactory
     {
         $supportedCommands = array(
             'NewConnection',
+            'AuthenticationAgreement',
         );
 
         $commandName = $rawCommand->getName();

@@ -33,6 +33,7 @@ class CommandFactoryTest extends PHPUnit_Framework_TestCase
     {
         $supportedCommands = array(
             'NewConnection',
+            'AuthenticationAgreement',
         );
 
         $factory = new CommandFactory();
