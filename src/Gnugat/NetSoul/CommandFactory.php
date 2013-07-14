@@ -13,27 +13,31 @@ namespace Gnugat\NetSoul;
 
 use Exception;
 
-use Gnugat\NetSoul\Commands;
+use Gnugat\NetSoul\RawCommand;
 
 class CommandFactory
 {
     /**
-     * @param string $commandName The first word of the sent or received string.
+     * @param RawCommand $rawCommand
      *
-     * @throws Exception If given command name is unknown.
+     * @return Gnugat\NetSoul\Commands\NewConnection
+     *
+     * @throws Exception If the given command is not supported.
      */
-    public function make($commandName)
+    public function make($rawCommand)
     {
-        $namesAndClasses = array(
-            Commands\NewConnection::NAME => 'NewConnection',
+        $supportedCommands = array(
+            'NewConnection',
         );
 
-        if (!isset($namesAndClasses[$commandName])) {
-            throw new Exception('Unknown command name: '.$commandName);
+        $commandName = $rawCommand->getName();
+        foreach ($supportedCommands as $supportedCommand) {
+            $class = 'Gnugat\\NetSoul\\Commands\\'.$supportedCommand;
+            if ($class::NAME === $commandName) {
+                return new $class($rawCommand);
+            }
         }
-
-        $class = 'Gnugat\\NetSoul\\Commands\\'.$namesAndClasses[$commandName];
-
-        return new $class();
+        
+        throw new Exception('Unsupported command: '.$commandName);
     }
 }

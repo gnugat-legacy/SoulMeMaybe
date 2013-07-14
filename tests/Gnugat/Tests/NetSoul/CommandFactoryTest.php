@@ -15,23 +15,32 @@ use Exception;
 
 use Gnugat\NetSoul\CommandFactory;
 use Gnugat\NetSoul\Commands;
+use Gnugat\NetSoul\RawCommand;
 
 use PHPUnit_Framework_TestCase;
 
 class CommandFactoryTest extends PHPUnit_Framework_TestCase
 {
+    private function getFixture($commandName)
+    {
+        $fixtureFile = __DIR__.'/../Fixtures/Commands/'.$commandName.'.txt';
+        $rawCommand = file_get_contents($fixtureFile);
+    
+        return new RawCommand($rawCommand);
+    }
+
     public function testSuccessfulMake()
     {
-        $namesAndClasses = array(
-            Commands\NewConnection::NAME => 'NewConnection',
+        $supportedCommands = array(
+            'NewConnection',
         );
 
         $factory = new CommandFactory();
+        foreach ($supportedCommands as $supportedCommand) {
+            $namespacedClass = 'Gnugat\\NetSoul\\Commands\\'.$supportedCommand;
+            $rawCommand = $this->getFixture($supportedCommand);
 
-        foreach ($namesAndClasses as $name => $class) {
-            $namespacedClass = 'Gnugat\\NetSoul\\Commands\\'.$class;
-
-            $this->assertTrue($factory->make($name) instanceof $namespacedClass);
+            $this->assertTrue($factory->make($rawCommand) instanceof $namespacedClass);
         }
     }
 
@@ -41,7 +50,8 @@ class CommandFactoryTest extends PHPUnit_Framework_TestCase
     public function testMakeFailure()
     {
         $factory = new CommandFactory();
+        $rawCommand = $this->getFixture('fake command'.PHP_EOL);
 
-        $factory->make('FakeCommand');
+        $factory->make($rawCommand);
     }
 }

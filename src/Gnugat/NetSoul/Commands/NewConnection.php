@@ -13,6 +13,8 @@ namespace Gnugat\NetSoul\Commands;
 
 use Exception;
 
+use Gnugat\NetSoul\RawCommand;
+
 class NewConnection
 {
     const NAME = 'salut';
@@ -44,21 +46,29 @@ class NewConnection
     private $connectionTimestamp;
 
     /**
-     * @param string $rawCommand
+     * @param RawCommand $rawCommand
      *
      * @return NewConnection
      *
+     * @throws Exception If wrong name of command given.
      * @throws Exception If wrong number of parameters given.
      */
-    public static function makeFromRawCommand($rawCommand)
+    public static function makeFromRawCommand(RawCommand $rawCommand)
     {
-        $rawCommand = trim($rawCommand);
-        $parameters = explode(' ', $rawCommand);
-        array_shift($parameters);
-        $numberOfParameters = count($parameters);
-        if ($numberOfParameters !== self::NUMBER_OF_PARAMETERS) {
+        $name = $rawCommand->getName();
+        if (self::NAME !== $name) {
             throw new Exception(sprintf(
-                'Error: given %s parameters, expected %s',
+                'Wrong command name: %s given, expected %s',
+                $name,
+                self::NAME
+            ));
+        }
+
+        $parameters = $rawCommand->getParameters();
+        $numberOfParameters = count($parameters);
+        if (self::NUMBER_OF_PARAMETERS !== $numberOfParameters) {
+            throw new Exception(sprintf(
+                'Wrong number of parameters: %s given, expected %s',
                 $numberOfParameters,
                 self::NUMBER_OF_PARAMETERS
             ));

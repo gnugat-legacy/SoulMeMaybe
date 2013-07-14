@@ -12,6 +12,7 @@
 namespace Gnugat\Tests\NetSoul\Commands;
 
 use Gnugat\NetSoul\Commands\NewConnection;
+use Gnugat\NetSoul\RawCommand;
 
 use PHPUnit_Framework_TestCase;
 
@@ -22,31 +23,44 @@ class NewConnectionTest extends PHPUnit_Framework_TestCase
     public function testSuccessfulConstructionFromRawMessage()
     {
         $parameters = array(
-            'name' => NewConnection::NAME,
             'socketNumber' => '27',
             'hashSeed' => '2fb93c1e8020c71ccf99f6555f70e56f',
             'clientHost' => '195.220.50.8',
             'clientPort' => '45686',
             'connectionTimestamp' => '1036068977',
         );
+        $fixture = NewConnection::NAME.' '.implode(' ', $parameters).PHP_EOL;
 
-        $rawCommand = implode(' ', $parameters).PHP_EOL;
+        $rawCommand = new RawCommand($fixture);
         $newConnection = NewConnection::makeFromRawCommand($rawCommand);
 
-        // Skipping command name, as there are no getters for it.
-        array_shift($parameters);
         foreach ($parameters as $name => $parameter) {
             $getter = 'get'.ucfirst($name);
 
             $this->assertSame($parameter, $newConnection->$getter());
         }
     }
+    
+    /**
+     * @expectedException Exception
+     */
+    public function testWrongCommandName()
+    {
+        $parameters = array('wrong_command');
+        for ($numberOfParameters = 0; $numberOfParameters <= NewConnection::NUMBER_OF_PARAMETERS; $numberOfParameters++) {
+            $parameters[] = 'parameter';
+        }
+
+        $rawCommand = new RawCommand(implode(' ', $parameters).PHP_EOL);
+
+        NewConnection::makeFromRawCommand($rawCommand);
+    }
 
     public function testFailureOnWrongNumberOfParameters()
     {
         $parameters = array(NewConnection::NAME);
         for ($numberOfParameters = 0; $numberOfParameters < NewConnection::NUMBER_OF_PARAMETERS; $numberOfParameters++) {
-            $rawCommand = implode(' ', $parameters).PHP_EOL;
+            $rawCommand = new RawCommand(implode(' ', $parameters).PHP_EOL);
 
             $hasRaisedException = false;
             try {
@@ -66,13 +80,13 @@ class NewConnectionTest extends PHPUnit_Framework_TestCase
     public function testFailureTooManyParameters()
     {
         $parameters = array(NewConnection::NAME);
-        for ($numberOfParameters = 0; $numberOfParameters > NewConnection::NUMBER_OF_PARAMETERS; $numberOfParameters++) {
+        $tooManyParameters = NewConnection::NUMBER_OF_PARAMETERS + 1;
+        for ($numberOfParameters = 0; $numberOfParameters !== $tooManyParameters; $numberOfParameters++) {
             $parameters[] = 'parameter';
         }
 
-        $rawCommand = implode(' ', $parameters).PHP_EOL;
+        $rawCommand = new RawCommand(implode(' ', $parameters).PHP_EOL);
 
-        $hasRaisedException = false;
         NewConnection::makeFromRawCommand($rawCommand);
     }
 }
