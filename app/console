@@ -1,15 +1,49 @@
 #!/usr/bin/env php
 <?php
 
+/*
+ * This file is part of the SoulMeMaybe software.
+ *
+ * (c) Loïc Chardonnet <loic.chardonnet@gmail.com>
+ *
+ * For the full copyright and license information, please view the `/LICENSE.md`
+ * file that was distributed with this source code.
+ */
+
 use Gnugat\SoulMeMaybe\Application;
+use Gnugat\SoulMeMaybe\VersionExtractor;
+
+use Symfony\Component\Console\Formatter\OutputFormatterStyle;
+use Symfony\Component\Console\Formatter\OutputFormatter;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 require __DIR__.'/../vendor/autoload.php';
 
 /**
- * Main file instanciating the Application.
- *
- * @author Loic Chardonnet <loic.chardonnet@gmail.com>
+ * @return ConsoleOutput
  */
-$application = new Application();
+function make_colorful_output()
+{
+    $styles['highlight'] = new OutputFormatterStyle('red');
+    $styles['warning'] = new OutputFormatterStyle('black', 'yellow');
+    $formatter = new OutputFormatter(null, $styles);
 
-$application->run();
+    return new ConsoleOutput(ConsoleOutput::VERBOSITY_NORMAL, null, $formatter);
+}
+
+$output = make_colorful_output();
+
+$minimumPhpVersion = '5.3.3';
+$userPhpVersion = PHP_VERSION;
+if (version_compare($userPhpVersion, $minimumPhpVersion, '<')) {
+    $output->writeln(<<<EOT
+<warning>SoulMeMaybe only officially supports PHP {$minimumPhpVersion} and
+above, you will most likely encounter problems with your PHP {$userPhpVersion},
+upgrading is strongly recommended.</warning>
+EOT
+    );
+}
+
+$versionExtractor = new VersionExtractor(__DIR__.'/../VERSION.md');
+$application = new Application($versionExtractor);
+$application->run(null, $output);

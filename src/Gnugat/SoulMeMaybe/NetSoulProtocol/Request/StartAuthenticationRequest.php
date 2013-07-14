@@ -1,24 +1,39 @@
 <?php
 
+/*
+ * This file is part of the SoulMeMaybe software.
+ *
+ * (c) Loïc Chardonnet <loic.chardonnet@gmail.com>
+ *
+ * For the full copyright and license information, please view the `/LICENSE.md`
+ * file that was distributed with this source code.
+ */
+
 namespace Gnugat\SoulMeMaybe\NetSoulProtocol\Request;
 
 /**
- * Start authentication request class.
- *
- * @author Loic Chardonnet <loic.chardonnet@gmail.com>
+ * Request to ask the server the autorization to authenticate.
  */
 class StartAuthenticationRequest extends AbstractRequest
 {
-    /** @var string The command name. */
+    /**
+     * @var string
+     */
     public $commandName = 'auth_ag';
 
-    /** @var string The authentication type. */
+    /**
+     * @var string
+     */
     public $authenticationType = 'ext_user';
 
-    /** @var string The unused argument 1. */
+    /**
+     * @var string
+     */
     public $firstUnusedArgument = 'none';
 
-    /** @var string The unused argument 2. */
+    /**
+     * @var string
+     */
     public $secondUnusedArgument = 'none';
 
     /**

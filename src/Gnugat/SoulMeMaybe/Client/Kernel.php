@@ -1,42 +1,57 @@
 <?php
 
+/*
+ * This file is part of the SoulMeMaybe software.
+ *
+ * (c) Loïc Chardonnet <loic.chardonnet@gmail.com>
+ *
+ * For the full copyright and license information, please view the `/LICENSE.md`
+ * file that was distributed with this source code.
+ */
+
 namespace Gnugat\SoulMeMaybe\Client;
 
-use Gnugat\SoulMeMaybe\Output,
-    Gnugat\SoulMeMaybe\NetSoulProtocol\Response\ConnectionResponse,
-    Gnugat\SoulMeMaybe\NetSoulProtocol\Request\StartAuthenticationRequest,
-    Gnugat\SoulMeMaybe\NetSoulProtocol\Response\EverythingIsFineResponse,
-    Gnugat\SoulMeMaybe\NetSoulProtocol\Request\AuthenticationRequest,
-    Gnugat\SoulMeMaybe\NetSoulProtocol\Request\StateRequest,
-    Gnugat\SoulMeMaybe\NetSoulProtocol\Response\PingResponse,
-    Gnugat\SoulMeMaybe\NetSoulProtocol\Request\PingRequest;
+use Gnugat\SoulMeMaybe\NetSoulProtocol\Request\AuthenticationRequest;
+use Gnugat\SoulMeMaybe\NetSoulProtocol\Request\ExitRequest;
+use Gnugat\SoulMeMaybe\NetSoulProtocol\Request\PingRequest;
+use Gnugat\SoulMeMaybe\NetSoulProtocol\Request\StartAuthenticationRequest;
+use Gnugat\SoulMeMaybe\NetSoulProtocol\Request\StateRequest;
+use Gnugat\SoulMeMaybe\NetSoulProtocol\Response\ConnectionResponse;
+use Gnugat\SoulMeMaybe\NetSoulProtocol\Response\EverythingIsFineResponse;
+use Gnugat\SoulMeMaybe\NetSoulProtocol\Response\PingResponse;
+use Gnugat\SoulMeMaybe\Output;
 
 use Monolog\Logger;
 
 /**
- * Kernel class.
- *
- * @author Loic Chardonnet <loic.chardonnet@gmail.com>
+ * A NetSoul client, where methods implements each steps of the NetSoul
+ * protocol.
  */
 class Kernel
 {
-    /** @var array The parameters. */
+    /**
+     * @var array
+     */
     private $parameters;
 
-    /** @var \Gnugat\SoulMeMaybe\Output The ouput. */
+    /**
+     * @var Output
+     */
     private $output;
 
-    /** @var integer The file descriptor. */
+    /**
+     * @var integer
+     */
     private $fileDescriptor;
 
-    /** @var \Gnugat\SoulMeMaybe\NetSoulProtocol\Response\ConnectionResponse The connection response. */
+    /**
+     * @var ConnectionResponse
+     */
     private $connectionResponse;
 
     /**
-     * The constructor.
-     *
-     * @param array                      $parameters The parameters.
-     * @param \Gnugat\SoulMeMaybe\Output $output     The output.
+     * @param array                      $parameters
+     * @param \Gnugat\SoulMeMaybe\Output $output
      */
     public function __construct($parameters, Output $output)
     {
@@ -45,7 +60,7 @@ class Kernel
     }
 
     /**
-     * Connects to the NetSoul server.
+     * Creates a socket to open a connection with the NetSoul server.
      */
     public function connect()
     {
@@ -67,7 +82,7 @@ class Kernel
     }
 
     /**
-     * Authenticates the user.
+     * Requests an authentication and sends login information.
      */
     public function authenticate()
     {
@@ -95,7 +110,7 @@ class Kernel
     }
 
     /**
-     * Defines the state.
+     * Defines the user as active.
      */
     public function state()
     {
@@ -107,27 +122,7 @@ class Kernel
     }
 
     /**
-     * Draws a rainbow by switching states.
-     */
-    public function rainbow()
-    {
-        foreach (StateRequest::$states as $state) {
-            $stateRequest = new StateRequest($state);
-            $rawRequest = $stateRequest->getRawRequestFromAttribute();
-
-            $this->output->manageMessageOfGivenLogLevel('Client: '.$rawRequest, Logger::INFO);
-            fwrite($this->fileDescriptor, $rawRequest);
-            sleep(1);
-        }
-        $stateRequest = new StateRequest(StateRequest::$states[0]);
-        $rawRequest = $stateRequest->getRawRequestFromAttribute();
-
-        $this->output->manageMessageOfGivenLogLevel('Client: '.$rawRequest, Logger::INFO);
-        fwrite($this->fileDescriptor, $rawRequest);
-    }
-
-    /**
-     * Pings the server.
+     * Pings the server to keep the connection alive.
      */
     public function ping()
     {
@@ -141,6 +136,23 @@ class Kernel
             $rawRequest = $pingRequest->getRawRequestFromAttribute();
             fwrite($this->fileDescriptor, $rawRequest);
             $this->output->manageMessageOfGivenLogLevel('Client: '.$rawRequest, Logger::INFO);
+        }
+    }
+
+    /**
+     * Tells the server that the client is closing the connection and closes
+     * the socket.
+     */
+    public function __destruct()
+    {
+        if ($this->fileDescriptor) {
+            $exitRequest = new ExitRequest();
+            $rawRequest = $exitRequest->getRawRequestFromAttribute();
+
+            $this->output->manageMessageOfGivenLogLevel('Client: '.$rawRequest, Logger::INFO);
+            fwrite($this->fileDescriptor, $rawRequest);
+
+            fclose($this->fileDescriptor);
         }
     }
 }

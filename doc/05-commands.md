@@ -21,7 +21,7 @@ commands and options. This is what the `getApplication` call is for.
 ## Configurator
 
 This command is structured like the `client` command: it creates an instance of
-of `Configurator\Kernel` and then calls its method.
+of `Configurator\Kernel` and then calls its methods.
 
 ## Client
 

@@ -1,23 +1,37 @@
 <?php
 
+/*
+ * This file is part of the SoulMeMaybe software.
+ *
+ * (c) Loïc Chardonnet <loic.chardonnet@gmail.com>
+ *
+ * For the full copyright and license information, please view the `/LICENSE.md`
+ * file that was distributed with this source code.
+ */
+
 namespace Gnugat\SoulMeMaybe\Client;
 
-use Symfony\Component\Console\Command\Command as BaseCommand,
-    Symfony\Component\Console\Input\InputOption,
-    Symfony\Component\Console\Input\InputInterface,
-    Symfony\Component\Console\Output\OutputInterface,
-    Symfony\Component\Yaml\Yaml;
+use Fab\Fab;
 
-use Monolog\Logger,
-    Monolog\Handler\RotatingFileHandler;
+use Gnugat\SoulMeMaybe\Client\Kernel;
+use Gnugat\SoulMeMaybe\FabOutputFormatterStyle;
+use Gnugat\SoulMeMaybe\Output;
 
-use Gnugat\SoulMeMaybe\Output,
-    Gnugat\SoulMeMaybe\Client\Kernel;
+use Monolog\Handler\RotatingFileHandler;
+use Monolog\Logger;
+
+use Symfony\Component\Console\Command\Command as BaseCommand;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Formatter\OutputFormatter;
+use Symfony\Component\Console\Output\OutputInterface;
+
+use Symfony\Component\Yaml\Yaml;
 
 /**
- * Command class.
- *
- * @author Loic Chardonnet <loic.chardonnet@gmail.com>
+ * Calls the `Client\Kernel` methods in the order defined by the NetSoul
+ * protocol, in order to grant the user access to internet inside the
+ * University.
  */
 class Command extends BaseCommand
 {
@@ -32,17 +46,25 @@ class Command extends BaseCommand
             ->addOption('--help', '-h', InputOption::VALUE_NONE, 'displays this help')
             ->addOption('--quiet', '-q', InputOption::VALUE_NONE, 'displays only important messages')
             ->addOption('--verbose', '-v', InputOption::VALUE_NONE, 'displays every messages')
-            ->addOption('--rainbow', '-r', InputOption::VALUE_NONE, 'switches the state to draw a rainbow')
+            ->addOption('--location', '-l', InputOption::VALUE_REQUIRED, 'sets your location')
+            ->addOption('--rainbow', '-r', InputOption::VALUE_NONE, 'makes your console fabulous')
             ->setHelp(<<<EOF
-The <info>%command.name%</info> command opens a connection to the NetSoul server,
-authenticates the user and keeps the internet connection alive
+The <info>%command.name%</info> command opens a connection with the NetSoul
+server, authenticates the user and keeps the internet connection alive
 by pinging the server every 5 minutes.
 
-You can manage the verbosity level with the quiet and verbose options:
+You can manage the verbosity level with the quiet and verbose options.
 
-<info>%command.full_name% [-q|--quiet] [-v|--verbose]</info>
+<info>%command.full_name% [-q|--quiet]</info>
+<info>%command.full_name% [-v|--verbose]</info>
 
-You can make other clients draw rainbow by switching your state automatically:
+If you want to specify your location (and temporarily overwrite the one
+specified in the <comment>app/config/parameters.yml</comment> file), use the
+following option (convention: '<in PIE> <room> <line> <station>'):
+
+<info>%command.full_name% [-l|--location=] "Villejuif 302 1 2"</info>
+
+You can make your console fabulous using the rainbow mode:
 
 <info>%command.full_name% [-r|--rainbow]</info>
 EOF
@@ -54,16 +76,23 @@ EOF
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        if ($input->getOption('rainbow')) {
+            $output->setFormatter(new OutputFormatter(true, array(
+                'fabulous' => new FabOutputFormatterStyle(new Fab()),
+            )));
+        }
+
         $dependencies = $this->getDependencies($input, $output);
+
+        if ($input->hasOption('location')) {
+            $dependencies['parameters']['user_location'] = $input->getOption('location');
+        }
 
         $kernel = new Kernel($dependencies['parameters'], $dependencies['output']);
         $kernel->connect();
         $kernel->authenticate();
         $kernel->state();
         while (true) {
-            if (true === $input->getOption('rainbow')) {
-                $kernel->rainbow();
-            }
             sleep(5);
 
             $kernel->ping();
@@ -71,12 +100,12 @@ EOF
     }
 
     /**
-     * Gets the dependencies.
+     * Gets the dependencies as an array associating name to instances.
      *
-     * @param \Symfony\Component\Console\Input\InputInterface   $input  The input.
-     * @param \Symfony\Component\Console\Output\OutputInterface $output The output.
+     * @param InputInterface  $input
+     * @param OutputInterface $output
      *
-     * @return array The dependencies with their names associated to their values.
+     * @return array
      */
     private function getDependencies(InputInterface $input, OutputInterface $output)
     {

@@ -9,25 +9,25 @@
  * file that was distributed with this source code.
  */
 
-namespace Gnugat\Tests\Fixtures;
-
-use Symfony\Component\Console\Output\Output;
+namespace Gnugat\SoulMeMaybe\NetSoulProtocol\Request;
 
 /**
- * A wrapping of the Output class, making the last message available.
+ * Request sent to close the connection.
  */
-class TestOutput extends Output
+class ExitRequest extends AbstractRequest
 {
     /**
      * @var string
      */
-    public $lastMessage;
+    public $commandName = 'exit';
 
     /**
      * {@inheritdoc}
      */
-    protected function doWrite($message, $newline)
+    public function getRawRequestFromAttribute()
     {
-        $this->lastMessage = $message;
+        return $this->putsAttributeValuesInRawRequest(array(
+            $this->commandName
+        ));
     }
 }
