@@ -26,13 +26,8 @@ class CommandFactory
      */
     public function make(RawCommand $rawCommand)
     {
-        $supportedCommands = array(
-            'NewConnection',
-            'AuthenticationAgreement',
-        );
-
         $commandName = $rawCommand->getName();
-        foreach ($supportedCommands as $supportedCommand) {
+        foreach ($this->getSupportedCommands() as $supportedCommand) {
             $class = 'Gnugat\\NetSoul\\Commands\\'.$supportedCommand;
             if ($class::NAME === $commandName) {
                 return new $class($rawCommand);
@@ -40,5 +35,13 @@ class CommandFactory
         }
 
         throw new Exception('Unsupported command: '.$commandName);
+    }
+    
+    public function getSupportedCommands()
+    {
+        return array(
+            'NewConnection',
+            'AuthenticationAgreement',
+        );
     }
 }

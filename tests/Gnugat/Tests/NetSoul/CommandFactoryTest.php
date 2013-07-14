@@ -28,16 +28,23 @@ class CommandFactoryTest extends PHPUnit_Framework_TestCase
 
         return RawCommand::makeFromString($rawCommand);
     }
+    
+    public function testSupportedCommands()
+    {
+        $factory = new CommandFactory();
+        foreach ($factory->getSupportedCommands() as $supportedCommand) {
+            $sourceFile = __DIR__.'/../../../../src/Gnugat/NetSoul/Commands/'.$supportedCommand.'.php';
+            $testFile = __DIR__.'/Commands/'.$supportedCommand.'Test.php';
+            
+            $this->assertFileExists($sourceFile);
+            $this->assertFileExists($testFile);
+        }
+    }
 
     public function testSuccessfulMake()
     {
-        $supportedCommands = array(
-            'NewConnection',
-            'AuthenticationAgreement',
-        );
-
         $factory = new CommandFactory();
-        foreach ($supportedCommands as $supportedCommand) {
+        foreach ($factory->getSupportedCommands() as $supportedCommand) {
             $namespacedClass = 'Gnugat\\NetSoul\\Commands\\'.$supportedCommand;
             $rawCommand = $this->getFixture($supportedCommand);
 
