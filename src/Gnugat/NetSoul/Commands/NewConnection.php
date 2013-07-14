@@ -15,7 +15,7 @@ use Exception;
 
 use Gnugat\NetSoul\RawCommand;
 
-class NewConnection
+class NewConnection implements Command
 {
     const NAME = 'salut';
     const NUMBER_OF_PARAMETERS = 5;
@@ -46,12 +46,7 @@ class NewConnection
     private $connectionTimestamp;
 
     /**
-     * @param RawCommand $rawCommand
-     *
-     * @return NewConnection
-     *
-     * @throws Exception If wrong name of command given.
-     * @throws Exception If wrong number of parameters given.
+     * {@inheritDoc}
      */
     public static function makeFromRawCommand(RawCommand $rawCommand)
     {

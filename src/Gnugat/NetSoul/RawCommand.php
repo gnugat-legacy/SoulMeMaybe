@@ -13,6 +13,18 @@ namespace Gnugat\NetSoul;
 
 use Exception;
 
+/**
+ * The NetSoul protocol is based on commands, which simply are strings with the
+ * following format:
+ *
+ *     command_name [parameter]...\n
+ *
+ * A command is composed of a name, between none and many parameters separated
+ * by spaces and a UNIX line ending.
+ *
+ * RawCommand makes available the name and parameters of received commands, and
+ * is aimed at being passed to the CommandFactory.
+ */
 class RawCommand
 {
     /**

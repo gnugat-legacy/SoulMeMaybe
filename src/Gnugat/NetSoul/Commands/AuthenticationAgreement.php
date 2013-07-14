@@ -15,7 +15,7 @@ use Exception;
 
 use Gnugat\NetSoul\RawCommand;
 
-class AuthenticationAgreement
+class AuthenticationAgreement implements Command
 {
     const NAME = 'auth_ag';
     const NUMBER_OF_PARAMETERS = 3;
@@ -36,12 +36,7 @@ class AuthenticationAgreement
     private $secondUnusedParameter;
 
     /**
-     * @param RawCommand $rawCommand
-     *
-     * @return NewConnection
-     *
-     * @throws Exception If wrong name of command given.
-     * @throws Exception If wrong number of parameters given.
+     * {@inheritDoc}
      */
     public static function makeFromRawCommand(RawCommand $rawCommand)
     {

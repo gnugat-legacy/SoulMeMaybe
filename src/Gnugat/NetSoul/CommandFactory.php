@@ -20,7 +20,7 @@ class CommandFactory
     /**
      * @param RawCommand $rawCommand
      *
-     * @return Gnugat\NetSoul\Commands\NewConnection
+     * @return Gnugat\NetSoul\Commands\Command
      *
      * @throws Exception If the given command is not supported.
      */
