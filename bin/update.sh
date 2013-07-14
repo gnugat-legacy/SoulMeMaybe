@@ -16,7 +16,7 @@ echo 'Updating composer...'
 php ./composer.phar self-update
 
 echo 'Updating SoulMeMaybe dependencies...'
-php ./composer.phar update
+php ./composer.phar update --no-dev
 
 echo 'Optimizing the autoloading...'
 php ./composer.phar dump-autoload -o

@@ -17,7 +17,7 @@ echo 'Installing composer...'
 curl -s http://getcomposer.org/installer | php
 
 echo 'Installing SoulMeMaybe dependencies...'
-php ./composer.phar install
+php ./composer.phar install --no-dev
 
 echo 'Optimizing the autoloading...'
 php ./composer.phar dump-autoload -o

@@ -2,6 +2,17 @@
 
 This file logs the changes between versions.
 
+## 2.1.0
+
+* Added pasword masking support in `configurator`
+* Added location support
+* Added disconnection
+* Fixed rainbow mode using `whatthejeff/fab`
+* Fixed server host by using DNS instead of IP
+* Added version management in the configuration file for install and update scripts
+* Updated `symfony/yaml` and `symfony/console` from 2.1 to 2.3
+* Updated `monolog/monolog` from 1.3 to latest of version 1
+
 ## 2.0.1
 
 * Fixed `configurator` failure caused by missing dependencies
