@@ -84,7 +84,7 @@ class NewConnection
 
         return $newConnection;
     }
-
+    
     /**
      * @return string
      */

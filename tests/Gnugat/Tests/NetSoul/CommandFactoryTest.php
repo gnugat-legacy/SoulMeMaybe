@@ -26,7 +26,7 @@ class CommandFactoryTest extends PHPUnit_Framework_TestCase
         $fixtureFile = __DIR__.'/../Fixtures/Commands/'.$commandName.'.txt';
         $rawCommand = file_get_contents($fixtureFile);
 
-        return new RawCommand($rawCommand);
+        return RawCommand::makeFromString($rawCommand);
     }
 
     public function testSuccessfulMake()

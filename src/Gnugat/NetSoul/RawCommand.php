@@ -26,9 +26,9 @@ class RawCommand
     private $parameters;
 
     /**
-     * @param string $command The sent or received string.
+     * @param string $command
      */
-    public function __construct($command)
+    public static function makeFromString($command)
     {
         if (false === strpos($command, PHP_EOL)) {
             throw new Exception(sprintf('Error: missing line ending in (%s)', $command));
@@ -41,8 +41,15 @@ class RawCommand
             throw new Exception('Error: empty string');
         }
 
-        $this->name = array_shift($commandParameters);
-        $this->parameters = $commandParameters;
+        $rawCommand = new RawCommand();
+        $rawCommand->name = array_shift($commandParameters);
+        $rawCommand->parameters = $commandParameters;
+        
+        return $rawCommand;
+    }
+    
+    private function __construct()
+    {
     }
 
     /**

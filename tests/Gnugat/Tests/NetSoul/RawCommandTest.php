@@ -34,7 +34,7 @@ class RawCommandTest extends PHPUnit_Framework_TestCase
         foreach ($supportedCommands as $supportedCommand) {
             $namespacedClass = 'Gnugat\\NetSoul\\Commands\\'.$supportedCommand;
             $fixture = $this->getFixture($supportedCommand);
-            $rawCommand = new RawCommand($fixture);
+            $rawCommand = RawCommand::makeFromString($fixture);
 
             $this->assertSame($rawCommand->getName(), $namespacedClass::NAME);
         }
@@ -48,7 +48,7 @@ class RawCommandTest extends PHPUnit_Framework_TestCase
         foreach ($supportedCommands as $supportedCommand) {
             $namespacedClass = 'Gnugat\\NetSoul\\Commands\\'.$supportedCommand;
             $fixture = $this->getFixture($supportedCommand);
-            $rawCommand = new RawCommand($fixture);
+            $rawCommand = RawCommand::makeFromString($fixture);
             $parameters = $rawCommand->getParameters();
             $numberOfParameters = count($parameters);
 
@@ -64,7 +64,7 @@ class RawCommandTest extends PHPUnit_Framework_TestCase
         foreach ($supportedCommands as $supportedCommand) {
             $namespacedClass = 'Gnugat\\NetSoul\\Commands\\'.$supportedCommand;
             $fixture = $this->getFixture($supportedCommand);
-            $rawCommand = new RawCommand($fixture);
+            $rawCommand = RawCommand::makeFromString($fixture);
             $parameters = $rawCommand->getParameters();
             $lastParameter = array_pop($parameters);
 
@@ -77,7 +77,7 @@ class RawCommandTest extends PHPUnit_Framework_TestCase
      */
     public function testMissingEndOfLine()
     {
-        $rawCommand = new RawCommand('command without line ending');
+        $rawCommand = RawCommand::makeFromString('command without line ending');
     }
 
     /**
@@ -85,6 +85,6 @@ class RawCommandTest extends PHPUnit_Framework_TestCase
      */
     public function testEmptyString()
     {
-        $rawCommand = new RawCommand(''.PHP_EOL);
+        $rawCommand = RawCommand::makeFromString(''.PHP_EOL);
     }
 }

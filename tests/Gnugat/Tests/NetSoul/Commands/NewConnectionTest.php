@@ -31,7 +31,7 @@ class NewConnectionTest extends PHPUnit_Framework_TestCase
         );
         $fixture = NewConnection::NAME.' '.implode(' ', $parameters).PHP_EOL;
 
-        $rawCommand = new RawCommand($fixture);
+        $rawCommand = RawCommand::makeFromString($fixture);
         $newConnection = NewConnection::makeFromRawCommand($rawCommand);
 
         foreach ($parameters as $name => $parameter) {
@@ -51,7 +51,7 @@ class NewConnectionTest extends PHPUnit_Framework_TestCase
             $parameters[] = 'parameter';
         }
 
-        $rawCommand = new RawCommand(implode(' ', $parameters).PHP_EOL);
+        $rawCommand = RawCommand::makeFromString(implode(' ', $parameters).PHP_EOL);
 
         NewConnection::makeFromRawCommand($rawCommand);
     }
@@ -60,7 +60,7 @@ class NewConnectionTest extends PHPUnit_Framework_TestCase
     {
         $parameters = array(NewConnection::NAME);
         for ($numberOfParameters = 0; $numberOfParameters < NewConnection::NUMBER_OF_PARAMETERS; $numberOfParameters++) {
-            $rawCommand = new RawCommand(implode(' ', $parameters).PHP_EOL);
+            $rawCommand = RawCommand::makeFromString(implode(' ', $parameters).PHP_EOL);
 
             $hasRaisedException = false;
             try {
@@ -85,7 +85,7 @@ class NewConnectionTest extends PHPUnit_Framework_TestCase
             $parameters[] = 'parameter';
         }
 
-        $rawCommand = new RawCommand(implode(' ', $parameters).PHP_EOL);
+        $rawCommand = RawCommand::makeFromString(implode(' ', $parameters).PHP_EOL);
 
         NewConnection::makeFromRawCommand($rawCommand);
     }

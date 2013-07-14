@@ -24,7 +24,7 @@ class CommandFactory
      *
      * @throws Exception If the given command is not supported.
      */
-    public function make($rawCommand)
+    public function make(RawCommand $rawCommand)
     {
         $supportedCommands = array(
             'NewConnection',
