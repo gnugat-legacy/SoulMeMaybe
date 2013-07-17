@@ -28,14 +28,14 @@ class CommandFactoryTest extends PHPUnit_Framework_TestCase
 
         return RawCommand::makeFromString($rawCommand);
     }
-    
+
     public function testSupportedCommands()
     {
         $factory = new CommandFactory();
         foreach ($factory->getSupportedCommands() as $supportedCommand) {
             $sourceFile = __DIR__.'/../../../../src/Gnugat/NetSoul/Commands/'.$supportedCommand.'.php';
             $testFile = __DIR__.'/Commands/'.$supportedCommand.'Test.php';
-            
+
             $this->assertFileExists($sourceFile);
             $this->assertFileExists($testFile);
         }
@@ -58,7 +58,7 @@ class CommandFactoryTest extends PHPUnit_Framework_TestCase
     public function testMakeFailure()
     {
         $factory = new CommandFactory();
-        $rawCommand = $this->getFixture('fake command'.PHP_EOL);
+        $rawCommand = RawCommand::makeFromString('fake command'.PHP_EOL);
 
         $factory->make($rawCommand);
     }
