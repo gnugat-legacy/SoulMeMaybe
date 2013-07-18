@@ -15,6 +15,10 @@ use Exception;
 
 use Gnugat\NetSoul\RawCommand;
 
+/**
+ * Command sent by the cient to describe what type of authentication will be
+ * done.
+ */
 class AuthenticationAgreement implements Command
 {
     const NAME = 'auth_ag';

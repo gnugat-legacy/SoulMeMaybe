@@ -15,6 +15,9 @@ use Exception;
 
 use Gnugat\NetSoul\RawCommand;
 
+/**
+ * Command sent by the server when a new client connects to it.
+ */
 class NewConnection implements Command
 {
     const NAME = 'salut';
@@ -79,7 +82,7 @@ class NewConnection implements Command
 
         return $newConnection;
     }
-    
+
     /**
      * @return string
      */

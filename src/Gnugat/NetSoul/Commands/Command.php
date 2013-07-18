@@ -16,11 +16,11 @@ use Exception;
 use Gnugat\NetSoul\RawCommand;
 
 /**
- * Implementations of this interface shoul define a NAME and a
+ * Implementations of this interface should define a NAME and a
  * NUMBER_OF_PARAMETERS constants.
  *
  * If the command has any parameters, the implementation should also define
- * them as attrbiutes with getters for them.
+ * them as attributes with getters for them.
  */
 interface Command
 {

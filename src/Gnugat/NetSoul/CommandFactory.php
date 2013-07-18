@@ -15,6 +15,9 @@ use Exception;
 
 use Gnugat\NetSoul\RawCommand;
 
+/**
+ * Used when receiving commands.
+ */
 class CommandFactory
 {
     /**
@@ -36,7 +39,7 @@ class CommandFactory
 
         throw new Exception('Unsupported command: '.$commandName);
     }
-    
+
     public function getSupportedCommands()
     {
         return array(
