@@ -20,58 +20,6 @@ use Exception;
 
 class ResponseTest extends PHPUnit_Framework_TestCase
 {
-    public function testSuccessfulConstructionFromRawMessage()
-    {
-        $parameters = array(
-            'code' => '002',
-            'separator' => '--',
-            'message' => 'cmd end',
-        );
-        $fixture = Response::NAME.' '.implode(' ', $parameters).PHP_EOL;
-
-        $rawCommand = RawCommand::makeFromString($fixture);
-        $response = Response::makeFromRawCommand($rawCommand);
-
-        foreach ($parameters as $name => $parameter) {
-            $getter = 'get'.ucfirst($name);
-
-            $this->assertSame($parameter, $response->$getter());
-        }
-    }
-
-    /**
-     * @expectedException Exception
-     */
-    public function testWrongCommandName()
-    {
-        $parameters = array('wrong_command');
-        for ($numberOfParameters = 0; $numberOfParameters !== Response::NUMBER_OF_PARAMETERS; $numberOfParameters++) {
-            $parameters[] = 'parameter';
-        }
-
-        $rawCommand = RawCommand::makeFromString(implode(' ', $parameters).PHP_EOL);
-
-        Response::makeFromRawCommand($rawCommand);
-    }
-
-    public function testFailureOnWrongNumberOfParameters()
-    {
-        $parameters = array(Response::NAME);
-        for ($numberOfParameters = 0; $numberOfParameters < Response::NUMBER_OF_PARAMETERS; $numberOfParameters++) {
-            $rawCommand = RawCommand::makeFromString(implode(' ', $parameters).PHP_EOL);
-
-            $hasRaisedException = false;
-            try {
-                Response::makeFromRawCommand($rawCommand);
-            } catch (Exception $e) {
-                $hasRaisedException = true;
-            }
-            $this->assertTrue($hasRaisedException);
-
-            $parameters[] = 'parameter';
-        }
-    }
-
     /**
      * @expectedException Exception
      */

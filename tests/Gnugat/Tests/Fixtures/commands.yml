@@ -1,0 +1,26 @@
+commands:
+    AuthenticationAgreement:
+        raw: "auth_ag ext_user none none"
+        name: "auth_ag"
+        parameters:
+            type: "ext_user"
+            firstUnusedParameter: "none"
+            secondUnusedParameter: "none"
+
+    NewConnection:
+        raw: "salut 27 2fb93c1e8020c71ccf99f6555f70e56f 195.220.50.8 45686 1036068977"
+        name: "salut"
+        parameters:
+            socketNumber: "27"
+            hashSeed: "2fb93c1e8020c71ccf99f6555f70e56f"
+            clientHost: "195.220.50.8"
+            clientPort: "45686"
+            connectionTimestamp: "1036068977"
+
+    Response:
+        raw: "rep 002 -- cmd end"
+        name: "rep"
+        parameters:
+            code: "002"
+            separator: "--"
+            message: "cmd end"

@@ -34,10 +34,8 @@ class CommandFactoryTest extends PHPUnit_Framework_TestCase
         $factory = new CommandFactory();
         foreach ($factory->getSupportedCommands() as $supportedCommand) {
             $sourceFile = __DIR__.'/../../../../src/Gnugat/NetSoul/Commands/'.$supportedCommand.'.php';
-            $testFile = __DIR__.'/Commands/'.$supportedCommand.'Test.php';
 
             $this->assertFileExists($sourceFile);
-            $this->assertFileExists($testFile);
         }
     }
 
