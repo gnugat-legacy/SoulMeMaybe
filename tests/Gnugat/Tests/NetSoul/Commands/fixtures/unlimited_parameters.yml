@@ -1,0 +1,8 @@
+commands:
+    Response:
+        raw: "rep 002 -- cmd end"
+        name: "rep"
+        parameters:
+            code: "002"
+            separator: "--"
+            message: "cmd end"

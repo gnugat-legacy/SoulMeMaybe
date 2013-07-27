@@ -16,11 +16,3 @@ commands:
             clientHost: "195.220.50.8"
             clientPort: "45686"
             connectionTimestamp: "1036068977"
-
-    Response:
-        raw: "rep 002 -- cmd end"
-        name: "rep"
-        parameters:
-            code: "002"
-            separator: "--"
-            message: "cmd end"

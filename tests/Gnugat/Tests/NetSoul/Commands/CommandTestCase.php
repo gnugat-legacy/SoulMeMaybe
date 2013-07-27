@@ -13,21 +13,19 @@ namespace Gnugat\Tests\NetSoul\Commands;
 
 use Exception;
 
-use Gnugat\NetSoul\Commands\AuthenticationAgreement;
 use Gnugat\NetSoul\RawCommand;
 
 use PHPUnit_Framework_TestCase;
 
-use Symfony\Component\Yaml\Yaml;
-
-class CommandTest extends PHPUnit_Framework_TestCase
+/**
+ * Tests the common behaviour to all commands, using a set of fixtures.
+ */
+abstract class CommandTestCase extends PHPUnit_Framework_TestCase
 {
-    private function getFixtures()
-    {
-        $fixtures = Yaml::parse(__DIR__.'/../../Fixtures/commands.yml');
-
-        return $fixtures['commands'];
-    }
+    /**
+     * @return array
+     */
+    abstract protected function getFixtures();
 
     public function testSuccessfulConstructionFromRawMessage()
     {
@@ -54,10 +52,8 @@ class CommandTest extends PHPUnit_Framework_TestCase
             $rawCommand = RawCommand::makeFromString($fixture['raw'].PHP_EOL);
             $namespacedCommandName = 'Gnugat\\NetSoul\\Commands\\'.$commandName;
 
-            $parameters = array('wrong_command');
-            for ($numberOfParameters = 0; $numberOfParameters !== $namespacedCommandName::NUMBER_OF_PARAMETERS; $numberOfParameters++) {
-                $parameters[] = 'parameter';
-            }
+            $numberOfPaddedParameters = $namespacedCommandName::NUMBER_OF_PARAMETERS + 2;
+            $parameters = array_pad(array('wrong_command_name'), $numberOfPaddedParameters, 'parameter');
 
             $rawCommand = RawCommand::makeFromString(implode(' ', $parameters).PHP_EOL);
 
@@ -94,34 +90,6 @@ class CommandTest extends PHPUnit_Framework_TestCase
                 $this->assertTrue($hasRaisedException);
                 $parameters[] = 'parameter';
             }
-        }
-    }
-
-    public function testFailureTooManyParameters()
-    {
-        $fixtures = $this->getFixtures();
-        unset($fixtures['Response']);
-
-        foreach ($fixtures as $commandName => $fixture) {
-            $rawCommand = RawCommand::makeFromString($fixture['raw'].PHP_EOL);
-            $namespacedCommandName = 'Gnugat\\NetSoul\\Commands\\'.$commandName;
-
-            $parameters = array('wrong_command');
-            $tooManyParameters = $namespacedCommandName::NUMBER_OF_PARAMETERS + 1;
-            for ($numberOfParameters = 0; $numberOfParameters !== $tooManyParameters; $numberOfParameters++) {
-                $parameters[] = 'parameter';
-            }
-
-            $rawCommand = RawCommand::makeFromString(implode(' ', $parameters).PHP_EOL);
-
-            $hasRaisedException = false;
-            try {
-                $namespacedCommandName::makeFromRawCommand($rawCommand);
-            } catch (Exception $e) {
-                $hasRaisedException = true;
-            }
-
-            $this->assertTrue($hasRaisedException);
         }
     }
 }
