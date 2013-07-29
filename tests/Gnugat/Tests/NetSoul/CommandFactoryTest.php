@@ -14,19 +14,30 @@ namespace Gnugat\Tests\NetSoul;
 use Exception;
 
 use Gnugat\NetSoul\CommandFactory;
-use Gnugat\NetSoul\Commands;
 use Gnugat\NetSoul\RawCommand;
 
 use PHPUnit_Framework_TestCase;
 
+use Symfony\Component\Yaml\Yaml;
+
 class CommandFactoryTest extends PHPUnit_Framework_TestCase
 {
-    private function getFixture($commandName)
+    private function getFixtures()
     {
-        $fixtureFile = __DIR__.'/../Fixtures/Commands/'.$commandName.'.txt';
-        $rawCommand = file_get_contents($fixtureFile);
+        $fixtures = array();
 
-        return RawCommand::makeFromString($rawCommand);
+        $fixtureFileNames = array(
+            __DIR__.'/Commands/fixtures/generics.yml',
+            __DIR__.'/Commands/fixtures/unlimited_parameters.yml',
+        );
+        foreach ($fixtureFileNames as $fixtureFileName) {
+            $fixtureFile = file_get_contents($fixtureFileName);
+            $fixture = Yaml::parse($fixtureFile);
+
+            $fixtures = array_merge($fixtures, $fixture['commands']);
+        }
+
+        return $fixtures;
     }
 
     public function testSupportedCommands()
@@ -41,10 +52,12 @@ class CommandFactoryTest extends PHPUnit_Framework_TestCase
 
     public function testSuccessfulMake()
     {
+        $fixtures = $this->getFixtures();
+
         $factory = new CommandFactory();
         foreach ($factory->getSupportedCommands() as $supportedCommand) {
             $namespacedClass = 'Gnugat\\NetSoul\\Commands\\'.$supportedCommand;
-            $rawCommand = $this->getFixture($supportedCommand);
+            $rawCommand = RawCommand::makeFromString($fixtures[$supportedCommand]['raw'].PHP_EOL);
 
             $this->assertTrue($factory->make($rawCommand) instanceof $namespacedClass);
         }

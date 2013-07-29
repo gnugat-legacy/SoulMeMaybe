@@ -1,1 +1,0 @@
-auth_ag ext_user none none

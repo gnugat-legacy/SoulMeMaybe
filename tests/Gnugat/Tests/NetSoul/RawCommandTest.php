@@ -17,58 +17,57 @@ use Gnugat\NetSoul\RawCommand;
 
 use PHPUnit_Framework_TestCase;
 
+use Symfony\Component\Yaml\Yaml;
+
 class RawCommandTest extends PHPUnit_Framework_TestCase
 {
-    private function getFixture($commandName)
+    private function getFixtures()
     {
-        $fixtureFile = __DIR__.'/../Fixtures/Commands/'.$commandName.'.txt';
+        $fixtures = array();
 
-        return file_get_contents($fixtureFile);
+        $fixtureFileNames = array(
+            __DIR__.'/Commands/fixtures/generics.yml',
+            __DIR__.'/Commands/fixtures/unlimited_parameters.yml',
+        );
+        foreach ($fixtureFileNames as $fixtureFileName) {
+            $fixtureFile = file_get_contents($fixtureFileName);
+            $fixture = Yaml::parse($fixtureFile);
+
+            $fixtures = array_merge($fixtures, $fixture['commands']);
+        }
+
+        return $fixtures;
     }
 
     public function testName()
     {
-        $supportedCommands = array(
-            'NewConnection',
-        );
-        foreach ($supportedCommands as $supportedCommand) {
-            $namespacedClass = 'Gnugat\\NetSoul\\Commands\\'.$supportedCommand;
-            $fixture = $this->getFixture($supportedCommand);
-            $rawCommand = RawCommand::makeFromString($fixture);
+        foreach ($this->getFixtures() as $commandClassName => $fixture) {
+            $namespacedCommandClassName = 'Gnugat\\NetSoul\\Commands\\'.$commandClassName;
+            $rawCommand = RawCommand::makeFromString($fixture['raw'].PHP_EOL);
 
-            $this->assertSame($rawCommand->getName(), $namespacedClass::NAME);
+            $this->assertSame($rawCommand->getName(), $namespacedCommandClassName::NAME);
         }
     }
 
     public function testParameters()
     {
-        $supportedCommands = array(
-            'NewConnection',
-        );
-        foreach ($supportedCommands as $supportedCommand) {
-            $namespacedClass = 'Gnugat\\NetSoul\\Commands\\'.$supportedCommand;
-            $fixture = $this->getFixture($supportedCommand);
-            $rawCommand = RawCommand::makeFromString($fixture);
+        foreach ($this->getFixtures() as $fixture) {
+            $rawCommand = RawCommand::makeFromString($fixture['raw'].PHP_EOL);
             $parameters = $rawCommand->getParameters();
+
             $numberOfParameters = count($parameters);
 
-            $this->assertSame($numberOfParameters, $namespacedClass::NUMBER_OF_PARAMETERS);
-        }
-    }
+            if ('rep' === $fixture['name']) {
+                $parameters[$numberOfParameters - 2] .= ' '.$parameters[$numberOfParameters - 1];
+                unset($parameters[$numberOfParameters - 1]);
+                $numberOfParameters--;
+            }
 
-    public function testLastParameter()
-    {
-        $supportedCommands = array(
-            'NewConnection',
-        );
-        foreach ($supportedCommands as $supportedCommand) {
-            $namespacedClass = 'Gnugat\\NetSoul\\Commands\\'.$supportedCommand;
-            $fixture = $this->getFixture($supportedCommand);
-            $rawCommand = RawCommand::makeFromString($fixture);
-            $parameters = $rawCommand->getParameters();
-            $lastParameter = array_pop($parameters);
+            $this->assertCount($numberOfParameters, $fixture['parameters']);
 
-            $this->assertFalse(strpos($lastParameter, PHP_EOL));
+            for ($parameterIndex = 0; $parameterIndex < $numberOfParameters; $parameterIndex++) {
+                $this->assertSame($parameters[$parameterIndex], array_shift($fixture['parameters']));
+            }
         }
     }
 
