@@ -12,10 +12,8 @@
     "require": {
         "php": ">=5.3.3",
         "symfony/yaml": "2.3.*",
-        "symfony/console": "2.3.*",
-        "monolog/monolog": "~1.3",
-
-        "whatthejeff/fab": "1.0.*"
+        "igorw/fab-symfony-console": "1.0.*",
+        "monolog/monolog": "~1.3"
     },
     "require-dev": {
         "phpunit/phpunit": "3.7.*"
