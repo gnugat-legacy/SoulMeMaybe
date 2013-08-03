@@ -14,8 +14,9 @@ namespace Gnugat\SoulMeMaybe\Client;
 use Fab\Fab;
 
 use Gnugat\SoulMeMaybe\Client\Kernel;
-use Gnugat\SoulMeMaybe\FabOutputFormatterStyle;
 use Gnugat\SoulMeMaybe\Output;
+
+use Igorw\Fab\FabOutputFormatterStyle;
 
 use Monolog\Handler\RotatingFileHandler;
 use Monolog\Logger;
