@@ -15,7 +15,7 @@ use Gnugat\SoulMeMaybe\VersionExtractor;
 
 require __DIR__.'/../vendor/autoload.php';
 
-$container = require __DIR__.'/../src/Gnugat/SoulMeMaybe/bootstrap.php';
+$container = require __DIR__.'/../src/Gnugat/SoulMeMaybe/dependency-injection/container.php';
 
 $minimumPhpVersion = '5.3.3';
 $userPhpVersion = PHP_VERSION;
