@@ -13,25 +13,9 @@
 use Gnugat\SoulMeMaybe\Application;
 use Gnugat\SoulMeMaybe\VersionExtractor;
 
-use Symfony\Component\Console\Formatter\OutputFormatterStyle;
-use Symfony\Component\Console\Formatter\OutputFormatter;
-use Symfony\Component\Console\Output\ConsoleOutput;
-
 require __DIR__.'/../vendor/autoload.php';
 
-/**
- * @return ConsoleOutput
- */
-function make_colorful_output()
-{
-    $styles['highlight'] = new OutputFormatterStyle('red');
-    $styles['warning'] = new OutputFormatterStyle('black', 'yellow');
-    $formatter = new OutputFormatter(null, $styles);
-
-    return new ConsoleOutput(ConsoleOutput::VERBOSITY_NORMAL, null, $formatter);
-}
-
-$output = make_colorful_output();
+$container = require __DIR__.'/../src/Gnugat/SoulMeMaybe/bootstrap.php';
 
 $minimumPhpVersion = '5.3.3';
 $userPhpVersion = PHP_VERSION;
@@ -46,4 +30,4 @@ EOT
 
 $versionExtractor = new VersionExtractor(__DIR__.'/../VERSION.md');
 $application = new Application($versionExtractor);
-$application->run(null, $output);
+$application->run(null, $container->get('console_output'));
