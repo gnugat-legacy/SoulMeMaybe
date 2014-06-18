@@ -2,6 +2,10 @@
 
 This file logs the changes between versions.
 
+## 2.1.1
+
+* Fixed Insight Analysis #15
+
 ## 2.1.0
 
 * Added pasword masking support in `configurator`
