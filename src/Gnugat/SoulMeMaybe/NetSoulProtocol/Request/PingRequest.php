@@ -11,8 +11,6 @@
 
 namespace Gnugat\SoulMeMaybe\NetSoulProtocol\Request;
 
-use Gnugat\SoulMeMaybe\NetSoulProtocol\Response\ConnectionResponse;
-
 /**
  * Ping answer to the server's one, to keep the connection alive.
  */
