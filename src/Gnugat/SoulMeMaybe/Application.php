@@ -142,10 +142,7 @@ EOF;
     {
         declare(ticks = 1);
 
-        $cleanExit = function() {
-            exit;
-        };
-        pcntl_signal(SIGINT, $cleanExit);
-        pcntl_signal(SIGTERM, $cleanExit);
+        pcntl_signal(SIGINT, 'exit');
+        pcntl_signal(SIGTERM, 'exit');
     }
 }
